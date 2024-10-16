@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Parcial 2- Machine Learning &#8212; Machine Learning</title>
+    <title>Informe &#8212; Machine Learning</title>
   
   
   
@@ -57,10 +57,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'informe';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Informe" href="informe.html" />
+    <link rel="prev" title="Parcial 2- Machine Learning" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -143,7 +141,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -174,14 +172,14 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Parcial 2- Machine Learning
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="informe.html">Informe</a></li>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Informe</a></li>
 </ul>
 
     </div>
@@ -253,7 +251,7 @@
       
       
       
-      <li><a href="https://github.com/kmarcela11/Parcial2_MachineLearning/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/kmarcela11/Parcial2_MachineLearning/issues/new?title=Issue%20on%20page%20%2Finforme.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -283,7 +281,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/informe.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -367,7 +365,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Parcial 2- Machine Learning</h1>
+    <h1>Informe</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,9 +375,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudiantes">Estudiantes:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profesor">Profesor:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#info">Info:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-adasyn">Algoritmo ADASYN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><em>Resumen</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><em>Metodología</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#libreria-imblearn-over-sampling-adasyn"><em>Librería (imblearn.over_sampling.ADASYN)</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-bayesiana">Optimización Bayesiana</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><em>Resumen</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><em>Metodología</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#libreria"><em>Librería</em></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -391,31 +398,54 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="parcial-2-machine-learning">
-<h1><strong>Parcial 2- Machine Learning</strong><a class="headerlink" href="#parcial-2-machine-learning" title="Link to this heading">#</a></h1>
-<section id="estudiantes">
-<h2>Estudiantes:<a class="headerlink" href="#estudiantes" title="Link to this heading">#</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Kanery Marcela Camargo Rodríguez.
-- Emanuel de Jesús Carbonell Naranjo.
-</pre></div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="informe">
+<h1>Informe<a class="headerlink" href="#informe" title="Link to this heading">#</a></h1>
+<section id="algoritmo-adasyn">
+<h2>Algoritmo ADASYN<a class="headerlink" href="#algoritmo-adasyn" title="Link to this heading">#</a></h2>
+<section id="resumen">
+<h3><em>Resumen</em><a class="headerlink" href="#resumen" title="Link to this heading">#</a></h3>
+<p>Consiste en una técnica de sobremuestreo utilizada en el aprendizaje automático para abordar el desequilibrio en conjuntos de datos de clasificación. ADASYN ajusta la cantidad de muestras sintéticas generadas según la distribución local de la clase minoritaria. Se prioriza la generación de datos sintéticos en áreas del espacio de características donde la clase minoritaria está menos representada, lo que ayuda a mejorar la capacidad del modelo para generalizar y clasificar correctamente las instancias de la clase minoritaria. Este enfoque adaptativo ayuda a mitigar el riesgo de sobreajuste en modelos de aprendizaje automático.</p>
+<p>ADASYN determina la distribución local de la clase minoritaria calculando la densidad de puntos cercanos en el espacio de características. Luego, asigna pesos a cada instancia de la clase minoritaria en función de esta distribución local. Las instancias con menor densidad de puntos cercanos reciben pesos más altos, lo que significa que se les da más importancia durante la generación de datos sintéticos.</p>
 </section>
-<section id="profesor">
-<h2>Profesor:<a class="headerlink" href="#profesor" title="Link to this heading">#</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Dr. Lihki Rubio 
-</pre></div>
-</div>
+<section id="metodologia">
+<h3><em>Metodología</em><a class="headerlink" href="#metodologia" title="Link to this heading">#</a></h3>
 </section>
-<section id="info">
-<h2>Info:<a class="headerlink" href="#info" title="Link to this heading">#</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Ciencia de Datos
-- Universidad del Norte
-- Octubre 2024
-</pre></div>
-</div>
+<section id="libreria-imblearn-over-sampling-adasyn">
+<h3><em>Librería (imblearn.over_sampling.ADASYN)</em><a class="headerlink" href="#libreria-imblearn-over-sampling-adasyn" title="Link to this heading">#</a></h3>
+<p>Parámetros</p>
+<ul class="simple">
+<li><p><strong>sampling_strategy</strong> <em>(float, str, dict, callable, predeterminado=’auto’)</em>: Define la estrategia para ajustar el balance de las clases en el conjunto de datos.</p></li>
+<li><p><strong>random_state</strong> <em>(int, RandomState instance, predeterminado=None)</em>: Determina una semilla.</p></li>
+<li><p><strong>n_neighbors</strong> <em>(int o estimator object, predeterminado=5)</em>: Establece los vecinos más cercanos.</p></li>
+<li><p><strong>n_jobs</strong> <em>(int, predeterminado=None)</em>: Especifica el número de núcleos de CPU usados durante el proceso de sobremuestreo.</p></li>
+</ul>
+<p>Atributos</p>
+<ul class="simple">
+<li><p><strong>sampling_strategy_</strong> <em>(dict)</em>:  Indicando el número de muestras generadas por cada clase.</p></li>
+<li><p><strong>nn_estimator_</strong> <em>(object)</em>: Estimador de k-vecinos más cercanos.</p></li>
+<li><p><strong>n_features_in_</strong> <em>(int)</em>: Número de características identificadas en el conjunto de datos de entrada.</p></li>
+</ul>
 </section>
-<div class="toctree-wrapper compound">
-</div>
+</section>
+<section id="optimizacion-bayesiana">
+<h2>Optimización Bayesiana<a class="headerlink" href="#optimizacion-bayesiana" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3><em>Resumen</em><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>La optimización bayesiana es una técnica avanzada para encontrar parámetros óptimos en funciones que son costosas de evaluar. Utiliza un modelo probabilístico, como un proceso gaussiano, para prever el rendimiento en función de los datos existentes y una función de adquisición para equilibrar la exploración del espacio de búsqueda con la explotación de áreas prometedoras. La función de adquisición guía la selección del próximo punto a evaluar. Después de cada evaluación, el modelo se actualiza para reflejar los nuevos datos. Este ciclo se repite hasta alcanzar un criterio de terminación, como un límite en el número de evaluaciones o un umbral de mejora en el rendimiento. Esta metodología es especialmente valiosa en situaciones donde las evaluaciones son extremadamente costosas, como en la afinación de hiperparámetros o en pruebas de diseño de ingeniería.</p>
+</section>
+<section id="id2">
+<h3><em>Metodología</em><a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+</section>
+<section id="libreria">
+<h3><em>Librería</em><a class="headerlink" href="#libreria" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Espacio de búsqueda:</strong> Define el rango de valores para cada hiperparámetro. Por lo general, se representa mediante una función continua y convexa, que sirve como el espacio de exploración durante la optimización.</p></li>
+<li><p><strong>Función de pérdida:</strong> Es fundamental en el proceso de optimización, ya que cuantifica el rendimiento del modelo según un conjunto dado de hiperparámetros. El objetivo es minimizar esta función mediante ajustes iterativos de los hiperparámetros.</p></li>
+<li><p><strong>Algoritmo de optimización:</strong> HyperOpt ofrece varios algoritmos de optimización, principalmente el de Optimización Secuencial Basada en Modelos (SMBO, por sus siglas en inglés). Entre las variantes de SMBO se incluyen el Proceso Gaussiano (GP), el Estimador Parzen Estructurado en Árbol (TPE) y el TPE Adaptativo (ATPE). Estos algoritmos guían la búsqueda a través del espacio de hiperparámetros, equilibrando la exploración y la explotación para converger eficientemente hacia soluciones óptimas.</p></li>
+<li><p><strong>Base de datos de historial (H):</strong> Almacena un registro del historial de evaluaciones, guardando tuplas que consisten en el puntaje alcanzado y la configuración de hiperparámetros correspondiente. Este historial permite a HyperOpt aprender de las iteraciones pasadas y tomar decisiones informadas durante los pasos de optimización posteriores.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -448,14 +478,14 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="informe.html"
-       title="next page">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Informe</p>
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Parcial 2- Machine Learning</strong></p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -473,9 +503,18 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudiantes">Estudiantes:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profesor">Profesor:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#info">Info:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-adasyn">Algoritmo ADASYN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><em>Resumen</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><em>Metodología</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#libreria-imblearn-over-sampling-adasyn"><em>Librería (imblearn.over_sampling.ADASYN)</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-bayesiana">Optimización Bayesiana</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><em>Resumen</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><em>Metodología</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#libreria"><em>Librería</em></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
