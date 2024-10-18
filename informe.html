@@ -180,7 +180,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Ejercicio1.html"><strong>Ejercicio 1.1</strong></a></li>
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Ejercicio 1.2: Research</strong></a></li>
+
 
 
 </ul>
@@ -391,6 +394,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Librería Python</strong></a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias"><strong>Referencias</strong></a></li>
 </ul>
 
             </nav>
@@ -417,6 +421,7 @@ document.write(`
 <section id="resumen">
 <h2><strong>Resumen</strong><a class="headerlink" href="#resumen" title="Link to this heading">#</a></h2>
 <p><strong>ADASYN</strong> <em>(Adaptive Synthetic Sampling)</em> es una técnica de sobremuestreo utilizada en el aprendizaje automático para equilibrar conjuntos de datos desbalanceados, que contienen una <strong>clase mayoritaria</strong> (con muchas muestras) y una <strong>clase minoritaria</strong> (con pocas muestras). ADASYN genera ejemplos sintéticos para la clase minoritaria, enfocándose en las muestras más difíciles de clasificar según la densidad local. Esto mejora el rendimiento de los modelos de clasificación al reducir el sesgo hacia la clase mayoritaria, siendo útil en aplicaciones como la investigación médica y la detección de fraudes.</p>
+<p>Además, <strong>ADASYN</strong> se diferencia de otras técnicas de sobremuestreo como SMOTE al asignar una mayor cantidad de ejemplos sintéticos a las regiones donde la clase minoritaria es más difícil de clasificar. Esto permite una adaptación más precisa al problema específico de desbalance, evitando la generación excesiva de muestras en áreas donde la clasificación es menos compleja. <strong>ADASYN</strong> puede ser adoptado en situaciones donde la precisión y la sensibilidad a las clases minoritarias son críticas.</p>
 </section>
 <section id="descripcion-de-metodologia">
 <h2><strong>Descripción de metodología</strong><a class="headerlink" href="#descripcion-de-metodologia" title="Link to this heading">#</a></h2>
@@ -432,14 +437,26 @@ document.write(`
 <section id="id1">
 <h2><strong>Resumen</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>La <strong>optimización bayesiana</strong> es una técnica utilizada para la búsqueda de hiperparámetros en modelos de machine learning, la cual mejora la eficiencia de este proceso. A diferencia de métodos como <strong>grid search</strong> y <strong>random search</strong>, que prueban combinaciones de hiperparámetros sin considerar resultados previos, la optimización bayesiana construye un modelo probabilístico sobre la función objetivo (como la métrica de validación) y utiliza la información de iteraciones anteriores para enfocar la búsqueda en regiones más prometedoras del espacio de hiperparámetros. Esta técnica es especialmente útil cuando el espacio de búsqueda es amplio o el entrenamiento del modelo es costoso, ya que reduce el número de evaluaciones necesarias para encontrar combinaciones óptimas.</p>
+<p>La optimización bayesiana no solo es eficaz en la búsqueda de hiperparámetros, sino que también puede manejar espacios de búsqueda mixtos, incluyendo variables continuas, discretas o categóricas. Además, es capaz de adaptarse a problemas con funciones objetivo ruidosas o no convexas, lo que la hace particularmente útil en tareas de optimización difíciles y en aplicaciones industriales donde los recursos computacionales son limitados.</p>
 </section>
 <section id="id2">
 <h2><strong>Descripción de metodología</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><img alt="METODOLOGÍA" src="_images/BAYESIANA.png" /></p>
 </section>
 <section id="id3">
 <h2><strong>Librería Python</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p><img alt="Librería python" src="_images/BAYESIANAP.png" /></p>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="referencias">
+<h1><strong>Referencias</strong><a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>“ADASYN: Adaptive Synthetic Sampling in imbalanced-learn”.</strong> Imbalanced-learn contributors. Disponible en: <a class="reference external" href="https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.ADASYN.html">https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.ADASYN.html</a>. Consultado: 16 de octubre de 2024.</p></li>
+<li><p><strong>“ADASYN: Adaptive Synthetic Sampling Approach for Imbalanced Learning”.</strong> Haibo He y Yang Bai. 2008 IEEE International Joint Conference on Neural Networks (IEEE World Congress on Computational Intelligence), pp. 1322-1328, 2008. DOI: 10.1109/IJCNN.2008.4633969. Publicado por: IEEE.</p></li>
+<li><p><strong>“Adaptive Synthetic Sampling (ADASYN)”.</strong> <a class="reference external" href="http://Activeloop.ai">Activeloop.ai</a>. Disponible en: <a class="reference external" href="https://www.activeloop.ai/resources/glossary/adaptive-synthetic-sampling-adasyn/">https://www.activeloop.ai/resources/glossary/adaptive-synthetic-sampling-adasyn/</a>. Fuente: <a class="reference external" href="http://Activeloop.ai">Activeloop.ai</a>.</p></li>
+<li><p><strong>“Optimización bayesiana de hiperparámetros”.</strong> Rodrigo, Joaquín Amat. Disponible en: <a class="reference external" href="https://cienciadedatos.net/documentos/62_optimizacion_bayesiana_hiperparametros">https://cienciadedatos.net/documentos/62_optimizacion_bayesiana_hiperparametros</a>. Fuente: <a class="reference external" href="http://Cienciadedatos.net">Cienciadedatos.net</a>.</p></li>
+<li><p><strong>Skopt.Gp_minimize — scikit-optimize 0.8.1 documentation.</strong> Disponible en: <a class="reference external" href="https://scikit-optimize.github.io/stable/modules/generated/skopt.gp_minimize.html">https://scikit-optimize.github.io/stable/modules/generated/skopt.gp_minimize.html</a>. Fuente: <a class="reference external" href="http://Github.io">Github.io</a>.</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -510,6 +527,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Librería Python</strong></a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias"><strong>Referencias</strong></a></li>
 </ul>
 
   </nav></div>

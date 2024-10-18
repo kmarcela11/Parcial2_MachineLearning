@@ -181,7 +181,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Ejercicio 1.1</strong></a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="informe.html"><strong>Ejercicio 1.2: Research</strong></a></li>
+
 
 
 </ul>
@@ -356,7 +359,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -372,6 +377,55 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Ejercicio 1.1</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-y-modulos-necesarios"><strong>Librerías y módulos necesarios</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#default-probability-prediction"><strong>Default Probability Prediction</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-speed"><strong>Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualizacion"><strong>Contextualización</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos"><strong>Objetivos</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-importantes"><strong>Datos importantes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables"><strong>Diccionario de variables</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-de-datos"><strong>Base de datos</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-la-base-de-datos"><strong>Características de la base de datos</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#renombrado-de-columnas"><strong>Renombrado de Columnas</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables-actualizado"><strong>Diccionario de variables actualizado</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-faltantes"><strong>Datos Faltantes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas"><strong>Variables categóricas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas"><strong>Variables numéricas</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-dir-viento"><strong>Variable numérica: dir_viento</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-variable-objetivo-vel-viento"><strong>Variable numérica (Variable objetivo): vel_viento</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-hum-max"><strong>Variable numérica: hum_max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-hum-min"><strong>Variable numérica: hum_min</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-temp-max"><strong>Variable numérica: temp_max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-temp-min"><strong>Variable numérica: temp_min</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-hum-horaria"><strong>Variable numérica: hum_horaria</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-pres-atmo"><strong>Variable numérica: pres_atmo</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-precip-total"><strong>Variable numérica: precip_total</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-rafaga-max"><strong>Variable numérica: rafaga_max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-pres-max"><strong>Variable numérica: pres_max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-pres-min"><strong>Variable numérica: pres_min</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad"><strong>Multicolinealidad</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado"><strong>Análisis bivariado</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -389,181 +443,107 @@ Dado los siguientes conjuntos de datos: <strong>Default Probability Prediction</
 <li><p><strong>Descripción de tipos de variables</strong>, <strong>reducción de nombres extensos en columnas</strong>, calcular <strong>número de observaciones</strong>, <strong>media</strong>, <strong>desviación estándar</strong>, <strong>mínimo</strong>, <strong>máximo</strong>, <strong>cuartiles</strong>, realizar <strong>conteo de datos faltantes y su porcentaje</strong>, <strong>histograma</strong> o <strong>diagrama de barras</strong> para la variable respuesta e independientes según corresponda. Seleccionar un mínimo de 10 variables independientes, para este análisis. <strong>Análisis de simetría</strong>, <strong>datos atípicos</strong> y <strong>dispersión</strong>, etc., por medio de <code class="docutils literal notranslate"><span class="pre">boxplot()</span></code>.  <strong>Análisis bivariado</strong>. Trazado de <code class="docutils literal notranslate"><span class="pre">scatterplot()</span></code> y <code class="docutils literal notranslate"><span class="pre">regplot()</span></code> para un mínimo de 10 pares de variables explicativas. En cada figura agregar un análisis y descripción.</p></li>
 <li><p>Según corresponda, realizar <strong>imputación de datos faltantes</strong> por medio de <strong>Imputación Iterativa Múltiple</strong>. Realizar <strong>reducción de dimensionalidad</strong> por medio de eliminación de columnas altamente correlacionadas usando <strong>Variance Inflation Factor (VIF)</strong>. Para esto se recomienda usar la siguiente librería <code class="docutils literal notranslate"><span class="pre">variance_inflation_factor()</span></code>. Un <strong>VIF ≥ 10</strong> indica alta multicolinealidad entre la correspondiente variable independiente y las demás variables. <strong>Recomendación</strong>: Eliminar una columna a la vez. Aquella con el máximo <strong>VIF ≥ 10</strong>. Luego, para el nuevo <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, calcular nuevamente <strong>VIF</strong> e identificar nuevas columnas con <strong>VIF ≥ 10</strong> máximo, y así sucesivamente hasta obtener solo valores de <strong>VIF &lt; 10</strong>.  Según corresponda, variables categóricas deben previamente codificarse usando por ejemplo <code class="docutils literal notranslate"><span class="pre">OneHotEncoder()</span></code>.  Pueden mantener las variables categóricas antes de la codificación previa al entrenamiento del modelo y <strong>reducir multicolinealidad</strong> usando la prueba <code class="docutils literal notranslate"><span class="pre">chi2_contingency()</span></code>. Como <strong>Científico de Datos</strong>, queda a su juicio la decisión sobre qué variables independientes deberían ser eliminadas. Justifique en cada caso su respuesta. Puede proponer una metodología alternativa de reducción de dimensionalidad que considere más pertinente. En cada caso, justifique su respuesta. Puede evitar eliminar variables en el dataset de <strong>Wind Speed</strong>, debido a la baja cantidad de características.</p></li>
 </ul>
+<section id="librerias-y-modulos-necesarios">
+<h2><strong>Librerías y módulos necesarios</strong><a class="headerlink" href="#librerias-y-modulos-necesarios" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">mglearn</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">missingno</span> <span class="k">as</span> <span class="nn">msno</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kstest</span><span class="p">,</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectKBest</span><span class="p">,</span> <span class="n">chi2</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectKBest</span><span class="p">,</span><span class="n">chi2</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A module that was compiled using NumPy 1.x cannot be run in
-NumPy 2.0.2 as it may crash. To support both 1.x and 2.x
-versions of NumPy, modules must be compiled with NumPy 2.0.
-Some module may need to rebuild instead e.g. with &#39;pybind11&gt;=2.12&#39;.
-
-If you are a user of the module, the easiest solution will be to
-downgrade to &#39;numpy&lt;2&#39; or try to upgrade the affected module.
-We expect that some modules will need time to support NumPy 2.
-
-Traceback (most recent call last):  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\runpy.py&quot;, line 197, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\runpy.py&quot;, line 87, in _run_code
-    exec(code, run_globals)
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\ipykernel_launcher.py&quot;, line 17, in &lt;module&gt;
-    app.launch_new_instance()
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\traitlets\config\application.py&quot;, line 1043, in launch_instance
-    app.start()
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\ipykernel\kernelapp.py&quot;, line 736, in start
-    self.io_loop.start()
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\tornado\platform\asyncio.py&quot;, line 195, in start
-    self.asyncio_loop.run_forever()
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\asyncio\base_events.py&quot;, line 601, in run_forever
-    self._run_once()
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\asyncio\base_events.py&quot;, line 1905, in _run_once
-    handle._run()
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\asyncio\events.py&quot;, line 80, in _run
-    self._context.run(self._callback, *self._args)
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\ipykernel\kernelbase.py&quot;, line 516, in dispatch_queue
-    await self.process_one()
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\ipykernel\kernelbase.py&quot;, line 505, in process_one
-    await dispatch(*args)
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\ipykernel\kernelbase.py&quot;, line 412, in dispatch_shell
-    await result
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\ipykernel\kernelbase.py&quot;, line 740, in execute_request
-    reply_content = await reply_content
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\ipykernel\ipkernel.py&quot;, line 422, in do_execute
-    res = shell.run_cell(
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\ipykernel\zmqshell.py&quot;, line 546, in run_cell
-    return super().run_cell(*args, **kwargs)
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3024, in run_cell
-    result = self._run_cell(
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3079, in _run_cell
-    result = runner(coro)
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\IPython\core\async_helpers.py&quot;, line 129, in _pseudo_sync_runner
-    coro.send(None)
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3284, in run_cell_async
-    has_raised = await self.run_ast_nodes(code_ast.body, cell_name,
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3466, in run_ast_nodes
-    if await self.run_code(code, result, async_=asy):
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3526, in run_code
-    exec(code_obj, self.user_global_ns, self.user_ns)
-  File &quot;C:\Users\kamac\AppData\Local\Temp\ipykernel_5140\2666553691.py&quot;, line 3, in &lt;module&gt;
-    import mglearn
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\mglearn\__init__.py&quot;, line 1, in &lt;module&gt;
-    from . import plots
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\mglearn\plots.py&quot;, line 1, in &lt;module&gt;
-    from .plot_linear_svc_regularization import plot_linear_svc_regularization
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\mglearn\plot_linear_svc_regularization.py&quot;, line 1, in &lt;module&gt;
-    import matplotlib.pyplot as plt
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\matplotlib\__init__.py&quot;, line 109, in &lt;module&gt;
-    from . import _api, _version, cbook, docstring, rcsetup
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\matplotlib\rcsetup.py&quot;, line 27, in &lt;module&gt;
-    from matplotlib.colors import Colormap, is_color_like
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\matplotlib\colors.py&quot;, line 56, in &lt;module&gt;
-    from matplotlib import _api, cbook, scale
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\matplotlib\scale.py&quot;, line 23, in &lt;module&gt;
-    from matplotlib.ticker import (
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\matplotlib\ticker.py&quot;, line 136, in &lt;module&gt;
-    from matplotlib import transforms as mtransforms
-  File &quot;C:\Users\kamac\miniconda3\envs\ml_venv\lib\site-packages\matplotlib\transforms.py&quot;, line 46, in &lt;module&gt;
-    from matplotlib._path import (
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="ne">AttributeError</span>: _ARRAY_API not found
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">mglearn</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">ml_venv</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">mglearn</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">plots</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">tools</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.plots</span> <span class="kn">import</span> <span class="n">cm3</span><span class="p">,</span> <span class="n">cm2</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">ml_venv</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">mglearn</span>\<span class="n">plots</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.plot_linear_svc_regularization</span> <span class="kn">import</span> <span class="n">plot_linear_svc_regularization</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.plot_interactive_tree</span> <span class="kn">import</span> <span class="n">plot_tree_progressive</span><span class="p">,</span> <span class="n">plot_tree_partition</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.plot_animal_tree</span> <span class="kn">import</span> <span class="n">plot_animal_tree</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">ml_venv</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">mglearn</span>\<span class="n">plot_linear_svc_regularization</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">ml_venv</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">109</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span> <span class="kn">from</span> <span class="nn">packaging.version</span> <span class="kn">import</span> <span class="n">parse</span> <span class="k">as</span> <span class="n">parse_version</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="c1"># cbook must import matplotlib only within function</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span> <span class="c1"># definitions, so it is safe to import from it here.</span>
-<span class="ne">--&gt; </span><span class="mi">109</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">_version</span><span class="p">,</span> <span class="n">cbook</span><span class="p">,</span> <span class="n">docstring</span><span class="p">,</span> <span class="n">rcsetup</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="kn">from</span> <span class="nn">matplotlib.cbook</span> <span class="kn">import</span> <span class="n">MatplotlibDeprecationWarning</span><span class="p">,</span> <span class="n">sanitize_sequence</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="kn">from</span> <span class="nn">matplotlib.cbook</span> <span class="kn">import</span> <span class="n">mplDeprecation</span>  <span class="c1"># deprecated</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">ml_venv</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">rcsetup</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">27</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">cbook</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="kn">from</span> <span class="nn">matplotlib.cbook</span> <span class="kn">import</span> <span class="n">ls_mapper</span>
-<span class="ne">---&gt; </span><span class="mi">27</span> <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">Colormap</span><span class="p">,</span> <span class="n">is_color_like</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="kn">from</span> <span class="nn">matplotlib.fontconfig_pattern</span> <span class="kn">import</span> <span class="n">parse_fontconfig_pattern</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="kn">from</span> <span class="nn">matplotlib._enums</span> <span class="kn">import</span> <span class="n">JoinStyle</span><span class="p">,</span> <span class="n">CapStyle</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">ml_venv</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">colors</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">56</span>
-<span class="g g-Whitespace">     </span><span class="mi">54</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">---&gt; </span><span class="mi">56</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">cbook</span><span class="p">,</span> <span class="n">scale</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="kn">from</span> <span class="nn">._color_data</span> <span class="kn">import</span> <span class="n">BASE_COLORS</span><span class="p">,</span> <span class="n">TABLEAU_COLORS</span><span class="p">,</span> <span class="n">CSS4_COLORS</span><span class="p">,</span> <span class="n">XKCD_COLORS</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">class</span> <span class="nc">_ColorMapping</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">ml_venv</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">scale</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">23</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">docstring</span>
-<span class="ne">---&gt; </span><span class="mi">23</span> <span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">NullFormatter</span><span class="p">,</span> <span class="n">ScalarFormatter</span><span class="p">,</span> <span class="n">LogFormatterSciNotation</span><span class="p">,</span> <span class="n">LogitFormatter</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">NullLocator</span><span class="p">,</span> <span class="n">LogLocator</span><span class="p">,</span> <span class="n">AutoLocator</span><span class="p">,</span> <span class="n">AutoMinorLocator</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="n">SymmetricalLogLocator</span><span class="p">,</span> <span class="n">LogitLocator</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="kn">from</span> <span class="nn">matplotlib.transforms</span> <span class="kn">import</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">IdentityTransform</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">class</span> <span class="nc">ScaleBase</span><span class="p">:</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">ml_venv</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">ticker</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">136</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">cbook</span>
-<span class="ne">--&gt; </span><span class="mi">136</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">transforms</span> <span class="k">as</span> <span class="n">mtransforms</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="n">_log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;TickHelper&#39;</span><span class="p">,</span> <span class="s1">&#39;Formatter&#39;</span><span class="p">,</span> <span class="s1">&#39;FixedFormatter&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>            <span class="s1">&#39;NullFormatter&#39;</span><span class="p">,</span> <span class="s1">&#39;FuncFormatter&#39;</span><span class="p">,</span> <span class="s1">&#39;FormatStrFormatter&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">142</span>            <span class="s1">&#39;StrMethodFormatter&#39;</span><span class="p">,</span> <span class="s1">&#39;ScalarFormatter&#39;</span><span class="p">,</span> <span class="s1">&#39;LogFormatter&#39;</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>            <span class="s1">&#39;MultipleLocator&#39;</span><span class="p">,</span> <span class="s1">&#39;MaxNLocator&#39;</span><span class="p">,</span> <span class="s1">&#39;AutoMinorLocator&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span>            <span class="s1">&#39;SymmetricalLogLocator&#39;</span><span class="p">,</span> <span class="s1">&#39;LogitLocator&#39;</span><span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">ml_venv</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">transforms</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">46</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
-<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span>
-<span class="ne">---&gt; </span><span class="mi">46</span> <span class="kn">from</span> <span class="nn">matplotlib._path</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span>     <span class="n">affine_transform</span><span class="p">,</span> <span class="n">count_bboxes_overlapping_bbox</span><span class="p">,</span> <span class="n">update_path_extents</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="kn">from</span> <span class="nn">.path</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="ne">ImportError</span>: numpy.core.multiarray failed to import
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LinearSegmentedColormap</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="default-probability-prediction">
+<h1><strong>Default Probability Prediction</strong><a class="headerlink" href="#default-probability-prediction" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="wind-speed">
+<h1><strong>Wind Speed</strong><a class="headerlink" href="#wind-speed" title="Link to this heading">#</a></h1>
+<section id="contextualizacion">
+<h2><strong>Contextualización</strong><a class="headerlink" href="#contextualizacion" title="Link to this heading">#</a></h2>
+<p>La velocidad del viento es una variable clave en áreas como la seguridad en la aviación, la navegación, la agricultura, la construcción y la meteorología. Su predicción adquiere un rol fundamental debido a su influencia directa en la generación de energía eólica, una fuente renovable crucial para impulsar la transición energética global. Además, una estimación precisa de la velocidad del viento permite optimizar la planificación de recursos energéticos, reducir costos operativos y maximizar la eficiencia en la producción de energías limpias, beneficiando tanto a la industria como al medio ambiente.</p>
+<div style="text-align: center;">
+    <img src="https://github.com/kmarcela11/Parcial2_MachineLearning/blob/main/Imagen.jpg?raw=true" alt= "300" width="500"/>
+</div>
+<section id="objetivos">
+<h3><strong>Objetivos</strong><a class="headerlink" href="#objetivos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Aplicar técnicas de machine learning para predecir la velocidad del viento durante las próximas 24 horas, utilizando modelos bien entrenados que permitan optimizar la generación de energía eólica.</p></li>
+<li><p>Analizar diferentes variables meteorológicas para identificar cuáles tienen mayor impacto en la predicción de la velocidad del viento, mejorando la comprensión de los factores que influyen en su comportamiento.</p></li>
+<li><p>Predecir la cantidad de energía eólica que se puede generar en un período de 24 horas, a partir de las predicciones de velocidad del viento, con el objetivo de estimar la viabilidad de comercializar esta energía a empresas productoras de hidrógeno verde.</p></li>
+</ul>
+</section>
+<section id="datos-importantes">
+<h3><strong>Datos importantes</strong><a class="headerlink" href="#datos-importantes" title="Link to this heading">#</a></h3>
+</section>
+<section id="diccionario-de-variables">
+<h3><strong>Diccionario de variables</strong><a class="headerlink" href="#diccionario-de-variables" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HORA</span> <span class="pre">(UTC)</span></code></p></td>
+<td><p>Hora en formato UTC.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VENTO,</span> <span class="pre">DIRECCIÓN</span> <span class="pre">HORARIA</span> <span class="pre">(gr)</span> <span class="pre">(°)</span></code></p></td>
+<td><p>Dirección del viento horaria en grados.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VENTO,</span> <span class="pre">VELOCIDADE</span> <span class="pre">HORARIA</span> <span class="pre">(m/s)</span></code></p></td>
+<td><p>Velocidad horaria del viento en metros por segundo (m/s).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UMIDADE</span> <span class="pre">REL.</span> <span class="pre">MAX.</span> <span class="pre">NA</span> <span class="pre">HORA</span> <span class="pre">ANT.</span> <span class="pre">(AUT)</span> <span class="pre">(%)</span></code></p></td>
+<td><p>Humedad relativa máxima en la hora anterior (AUT) en porcentaje.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">UMIDADE</span> <span class="pre">REL.</span> <span class="pre">MIN.</span> <span class="pre">NA</span> <span class="pre">HORA</span> <span class="pre">ANT.</span> <span class="pre">(AUT)</span> <span class="pre">(%)</span></code></p></td>
+<td><p>Humedad relativa mínima en la hora anterior (AUT) en porcentaje.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TEMPERATURA</span> <span class="pre">MÁXIMA</span> <span class="pre">NA</span> <span class="pre">HORA</span> <span class="pre">ANT.</span> <span class="pre">(AUT)</span> <span class="pre">(°C)</span></code></p></td>
+<td><p>Temperatura máxima en la hora anterior (AUT) en grados Celsius.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TEMPERATURA</span> <span class="pre">MÍNIMA</span> <span class="pre">NA</span> <span class="pre">HORA</span> <span class="pre">ANT.</span> <span class="pre">(AUT)</span> <span class="pre">(°C)</span></code></p></td>
+<td><p>Temperatura mínima en la hora anterior (AUT) en grados Celsius.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UMIDADE</span> <span class="pre">RELATIVA</span> <span class="pre">DO</span> <span class="pre">AR,</span> <span class="pre">HORARIA</span> <span class="pre">(%)</span></code></p></td>
+<td><p>Humedad relativa del aire horaria en porcentaje.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PRESSAO</span> <span class="pre">ATMOSFÉRICA</span> <span class="pre">AO</span> <span class="pre">NÍVEL</span> <span class="pre">DA</span> <span class="pre">ESTACAO,</span> <span class="pre">HORARIA</span> <span class="pre">(mB)</span></code></p></td>
+<td><p>Presión atmosférica a nivel de la estación horaria en milibares (mB).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PRECIPITAÇÃO</span> <span class="pre">TOTAL,</span> <span class="pre">HORÁRIA</span> <span class="pre">(mm)</span></code></p></td>
+<td><p>Precipitación total por hora en milímetros (mm).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VENTO,</span> <span class="pre">RAJADA</span> <span class="pre">MÁXIMA</span> <span class="pre">(m/s)</span></code></p></td>
+<td><p>Máxima ráfaga de viento en metros por segundo (m/s).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PRESSÃO</span> <span class="pre">ATMOSFÉRICA</span> <span class="pre">MÁXIMA</span> <span class="pre">NA</span> <span class="pre">HORA</span> <span class="pre">ANT.</span> <span class="pre">(AUT)</span> <span class="pre">(mB)</span></code></p></td>
+<td><p>Presión atmosférica máxima en la hora anterior (AUT) en milibares (mB).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PRESSÃO</span> <span class="pre">ATMOSFÉRICA</span> <span class="pre">MÍNIMA</span> <span class="pre">NA</span> <span class="pre">HORA</span> <span class="pre">ANT.</span> <span class="pre">(AUT)</span> <span class="pre">(mB)</span></code></p></td>
+<td><p>Presión atmosférica mínima en la hora anterior (AUT) en milibares (mB).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>NOTA:</strong> Nótese que las variables en este conjunto de datos tienen nombres incorrectos o difíciles de comprender. Sin embargo, más adelante se realizará un proceso de cambio de nombres para hacerlas más descriptivas y coherentes con los datos que representan. Esto facilitará la interpretación y el análisis de los datos.</p>
+</section>
+</section>
+<section id="base-de-datos">
+<h2><strong>Base de datos</strong><a class="headerlink" href="#base-de-datos" title="Link to this heading">#</a></h2>
+<p>Inicialmente, se carga el conjunto de datos proporcionado en formato CSV utilizando la librería <code class="docutils literal notranslate"><span class="pre">pandas</span></code>. Esto permite trabajar con los datos de manera eficiente dentro de un DataFrame para su posterior análisis y procesamiento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;C:/Users/kamac/OneDrive/Desktop/MachineLearningUN/data.csv&#39;</span><span class="p">)</span>
@@ -571,9 +551,12 @@ Traceback (most recent call last):  File &quot;C:\Users\kamac\miniconda3\envs\ml
 </div>
 </div>
 </div>
+<section id="caracteristicas-de-la-base-de-datos">
+<h3><strong>Características de la base de datos</strong><a class="headerlink" href="#caracteristicas-de-la-base-de-datos" title="Link to this heading">#</a></h3>
+<p>Inicialmente se hace uso del método <code class="docutils literal notranslate"><span class="pre">.head()</span></code> para indicar que se muestren las primeras observaciones de la base de datos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -692,107 +675,1315 @@ Traceback (most recent call last):  File &quot;C:\Users\kamac\miniconda3\envs\ml
       <td>887.4</td>
       <td>886.5</td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Con el uso del método <code class="docutils literal notranslate"><span class="pre">info()</span></code> y <code class="docutils literal notranslate"><span class="pre">shape</span></code> se puede observar una visión general de las características de la base de datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(87693, 13)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 87693 entries, 0 to 87692
+Data columns (total 13 columns):
+ #   Column                                                 Non-Null Count  Dtype  
+---  ------                                                 --------------  -----  
+ 0   HORA (UTC)                                             87693 non-null  object 
+ 1   VENTO, DIREï¿½ï¿½O HORARIA (gr) (ï¿½ (gr))             87693 non-null  float64
+ 2   VENTO, VELOCIDADE HORARIA (m/s)                        87693 non-null  float64
+ 3   UMIDADE REL. MAX. NA HORA ANT. (AUT) (%)               87693 non-null  float64
+ 4   UMIDADE REL. MIN. NA HORA ANT. (AUT) (%)               87693 non-null  float64
+ 5   TEMPERATURA Mï¿½XIMA NA HORA ANT. (AUT) (ï¿½C)         87693 non-null  float64
+ 6   TEMPERATURA Mï¿½NIMA NA HORA ANT. (AUT) (ï¿½C)         87693 non-null  float64
+ 7   UMIDADE RELATIVA DO AR, HORARIA (%)                    87693 non-null  float64
+ 8   PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)  87693 non-null  float64
+ 9   PRECIPITAï¿½ï¿½O TOTAL, HORï¿½RIO (mm)                 87693 non-null  float64
+ 10  VENTO, RAJADA MAXIMA (m/s)                             87693 non-null  float64
+ 11  PRESSï¿½O ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)      87693 non-null  float64
+ 12  PRESSï¿½O ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)     87693 non-null  float64
+dtypes: float64(12), object(1)
+memory usage: 8.7+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso, la base de datos de entrenamiento tiene <strong>87,693</strong> observaciones y <strong>13 columnas</strong> en total, doce de estas columnas contienen datos numéricos de tipo <code class="docutils literal notranslate"><span class="pre">float64</span></code>, mientras que una columna está clasificada como <code class="docutils literal notranslate"><span class="pre">object</span></code></p>
+<section id="renombrado-de-columnas">
+<h4><strong>Renombrado de Columnas</strong><a class="headerlink" href="#renombrado-de-columnas" title="Link to this heading">#</a></h4>
+<p>Veamos ahora los nombres de las columnas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;HORA (UTC)&#39;, &#39;VENTO, DIREï¿½ï¿½O HORARIA (gr) (ï¿½ (gr))&#39;,
+       &#39;VENTO, VELOCIDADE HORARIA (m/s)&#39;,
+       &#39;UMIDADE REL. MAX. NA HORA ANT. (AUT) (%)&#39;,
+       &#39;UMIDADE REL. MIN. NA HORA ANT. (AUT) (%)&#39;,
+       &#39;TEMPERATURA Mï¿½XIMA NA HORA ANT. (AUT) (ï¿½C)&#39;,
+       &#39;TEMPERATURA Mï¿½NIMA NA HORA ANT. (AUT) (ï¿½C)&#39;,
+       &#39;UMIDADE RELATIVA DO AR, HORARIA (%)&#39;,
+       &#39;PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)&#39;,
+       &#39;PRECIPITAï¿½ï¿½O TOTAL, HORï¿½RIO (mm)&#39;, &#39;VENTO, RAJADA MAXIMA (m/s)&#39;,
+       &#39;PRESSï¿½O ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)&#39;,
+       &#39;PRESSï¿½O ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nótese que algunos nombres de columnas contienen caracteres extraños o codificación incorrecta, lo que sugiere problemas con el formato o la codificación de los datos al ser leídos. Esto es evidente en las palabras donde aparecen símbolos como “ï¿½” en lugar de los caracteres esperados. Por lo tanto se realizará un cambio de variables para facilitar la comprensión y el análisis de estas mismas.</p>
+<p>Para realizar el renombre de las variables se crea un diccionario llamado <code class="docutils literal notranslate"><span class="pre">columnas</span></code>, donde se asigna a los nombres originales de las columnas, nombres más cortos y descriptivos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columnas</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;HORA (UTC)&#39;</span><span class="p">:</span> <span class="s1">&#39;hora&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;VENTO, DIREï¿½ï¿½O HORARIA (gr) (ï¿½ (gr))&#39;</span><span class="p">:</span> <span class="s1">&#39;dir_viento&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;VENTO, VELOCIDADE HORARIA (m/s)&#39;</span><span class="p">:</span> <span class="s1">&#39;vel_viento&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;UMIDADE REL. MAX. NA HORA ANT. (AUT) (%)&#39;</span><span class="p">:</span> <span class="s1">&#39;hum_max&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UMIDADE REL. MIN. NA HORA ANT. (AUT) (%)&#39;</span><span class="p">:</span> <span class="s1">&#39;hum_min&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;TEMPERATURA Mï¿½XIMA NA HORA ANT. (AUT) (ï¿½C)&#39;</span><span class="p">:</span> <span class="s1">&#39;temp_max&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TEMPERATURA Mï¿½NIMA NA HORA ANT. (AUT) (ï¿½C)&#39;</span><span class="p">:</span> <span class="s1">&#39;temp_min&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;UMIDADE RELATIVA DO AR, HORARIA (%)&#39;</span><span class="p">:</span> <span class="s1">&#39;hum_horaria&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)&#39;</span><span class="p">:</span> <span class="s1">&#39;pres_atmo&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;PRECIPITAï¿½ï¿½O TOTAL, HORï¿½RIO (mm)&#39;</span><span class="p">:</span> <span class="s1">&#39;precip_total&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VENTO, RAJADA MAXIMA (m/s)&#39;</span><span class="p">:</span> <span class="s1">&#39;rafaga_max&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;PRESSï¿½O ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)&#39;</span><span class="p">:</span> <span class="s1">&#39;pres_max&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;PRESSï¿½O ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)&#39;</span><span class="p">:</span> <span class="s1">&#39;pres_min&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En esta parte del código se utiliza el método <code class="docutils literal notranslate"><span class="pre">rename()</span></code> para aplicar el diccionario <code class="docutils literal notranslate"><span class="pre">columnas</span></code> y cambiar los nombres de las columnas en el DataFrame <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columnas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="diccionario-de-variables-actualizado">
+<h4><strong>Diccionario de variables actualizado</strong><a class="headerlink" href="#diccionario-de-variables-actualizado" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hora</span></code></p></td>
+<td><p>Hora en formato UTC.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dir_viento</span></code></p></td>
+<td><p>Dirección horaria del viento en grados.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vel_viento</span></code></p></td>
+<td><p>Velocidad horaria del viento en metros por segundo (m/s).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hum_max</span></code></p></td>
+<td><p>Humedad relativa máxima en la hora anterior (AUT) en %.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hum_min</span></code></p></td>
+<td><p>Humedad relativa mínima en la hora anterior (AUT) en %.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temp_max</span></code></p></td>
+<td><p>Temperatura máxima en la hora anterior (AUT) en grados Celsius.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temp_min</span></code></p></td>
+<td><p>Temperatura mínima en la hora anterior (AUT) en grados Celsius.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hum_horaria</span></code></p></td>
+<td><p>Humedad relativa horaria del aire en %.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pres_atmo</span></code></p></td>
+<td><p>Presión atmosférica horaria a nivel de la estación en milibares (mB).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">precip_total</span></code></p></td>
+<td><p>Precipitación total por hora en milímetros (mm).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rafaga_max</span></code></p></td>
+<td><p>Máxima ráfaga de viento en metros por segundo (m/s).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pres_max</span></code></p></td>
+<td><p>Presión atmosférica máxima en la hora anterior (AUT) en mB.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pres_min</span></code></p></td>
+<td><p>Presión atmosférica mínima en la hora anterior (AUT) en mB.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ahora se visualizan las primeras cinco observaciones de la base de datos con los nuevos nombres en cada columna.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hora</th>
+      <th>dir_viento</th>
+      <th>vel_viento</th>
+      <th>hum_max</th>
+      <th>hum_min</th>
+      <th>temp_max</th>
+      <th>temp_min</th>
+      <th>hum_horaria</th>
+      <th>pres_atmo</th>
+      <th>precip_total</th>
+      <th>rafaga_max</th>
+      <th>pres_max</th>
+      <th>pres_min</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
-      <th>87688</th>
-      <td>19:00</td>
-      <td>-0.615661</td>
-      <td>5.6</td>
-      <td>83.0</td>
-      <td>78.0</td>
-      <td>21.8</td>
-      <td>21.1</td>
-      <td>80.0</td>
-      <td>879.1</td>
+      <th>0</th>
+      <td>12:00</td>
+      <td>0.809017</td>
+      <td>1.8</td>
+      <td>69.0</td>
+      <td>60.0</td>
+      <td>22.6</td>
+      <td>20.7</td>
+      <td>61.0</td>
+      <td>888.2</td>
       <td>0.0</td>
-      <td>12.3</td>
-      <td>879.8</td>
-      <td>879.1</td>
+      <td>3.8</td>
+      <td>888.2</td>
+      <td>887.7</td>
     </tr>
     <tr>
-      <th>87689</th>
-      <td>20:00</td>
-      <td>-0.469472</td>
+      <th>1</th>
+      <td>13:00</td>
+      <td>0.965926</td>
+      <td>2.7</td>
+      <td>62.0</td>
+      <td>55.0</td>
+      <td>24.2</td>
+      <td>22.5</td>
+      <td>55.0</td>
+      <td>888.4</td>
+      <td>0.0</td>
+      <td>4.7</td>
+      <td>888.4</td>
+      <td>888.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14:00</td>
+      <td>0.891007</td>
+      <td>2.0</td>
+      <td>56.0</td>
+      <td>50.0</td>
+      <td>25.5</td>
+      <td>24.3</td>
+      <td>51.0</td>
+      <td>888.1</td>
+      <td>0.0</td>
       <td>4.9</td>
-      <td>84.0</td>
-      <td>79.0</td>
-      <td>21.7</td>
-      <td>21.0</td>
-      <td>84.0</td>
-      <td>879.2</td>
-      <td>0.0</td>
-      <td>9.9</td>
-      <td>879.2</td>
-      <td>878.9</td>
+      <td>888.4</td>
+      <td>888.1</td>
     </tr>
     <tr>
-      <th>87690</th>
-      <td>21:00</td>
-      <td>-0.484810</td>
-      <td>4.5</td>
-      <td>86.0</td>
-      <td>82.0</td>
-      <td>21.2</td>
-      <td>20.6</td>
-      <td>86.0</td>
-      <td>879.7</td>
+      <th>3</th>
+      <td>15:00</td>
+      <td>0.848048</td>
+      <td>2.5</td>
+      <td>52.0</td>
+      <td>44.0</td>
+      <td>27.4</td>
+      <td>25.0</td>
+      <td>44.0</td>
+      <td>887.4</td>
       <td>0.0</td>
-      <td>8.9</td>
-      <td>879.8</td>
-      <td>879.2</td>
+      <td>5.8</td>
+      <td>888.1</td>
+      <td>887.4</td>
     </tr>
     <tr>
-      <th>87691</th>
-      <td>22:00</td>
-      <td>-0.484810</td>
-      <td>3.2</td>
-      <td>88.0</td>
-      <td>85.0</td>
-      <td>20.6</td>
-      <td>20.2</td>
-      <td>88.0</td>
-      <td>880.5</td>
+      <th>4</th>
+      <td>16:00</td>
+      <td>0.224951</td>
+      <td>2.4</td>
+      <td>50.0</td>
+      <td>43.0</td>
+      <td>27.1</td>
+      <td>25.5</td>
+      <td>46.0</td>
+      <td>886.5</td>
       <td>0.0</td>
-      <td>8.0</td>
-      <td>880.5</td>
-      <td>879.6</td>
-    </tr>
-    <tr>
-      <th>87692</th>
-      <td>23:00</td>
-      <td>-0.573576</td>
-      <td>2.3</td>
-      <td>95.0</td>
-      <td>88.0</td>
-      <td>20.2</td>
-      <td>19.3</td>
-      <td>95.0</td>
-      <td>881.1</td>
-      <td>0.6</td>
-      <td>7.5</td>
-      <td>881.1</td>
-      <td>880.5</td>
+      <td>5.8</td>
+      <td>887.4</td>
+      <td>886.5</td>
     </tr>
   </tbody>
 </table>
-<p>87693 rows × 13 columns</p>
 </div></div></div>
 </div>
+<p>Nótese que este proceso (renombre de variables) mejoró la legibilidad de los datos.</p>
+<p>Ahora se utiliza el método <code class="docutils literal notranslate"><span class="pre">describe()</span></code> para generar estadísticas descriptivas sobre las variables numéricas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dir_viento</th>
+      <th>vel_viento</th>
+      <th>hum_max</th>
+      <th>hum_min</th>
+      <th>temp_max</th>
+      <th>temp_min</th>
+      <th>hum_horaria</th>
+      <th>pres_atmo</th>
+      <th>precip_total</th>
+      <th>rafaga_max</th>
+      <th>pres_max</th>
+      <th>pres_min</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+      <td>87693.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.405810</td>
+      <td>2.466192</td>
+      <td>69.058465</td>
+      <td>63.176194</td>
+      <td>21.921264</td>
+      <td>20.684570</td>
+      <td>66.146682</td>
+      <td>887.251925</td>
+      <td>0.160907</td>
+      <td>5.161076</td>
+      <td>887.580724</td>
+      <td>886.891093</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.686247</td>
+      <td>1.313968</td>
+      <td>19.640222</td>
+      <td>20.166336</td>
+      <td>3.721386</td>
+      <td>3.513744</td>
+      <td>19.992327</td>
+      <td>4.012404</td>
+      <td>1.307515</td>
+      <td>2.311157</td>
+      <td>3.646750</td>
+      <td>3.564539</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-1.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+      <td>10.000000</td>
+      <td>9.200000</td>
+      <td>8.400000</td>
+      <td>10.000000</td>
+      <td>863.400000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>865.300000</td>
+      <td>862.800000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-0.156434</td>
+      <td>1.500000</td>
+      <td>54.000000</td>
+      <td>48.000000</td>
+      <td>19.200000</td>
+      <td>18.400000</td>
+      <td>51.000000</td>
+      <td>885.300000</td>
+      <td>0.000000</td>
+      <td>3.400000</td>
+      <td>885.600000</td>
+      <td>885.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.788011</td>
+      <td>2.400000</td>
+      <td>72.000000</td>
+      <td>64.000000</td>
+      <td>21.400000</td>
+      <td>20.200000</td>
+      <td>68.000000</td>
+      <td>887.200000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>887.500000</td>
+      <td>886.900000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.970296</td>
+      <td>3.400000</td>
+      <td>87.000000</td>
+      <td>80.000000</td>
+      <td>24.700000</td>
+      <td>23.100000</td>
+      <td>84.000000</td>
+      <td>889.100000</td>
+      <td>0.000000</td>
+      <td>6.800000</td>
+      <td>889.300000</td>
+      <td>888.800000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.000000</td>
+      <td>10.000000</td>
+      <td>100.000000</td>
+      <td>98.000000</td>
+      <td>35.300000</td>
+      <td>34.400000</td>
+      <td>99.000000</td>
+      <td>1023.500000</td>
+      <td>70.800000</td>
+      <td>24.300000</td>
+      <td>913.100000</td>
+      <td>910.900000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>El resumen estadístico muestra que no hay datos faltantes en ninguna de las variables numéricas, con 87,693 observaciones para cada una. De manera general observa que las variables como <code class="docutils literal notranslate"><span class="pre">precip_total</span></code> tienen un valor máximo alto (70.8 mm), aunque la mediana es 0, lo que indica que las precipitaciones son esporádicas y puede ser un indicio de datos atípicos en esta variable. Otras variables como <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code> y <code class="docutils literal notranslate"><span class="pre">humedad</span></code> muestran distribuciones normales al observar los valores de la media y la mediana (son valores cercanos). Más adelante se detallan las estadísticas de cada variable.</p>
+</section>
+</section>
+<section id="datos-faltantes">
+<h3><strong>Datos Faltantes</strong><a class="headerlink" href="#datos-faltantes" title="Link to this heading">#</a></h3>
+<p>En esta parte se realiza un análisis para identificar la cantidad de datos faltantes en cada columna de la base de datos. Se utiliza la librería <code class="docutils literal notranslate"><span class="pre">missingno</span></code> para generar una visualización en forma de barra que muestra el porcentaje de datos faltantes en cada columna, ordenados de manera ascendente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">msno</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#74A2C7&quot;</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="s1">&#39;ascending&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Datos Faltantes por variable&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span> <span class="o">=</span> <span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Columnas&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Porcentaje de Datos Faltantes&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/78f0ffcb93bb29c8bc47a90c6f7228d8561a533c1c1ae1dc26fe8151a70dddb1.png" src="_images/78f0ffcb93bb29c8bc47a90c6f7228d8561a533c1c1ae1dc26fe8151a70dddb1.png" />
+</div>
+</div>
+<p>El gráfico muestra que no hay datos faltantes en ninguna de las variables, ya que todas las barras está llenas. Esto indica que las columnas están completas y no presentan valores nulos o faltantes, lo cual es bueno para predecir de manera más precisa nuestro modelo.</p>
+<p>Analicemos ahora las variables de manera individual, para obtener una comprensión más detallada de su comportamiento. Observaremos aspectos clave como la distribución, rangos de valores y la posible presencia de valores atípicos. Esto nos permitirá identificar patrones y realizar ajustes en los datos en caso de ser necesario, optimizando su uso en futuros modelos predictivos.</p>
+</section>
+<section id="variables-categoricas">
+<h3><strong>Variables categóricas</strong><a class="headerlink" href="#variables-categoricas" title="Link to this heading">#</a></h3>
+<p>Se utiliza el método <code class="docutils literal notranslate"><span class="pre">describe(</span> <span class="pre">include</span> <span class="pre">=</span> <span class="pre">object)</span></code> para generar estadísticas descriptivas sobre las variables categóricas. En este caso solo se tiene una variable categórica</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span> <span class="o">=</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hora</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>87693</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>01:00</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>3683</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>En este caso, se analiza la columna <code class="docutils literal notranslate"><span class="pre">hora</span></code>, mostrando que hay 87,693 registros, con 24 valores únicos diferentes. El valor más frecuente es <code class="docutils literal notranslate"><span class="pre">01:00</span></code>, que aparece 3,683 veces y no hay datos faltantes como anteriormente ya lo habiamos observado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hora&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;12:00&#39;, &#39;13:00&#39;, &#39;14:00&#39;, &#39;15:00&#39;, &#39;16:00&#39;, &#39;17:00&#39;, &#39;18:00&#39;,
+       &#39;19:00&#39;, &#39;20:00&#39;, &#39;21:00&#39;, &#39;22:00&#39;, &#39;23:00&#39;, &#39;00:00&#39;, &#39;01:00&#39;,
+       &#39;02:00&#39;, &#39;03:00&#39;, &#39;04:00&#39;, &#39;05:00&#39;, &#39;06:00&#39;, &#39;07:00&#39;, &#39;08:00&#39;,
+       &#39;09:00&#39;, &#39;10:00&#39;, &#39;11:00&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nótese que un día tiene 24 horas, lo cual concuerda con la cantidad de valores únicos diferentes (24). Dado que la hora está en formato UTC, podemos concluir que la hora más frecuente para las observaciones es a la <code class="docutils literal notranslate"><span class="pre">01:00</span></code> de la tarde.</p>
+<p>Veamos ahora un diagrama de barras y un conteo que muestra la frecuencia de cada hora. Esto nos ayudará a identificar cómo se distribuyen las observaciones a lo largo del día y a detectar posibles patrones en momentos específicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hora&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hora
+01:00    3683
+20:00    3683
+02:00    3683
+18:00    3672
+03:00    3671
+16:00    3668
+17:00    3667
+22:00    3667
+19:00    3666
+23:00    3665
+15:00    3662
+04:00    3659
+21:00    3654
+05:00    3654
+06:00    3649
+14:00    3648
+00:00    3645
+13:00    3644
+12:00    3642
+07:00    3638
+08:00    3631
+11:00    3625
+10:00    3612
+09:00    3605
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;ch:start=.2,rot=-.3&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;hora&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de la variable hora&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span> <span class="o">=</span> <span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hora&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ab544a7702327677d616900445d62e05daf8330e7f09d2aa4d20f6fc647a79f9.png" src="_images/ab544a7702327677d616900445d62e05daf8330e7f09d2aa4d20f6fc647a79f9.png" />
+</div>
+</div>
+<p>El conteo muestra la frecuencia de observaciones registradas para cada hora del día, todas alrededor de 3,600, lo que indica una distribución bastante uniforme de las mediciones a lo largo del día. El gráfico de barras (organizado de la mayor frecuencia a la menor) refuerza esta observación, mostrando que no hay grandes variaciones en la cantidad de registros por hora.</p>
+</section>
+<section id="variables-numericas">
+<h3><strong>Variables numéricas</strong><a class="headerlink" href="#variables-numericas" title="Link to this heading">#</a></h3>
+<section id="variable-numerica-dir-viento">
+<h4><strong>Variable numérica: dir_viento</strong><a class="headerlink" href="#variable-numerica-dir-viento" title="Link to this heading">#</a></h4>
+<p>La dirección del viento es una variable importante en el análisis meteorológico, ya que indica el rumbo desde el cual el viento sopla. Analicemos sus estadísticas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dir_viento&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean         0.405810
+std          0.686247
+min         -1.000000
+25%         -0.156434
+50%          0.788011
+75%          0.970296
+max          1.000000
+Name: dir_viento, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al obtener las estadísticas de la variable <strong>dirección del viento</strong>, se confirma que no hay datos faltantes, con un total de <strong>87,693</strong> observaciones. El promedio de la dirección del viento es <strong>0.405</strong>, lo que puede ser una tendencia hacia direcciones positivas. La desviación estándar es <strong>0.686</strong>, lo que sugiere que existe una dispersión moderada alrededor de la media, indicando cierta variabilidad en la dirección del viento.</p>
+<p>Los valores mínimo y máximo son <strong>-1</strong> y <strong>1</strong>, respectivamente, lo que indica un rango sugerido para la dirección del viento, la cual está dada en grados. Esto nos permite suponer que no habrá valores atípicos, lo cual es esperable en fenómenos meteorológicos con alta variabilidad. Los percentiles muestran que el 25% de los datos están por debajo de <strong>-0.156</strong>, mientras que el 50% (mediana) está en <strong>0.788</strong> y el 75% de las observaciones están por debajo de <strong>0.970</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;whitegrid&#39;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dir_viento&#39;</span><span class="p">],</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de la dirección del viento&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span> <span class="o">=</span> <span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Dirección del viento&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dir_viento&#39;</span><span class="p">],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Diagrama de caja de la dirección del viento&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span> <span class="o">=</span> <span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Dirección del viento&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e3e3db27b11d5aa91823675d596d9374ad601329b1f6fc70c180887372cf1348.png" src="_images/e3e3db27b11d5aa91823675d596d9374ad601329b1f6fc70c180887372cf1348.png" />
+</div>
+</div>
+<p>El histograma muestra que la mayoría de las mediciones de la <strong>dirección del viento</strong> se concentran en el valor extremo de <strong>1</strong>, lo que sugiere que el viento tiende a soplar en direcciones positivas. Hay menos mediciones en los valores cercanos a 0, lo que indica una menor variabilidad en direcciones intermedias. El diagrama de caja confirma que la mediana está cerca de <strong>0.78</strong>, lo que refuerza la tendencia de los valores positivos. No se observan valores atípicos significativos, lo que sugiere que la mayoría de los datos caen dentro del rango esperado (<strong>[-1,1]</strong>).</p>
+</section>
+<section id="variable-numerica-variable-objetivo-vel-viento">
+<h4><strong>Variable numérica (Variable objetivo): vel_viento</strong><a class="headerlink" href="#variable-numerica-variable-objetivo-vel-viento" title="Link to this heading">#</a></h4>
+<p>La velocidad del viento es una variable crucial en el análisis meteorológico, ya que permite determinar la fuerza y capacidad del viento para generar energía eólica. En este caso, la variable <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code> es nuestra variable objetivo, ya que nos interesa predecir su valor para evaluar la cantidad de energía que puede generarse en un período de 24 horas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;vel_viento&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean         2.466192
+std          1.313968
+min          0.000000
+25%          1.500000
+50%          2.400000
+75%          3.400000
+max         10.000000
+Name: vel_viento, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al analizar la variable <strong>velocidad del viento</strong>, se confirma que no hay datos faltantes, con un total de <strong>87,693</strong> registros. El valor promedio es <strong>2.47 m/s</strong>, lo que indica una tendencia hacia velocidades moderadas, y una desviación estándar de <strong>1.31</strong>, reflejando variabilidad en las mediciones.</p>
+<p>Los valores mínimo y máximo son <strong>0</strong> y <strong>10 m/s</strong>, lo que sugiere la presencia de algunas mediciones sin viento y otras con velocidades más altas. El 25% de los valores están por debajo de <strong>1.50 m/s</strong>, la mediana es <strong>2.40 m/s</strong>, y el 75% de los datos están por debajo de <strong>3.40 m/s</strong>, concentrándose en el rango de bajas a moderadas velocidades. Teniendo en cuenta que los cuartiles oscilan en un valor menor a <strong>5 m/s</strong> y el máximo es <strong>10 m/s</strong>, es evidente la diferencia y esto sugiere posibles valores atípicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Histograma para la variable &#39;vel_viento&#39;</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;vel_viento&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Velocidad del Viento&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Velocidad del Viento (m/s)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="c1"># Boxplot para la variable &#39;vel_viento&#39;</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;vel_viento&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Velocidad del Viento&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Velocidad del Viento (m/s)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/37a2d1b904553204da1dbdd801d87e7d8322272a4d08164059f1725efa17e0cb.png" src="_images/37a2d1b904553204da1dbdd801d87e7d8322272a4d08164059f1725efa17e0cb.png" />
+</div>
+</div>
+<p>El histograma de la <strong>velocidad del viento</strong> muestra una distribución sesgada hacia la derecha, con la mayor parte de las mediciones concentradas entre <strong>1.5 m/s</strong> y <strong>4 m/s</strong>. Esto sugiere que la velocidad del viento generalmente tiende hacia valores moderados.</p>
+<p>El diagrama de caja confirma que la mediana está cerca de <strong>2.4 m/s</strong>, y se observan algunos valores atípicos por encima de <strong>6 m/s</strong>, lo que indica la presencia de velocidades de viento significativamente más altas en algunos momentos.</p>
+<p>En este caso, dado que los valores atípicos representan velocidades de viento altas (por encima de 6 m/s), es posible que estos datos sean errores pero dado que se esta hablando de un comportamiento natural del viento, es posible que se presenten altas velocidades en ciertos momentos. Los factores meteorológicos, como el viento, suelen tener una alta variabilidad, y estas velocidades más altas podrían ser eventos reales y relevantes, especialmente para la generación de energía eólica.</p>
+</section>
+<section id="variable-numerica-hum-max">
+<h4><strong>Variable numérica: hum_max</strong><a class="headerlink" href="#variable-numerica-hum-max" title="Link to this heading">#</a></h4>
+<p>La variable <strong>humedad relativa máxima</strong> (<code class="docutils literal notranslate"><span class="pre">hum_max</span></code>) mide el porcentaje más alto de humedad relativa registrado en una hora anterior, siendo un indicador importante para comprender las condiciones atmosféricas y la capacidad del aire para contener agua.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hum_max&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean        69.058465
+std         19.640222
+min         12.000000
+25%         54.000000
+50%         72.000000
+75%         87.000000
+max        100.000000
+Name: hum_max, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al analizar las estadísticas de la variable <strong>humedad máxima</strong>, se tiene un total de <strong>87,693</strong> observaciones sin datos faltantes. El valor promedio de la humedad máxima es <strong>69.06%</strong>, lo que indica que, en general, la humedad suele ser alta. La desviación estándar es <strong>19.64%</strong>, lo que muestra una variabilidad moderada en los datos. Los valores mínimos y máximos son <strong>12%</strong> y <strong>100%</strong>, respectivamente, lo que sugiere una gran amplitud en las condiciones atmosféricas observadas. Los percentiles muestran que el 25% de los datos están por debajo de <strong>54%</strong>, el 50% (mediana) está en <strong>72%</strong>, y el 75% está por debajo de <strong>87%</strong>, lo que indica que la mayoría de las observaciones tienen niveles altos de humedad y son observaciones que abarcan la mayor parte del rango lo que puede sugerir que no hay presencia de valores atípicos</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hum_max&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Humedad Máxima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Humedad Máxima (%)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;hum_max&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Humedad Máxima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Humedad Máxima (%)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/50b96fa1e363a4f3893c31a81adc85e8c15c2ced65b3b8659069fae55e81409b.png" src="_images/50b96fa1e363a4f3893c31a81adc85e8c15c2ced65b3b8659069fae55e81409b.png" />
+</div>
+</div>
+<p>El histograma muestra una distribución sesgada hacia la derecha, con una mayor concentración de valores en los rangos altos de humedad, entre <strong>60%</strong> y <strong>100%</strong>, lo que confirma que la humedad máxima tiende a ser alta en la mayoría de las observaciones. El diagrama de caja también refuerza esta observación, mostrando que no hay valores atípicos significativos y que la distribución está bastante equilibrada, con la mediana en <strong>72%</strong> y la mayoría de los datos distribuidos en el rango de <strong>54%</strong> a <strong>87%</strong>.</p>
+</section>
+<section id="variable-numerica-hum-min">
+<h4><strong>Variable numérica: hum_min</strong><a class="headerlink" href="#variable-numerica-hum-min" title="Link to this heading">#</a></h4>
+<p>La variable <strong>humedad relativa mínima</strong> (<code class="docutils literal notranslate"><span class="pre">hum_min</span></code>) mide el nivel más bajo de humedad relativa registrado en una hora , proporcionando información sobre las condiciones más secas observadas en el ambiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hum_min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean        63.176194
+std         20.166336
+min         10.000000
+25%         48.000000
+50%         64.000000
+75%         80.000000
+max         98.000000
+Name: hum_min, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al analizar las estadísticas de la variable <strong>humedad mínima</strong>, se tiene un total de <strong>87,693</strong> observaciones sin datos faltantes. El promedio de la humedad mínima es <strong>63.18%</strong>, lo que sugiere que incluso en los momentos más secos, la humedad se mantiene relativamente alta. La desviación estándar es <strong>20.17%</strong>, mostrando una variabilidad moderada en las condiciones de humedad mínima. Los valores mínimo y máximo son <strong>10%</strong> y <strong>98%</strong>, respectivamente, lo que indica un amplio rango en las condiciones de sequedad. Los percentiles revelan que el 25% de los datos están por debajo de <strong>48%</strong>, la mediana está en <strong>64%</strong>, y el 75% de las observaciones están por debajo de <strong>80%</strong>, indicando una tendencia general hacia valores medios y altos de humedad mínima.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hum_min&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Humedad Mínima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Humedad Mínima (%)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;hum_min&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Humedad Mínima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Humedad Mínima (%)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5f5e628c6f8bdcb6c8a62d1950e64b651b6a625ce329b30385c662cd4b1c014d.png" src="_images/5f5e628c6f8bdcb6c8a62d1950e64b651b6a625ce329b30385c662cd4b1c014d.png" />
+</div>
+</div>
+<p>El histograma muestra una distribución sesgada hacia la derecha, con una mayor concentración de valores entre <strong>50%</strong> y <strong>80%</strong>, lo que confirma que la humedad mínima tiende a mantenerse relativamente alta. El diagrama de caja respalda esta observación, con una distribución equilibrada y sin la presencia de valores atípicos, reflejando que la mayoría de los datos se encuentran entre <strong>48%</strong> y <strong>80%</strong> de humedad mínima.</p>
+</section>
+<section id="variable-numerica-temp-max">
+<h4><strong>Variable numérica: temp_max</strong><a class="headerlink" href="#variable-numerica-temp-max" title="Link to this heading">#</a></h4>
+<p>La variable <strong>temperatura máxima</strong> (<code class="docutils literal notranslate"><span class="pre">temp_max</span></code>) mide el valor más alto de la temperatura (en grados Celsius) registrado en una hora, proporcionando información clave sobre las condiciones de calor en el ambiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp_max&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean        21.921264
+std          3.721386
+min          9.200000
+25%         19.200000
+50%         21.400000
+75%         24.700000
+max         35.300000
+Name: temp_max, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al analizar las estadísticas de la variable <strong>temperatura máxima</strong>, se cuenta con <strong>87,693</strong> observaciones sin datos faltantes. El valor promedio es <strong>21.92°C</strong>, lo que sugiere temperaturas moderadas en general. La desviación estándar es <strong>3.72°C</strong>, lo que indica una variabilidad moderada en las temperaturas. El valor mínimo registrado es <strong>9°C</strong> y el máximo es <strong>35.3°C</strong>, lo que refleja un rango amplio de temperaturas. Los percentiles muestran que el 25% de los valores están por debajo de <strong>19.2°C</strong>, el 50% (mediana) está en <strong>21.4°C</strong>, y el 75% de las observaciones están por debajo de <strong>24.7°C</strong>, lo que sugiere que la mayoría de las temperaturas máximas tienden a ser moderadas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Histograma para la variable &#39;temp_max&#39;</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp_max&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Temperatura Máxima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperatura Máxima (°C)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="c1"># Boxplot para la variable &#39;temp_max&#39;</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;temp_max&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Temperatura Máxima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperatura Máxima (°C)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/35a73a82f52e9ef74af0ad4bbe5a936a21c9eafba36a9036a05532be5782981d.png" src="_images/35a73a82f52e9ef74af0ad4bbe5a936a21c9eafba36a9036a05532be5782981d.png" />
+</div>
+</div>
+<p>El histograma muestra una distribución ligeramente sesgada hacia la derecha, con una mayor concentración de valores entre <strong>20°C</strong> y <strong>25°C</strong>, lo que confirma que la temperatura máxima tiende a mantenerse en un rango moderado. El diagrama de caja indica la presencia de algunos valores atípicos por debajo de <strong>15°C</strong> y por encima de <strong>30°C</strong>, aunque estos son casos excepcionales, lo que sugiere que la mayor parte de los datos se concentran en un rango predecible de temperaturas. Se nota la presencia de varios valores atípicos.</p>
+<p>No se deben imputar los datos atípicos en este caso porque los valores extremos en variables meteorológicas, como la temperatura máxima, suelen representar eventos climáticos reales y relevantes, no errores en los datos. La imputación de estos valores atípicos podría eliminar información importante sobre condiciones climáticas extremas que, aunque menos frecuentes, son esenciales para predecir comportamientos fuera de lo común y mejorar la precisión del modelo.</p>
+</section>
+<section id="variable-numerica-temp-min">
+<h4><strong>Variable numérica: temp_min</strong><a class="headerlink" href="#variable-numerica-temp-min" title="Link to this heading">#</a></h4>
+<p>La variable <strong>temperatura mínima</strong> (<code class="docutils literal notranslate"><span class="pre">temp_min</span></code>) mide el valor más bajo de la temperatura (en grados Celsius) registrado en una hora, proporcionando información sobre las condiciones más frías del ambiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp_min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean        20.684570
+std          3.513744
+min          8.400000
+25%         18.400000
+50%         20.200000
+75%         23.100000
+max         34.400000
+Name: temp_min, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al analizar las estadísticas de la variable <strong>temperatura mínima</strong>, se tienen <strong>87,693</strong> observaciones sin datos faltantes. El valor promedio es <strong>20.68°C</strong>, lo que sugiere temperaturas generalmente moderadas. La desviación estándar es <strong>3.51°C</strong>, lo que indica una variabilidad moderada en las temperaturas mínimas registradas. El valor mínimo es <strong>8.4°C</strong> y el máximo es <strong>34.4°C</strong>, lo que refleja una amplia gama de temperaturas. Los percentiles muestran que el 25% de los valores están por debajo de <strong>18.4°C</strong>, el 50% (mediana) está en <strong>20.2°C</strong>, y el 75% de las observaciones están por debajo de <strong>23.1°C</strong>, lo que sugiere que la mayor parte de las temperaturas mínimas se concentra en rangos moderados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Histograma para la variable &#39;temp_min&#39;</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp_min&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Temperatura Mínima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperatura Mínima (°C)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="c1"># Boxplot para la variable &#39;temp_min&#39;</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;temp_min&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Temperatura Mínima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperatura Mínima (°C)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e8bf5eecb734e6ccce21f7ba12c8f194d6fdc6f6d585010773cd8522d14e305c.png" src="_images/e8bf5eecb734e6ccce21f7ba12c8f194d6fdc6f6d585010773cd8522d14e305c.png" />
+</div>
+</div>
+<p>El histograma muestra una distribución sesgada hacia la derecha, con una mayor concentración de valores entre <strong>18°C</strong> y <strong>23°C</strong>, lo que confirma que la temperatura mínima tiende a mantenerse en rangos moderados. El diagrama de caja indica la presencia de algunos valores atípicos por debajo de <strong>15°C</strong> y por encima de <strong>25°C</strong>, lo que sugiere la existencia de eventos climáticos inusuales, aunque la mayoría de los datos se concentran en rangos más predecibles. En este caso, NO es recomendable eliminar los valores atípicos en este caso porque las temperaturas mínimas extremas pueden representar eventos climáticos reales y relevantes, no errores en los datos</p>
+</section>
+<section id="variable-numerica-hum-horaria">
+<h4><strong>Variable numérica: hum_horaria</strong><a class="headerlink" href="#variable-numerica-hum-horaria" title="Link to this heading">#</a></h4>
+<p>La variable <strong>humedad relativa horaria</strong> (<code class="docutils literal notranslate"><span class="pre">hum_horaria</span></code>) mide el nivel de humedad relativa registrado por hora, expresado como un porcentaje, y es crucial para entender la cantidad de humedad presente en el aire a lo largo del tiempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hum_horaria&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean        66.146682
+std         19.992327
+min         10.000000
+25%         51.000000
+50%         68.000000
+75%         84.000000
+max         99.000000
+Name: hum_horaria, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al revisar las estadísticas de la variable humedad horaria, se cuenta con un total de 87,693 registros completos, sin valores faltantes. El valor promedio de la humedad horaria es 66.15%, lo que sugiere que, en promedio, los niveles de humedad tienden a ser elevados. La desviación estándar de 19.99% refleja una variabilidad moderada en los niveles de humedad registrados por hora. Los valores mínimo y máximo son 10% y 99%, respectivamente, lo que indica un rango considerable de condiciones de humedad. Los percentiles revelan que el 25% de las observaciones tienen valores inferiores a 51%, mientras que el 50% (mediana) se sitúa en 68%, y el 75% de las mediciones están por debajo de 84%, lo que sugiere que la mayoría de los valores se encuentran en rangos de humedad moderada a alta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hum_horaria&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Humedad Horaria&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Humedad Horaria (%)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;hum_horaria&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Humedad Horaria&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Humedad Horaria (%)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/270c506f567c902c4939a496aeba3762be5c5a73d30669ec97af3ca727393abb.png" src="_images/270c506f567c902c4939a496aeba3762be5c5a73d30669ec97af3ca727393abb.png" />
+</div>
+</div>
+<p>El histograma muestra una distribución con una mayor concentración de valores entre <strong>50%</strong> y <strong>100%</strong>, lo que confirma que la humedad horaria tiende a mantenerse en niveles altos. El diagrama de caja refuerza esta observación, mostrando que la distribución es bastante equilibrada sin la presencia de valores atípicos, lo que indica una consistencia en los datos a lo largo del tiempo. No se nota presencia de datos atípicos</p>
+</section>
+<section id="variable-numerica-pres-atmo">
+<h4><strong>Variable numérica: pres_atmo</strong><a class="headerlink" href="#variable-numerica-pres-atmo" title="Link to this heading">#</a></h4>
+<p>La variable <strong>presión atmosférica</strong> (<code class="docutils literal notranslate"><span class="pre">pres_atmo</span></code>) mide la presión del aire en milibares (mB), un indicador clave para entender las condiciones meteorológicas, como los cambios de clima y la altitud.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pres_atmo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean       887.251925
+std          4.012404
+min        863.400000
+25%        885.300000
+50%        887.200000
+75%        889.100000
+max       1023.500000
+Name: pres_atmo, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al revisar las estadísticas de la variable <strong>presión atmosférica</strong>, se dispone de un total de <strong>87,693</strong> registros sin ningún dato faltante. El valor promedio es de <strong>887.25 mB</strong>, lo que sugiere que la presión atmosférica se mantiene relativamente constante. Con una desviación estándar de <strong>4.01 mB</strong>, se observa una variabilidad baja en los datos. Los valores mínimo y máximo son <strong>863.4 mB</strong> y <strong>1023.5 mB</strong>, lo que refleja una amplitud considerable en las mediciones. Los percentiles indican que el 25% de las mediciones están por debajo de <strong>885.3 mB</strong>, la mediana se sitúa en <strong>887.2 mB</strong>, y el 75% de los valores están por debajo de <strong>889.1 mB</strong>, lo que sugiere que la mayoría de las observaciones se encuentran dentro de un rango estrecho de presión atmosférica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pres_atmo&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Presión Atmosférica&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Presión Atmosférica (mB)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;pres_atmo&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Presión Atmosférica&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Presión Atmosférica (mB)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/569fa2fb3d2ab11c2e81f0171de9c70d142ff65b76c8750807bc0dc8d39aa555.png" src="_images/569fa2fb3d2ab11c2e81f0171de9c70d142ff65b76c8750807bc0dc8d39aa555.png" />
+</div>
+</div>
+<p>El histograma muestra que la mayor parte de las observaciones están fuertemente concentradas entre <strong>880 mB</strong> y <strong>890 mB</strong>, lo que refuerza la idea de una variabilidad baja. Sin embargo, el diagrama de caja revela la presencia de valores atípicos significativos tanto por debajo de <strong>870 mB</strong> como por encima de <strong>900 mB</strong>, lo que puede estar asociado con fenómenos meteorológicos inusuales o variaciones geográficas en las mediciones, por lo tanto, no se imputarán los atípicos.</p>
+</section>
+<section id="variable-numerica-precip-total">
+<h4><strong>Variable numérica: precip_total</strong><a class="headerlink" href="#variable-numerica-precip-total" title="Link to this heading">#</a></h4>
+<p>La variable <strong>precipitación total</strong> (<code class="docutils literal notranslate"><span class="pre">precip_total</span></code>) mide la cantidad de precipitación acumulada por hora en milímetros (mm).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;precip_total&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean         0.160907
+std          1.307515
+min          0.000000
+25%          0.000000
+50%          0.000000
+75%          0.000000
+max         70.800000
+Name: precip_total, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al revisar las estadísticas de la variable <strong>precipitación total</strong>, se tiene un total de <strong>87,693</strong> observaciones sin datos faltantes. El promedio es <strong>0.16 mm</strong>, lo que sugiere que en la mayoría de las horas no se registra precipitación significativa. La desviación estándar es <strong>1.31 mm</strong>, lo que indica que, aunque la mayoría de los valores son bajos, hay algunos eventos con precipitaciones mayores. El valor mínimo es <strong>0 mm</strong> y el máximo es <strong>70.8 mm</strong>, lo que refleja la existencia de eventos de lluvia extrema. Los percentiles muestran que el 25%, 50% (mediana) y 75% de los datos tienen un valor de <strong>0 mm</strong>, lo que confirma que la precipitación es un fenómeno poco frecuente, con algunos eventos extremos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;precip_total&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Precipitación Total&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Precipitación Total (mm)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;precip_total&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Precipitación Total&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Precipitación Total (mm)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e8c822337de084e170e3d65448fcc554e255472e5aa8c6758d3842fdd0613c0d.png" src="_images/e8c822337de084e170e3d65448fcc554e255472e5aa8c6758d3842fdd0613c0d.png" />
+</div>
+</div>
+<p>El histograma muestra que la mayoría de las observaciones se concentran en <strong>0 mm</strong>, con muy pocos valores que superen los <strong>10 mm</strong>. El diagrama de caja revela una gran cantidad de valores atípicos que superan los <strong>0 mm</strong>, lo que índica que los eventos de precipitación son relativamente raros, pero cuando ocurren, pueden ser bastante significativos, lo cual es común en fenómenos meteorológicos como las tormentas.</p>
+<p>En este análisis, no se recomienda la imputación de los valores atípicos presentes en la variable precipitación total, ya que estos representan eventos meteorológicos reales como lluvias fuertes o tormentas, que son de gran relevancia para la comprensión y predicción de patrones climáticos. Los valores extremos en precipitación son fenómenos naturales importantes y eliminarlos o alterarlos podría llevar a la pérdida de información valiosa.</p>
+</section>
+<section id="variable-numerica-rafaga-max">
+<h4><strong>Variable numérica: rafaga_max</strong><a class="headerlink" href="#variable-numerica-rafaga-max" title="Link to this heading">#</a></h4>
+<p>La variable <strong>ráfaga máxima</strong> (<code class="docutils literal notranslate"><span class="pre">rafaga_max</span></code>) mide la velocidad máxima del viento en metros por segundo (m/s) registrada en una hora.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;rafaga_max&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean         5.161076
+std          2.311157
+min          0.000000
+25%          3.400000
+50%          5.000000
+75%          6.800000
+max         24.300000
+Name: rafaga_max, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>La variable <strong>ráfaga máxima</strong> tiene <strong>87,693</strong> observaciones sin valores faltantes. El promedio es de <strong>5.16 m/s</strong> y la desviación estándar de <strong>2.31 m/s</strong>, lo que indica una variabilidad considerable en las ráfagas de viento. Los valores mínimo y máximo son <strong>0 m/s</strong> y <strong>24.3 m/s</strong>, respectivamente. Los percentiles indican que el 50% de las ráfagas están por debajo de <strong>5 m/s</strong>, mientras que el 75% de las observaciones no superan los <strong>6.8 m/s</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;rafaga_max&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Ráfaga Máxima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Ráfaga Máxima (m/s)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;rafaga_max&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Ráfaga Máxima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Ráfaga Máxima (m/s)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5457241b065559c12d1495050c71c74b1ff395472125ea2f0aae3cf88ffc44f6.png" src="_images/5457241b065559c12d1495050c71c74b1ff395472125ea2f0aae3cf88ffc44f6.png" />
+</div>
+</div>
+<p>El histograma muestra que la mayoría de las ráfagas se encuentran entre <strong>3 m/s</strong> y <strong>7 m/s</strong>, lo que sugiere que la mayoría de los vientos no son muy fuertes. El diagrama de caja destaca la presencia de numerosos valores atípicos por encima de <strong>10 m/s</strong>, lo que indica ráfagas de viento excepcionales que pueden estar asociadas a eventos meteorológicos inusuales. Por lo tanto, dado que es posible que si sucedan estos casos, no se imputarán los datos.</p>
+</section>
+<section id="variable-numerica-pres-max">
+<h4><strong>Variable numérica: pres_max</strong><a class="headerlink" href="#variable-numerica-pres-max" title="Link to this heading">#</a></h4>
+<p>La variable <strong>presión atmosférica máxima</strong>  mide la mayor presión registrada por hora, en milibares (mB). Esta variable es fundamental para entender las variaciones climáticas relacionadas con la presión atmosférica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pres_max&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean       887.580724
+std          3.646750
+min        865.300000
+25%        885.600000
+50%        887.500000
+75%        889.300000
+max        913.100000
+Name: pres_max, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>La variable <strong>presión atmosférica máxima</strong> tiene <strong>87,693</strong> observaciones, sin valores faltantes. El promedio es de <strong>887.58 mB</strong>, con una desviación estándar de <strong>3.65 mB</strong>, lo que refleja una baja variabilidad. Los valores mínimo y máximo son <strong>865.3 mB</strong> y <strong>913.1 mB</strong>. Los percentiles indican que el 50% de los datos están por debajo de <strong>887.5 mB</strong>, mientras que el 75% de las observaciones no superan los <strong>889.3 mB</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pres_max&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Presión Atmosférica Máxima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Presión Atmosférica Máxima (mB)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;pres_max&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Presión Atmosférica Máxima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Presión Atmosférica Máxima (mB)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/35dd21b47f307d63721a64906fc8ffae36e241f61f89557ec24e3c24f015e10e.png" src="_images/35dd21b47f307d63721a64906fc8ffae36e241f61f89557ec24e3c24f015e10e.png" />
+</div>
+</div>
+<p>El histograma muestra que la mayoría de las mediciones de presión atmosférica máxima se concentran entre <strong>885 mB</strong> y <strong>890 mB</strong>, lo que indica poca variabilidad en los datos. El diagrama de caja destaca algunos valores atípicos por debajo de <strong>870 mB</strong> y por encima de <strong>900 mB</strong>, lo que sugiere la presencia de eventos atmosféricos inusuales, aunque la mayoría de los valores están agrupados dentro de un rango estrecho.</p>
+</section>
+<section id="variable-numerica-pres-min">
+<h4><strong>Variable numérica: pres_min</strong><a class="headerlink" href="#variable-numerica-pres-min" title="Link to this heading">#</a></h4>
+<p>La variable <strong>presión atmosférica mínima</strong>  mide el valor más bajo de presión atmosférica registrado por hora, en milibares (mB).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pres_min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    87693.000000
+mean       886.891093
+std          3.564539
+min        862.800000
+25%        885.000000
+50%        886.900000
+75%        888.800000
+max        910.900000
+Name: pres_min, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>La variable <strong>presión atmosférica mínima</strong> cuenta con <strong>87,693</strong> registros sin ningún dato faltante. El valor medio es de <strong>886.89 mB</strong>, con una desviación estándar de <strong>3.56 mB</strong>, lo que indica una variación relativamente baja. Los valores oscilan entre un mínimo de <strong>862.8 mB</strong> y un máximo de <strong>910.9 mB</strong>. Los percentiles muestran que el 50% de las mediciones están por debajo de <strong>886.9 mB</strong>, y el 75% de los datos no exceden los <strong>888.8 mB</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pres_min&#39;</span><span class="p">],</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Presión Atmosférica Mínima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Presión Atmosférica Mínima (mB)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;pres_min&#39;</span><span class="p">]],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">saturation</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Presión Atmosférica Mínima&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Presión Atmosférica Mínima (mB)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3e44f517362d6b3890c1935ae65bf7bed63632570f4452eb26e969391a7df622.png" src="_images/3e44f517362d6b3890c1935ae65bf7bed63632570f4452eb26e969391a7df622.png" />
+</div>
+</div>
+<p>El histograma revela que la mayoría de los valores se agrupan entre <strong>880 mB</strong> y <strong>890 mB</strong>, lo que sugiere una estabilidad en los registros de presión atmosférica. Por otro lado, el diagrama de caja evidencia algunos valores atípicos por debajo de <strong>870 mB</strong> y por encima de <strong>900 mB</strong>, lo que podría estar vinculado a fenómenos atmosféricos inusuales.</p>
+</section>
+</section>
+<section id="multicolinealidad">
+<h3><strong>Multicolinealidad</strong><a class="headerlink" href="#multicolinealidad" title="Link to this heading">#</a></h3>
+<p>Veamos ahora como se correlacionan las variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Excluir la columna &#39;hora&#39; (fecha) antes de calcular la matriz de correlación</span>
+<span class="n">dataf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hora&#39;</span><span class="p">])</span>
+
+<span class="c1"># Calcular la matriz de correlación sin la columna &#39;hora&#39;</span>
+<span class="n">corr_matrix</span><span class="o">=</span> <span class="n">dataf</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="c1"># Visualizar la matriz de correlación</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;.2f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Matriz de Correlación de las variables&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span> <span class="o">=</span> <span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1518523b3bb9266d07a076e5f724c94ba1ae8939459a0883df2694e67af952a8.png" src="_images/1518523b3bb9266d07a076e5f724c94ba1ae8939459a0883df2694e67af952a8.png" />
+</div>
+</div>
+<p>Se observa una fuerte correlación entre variables como la humedad relativa máxima y mínima <code class="docutils literal notranslate"><span class="pre">(0.98)</span></code>, lo que indica que estas dos variables siguen un comportamiento casi idéntico. De manera similar, las presiones atmosféricas máxima y mínima están altamente correlacionadas <code class="docutils literal notranslate"><span class="pre">(0.96)</span></code>, lo cual es esperado, ya que ambas miden el comportamiento de la presión en diferentes momentos. Por otra parte la relación fuerte entre la velocidad del viento y la ráfaga máxima es alta <code class="docutils literal notranslate"><span class="pre">(0.87)</span></code>, lo que sugiere que las ráfagas de viento más intensas suelen coincidir con periodos de mayor velocidad del viento</p>
+<p>En base a la matriz de correlación, se ha identificado que las variables humedad horaria (<code class="docutils literal notranslate"><span class="pre">hum_horaria</span></code>) y presión atmosférica (<code class="docutils literal notranslate"><span class="pre">pres_atmo</span></code>) tienen una correlación muy alta con otras variables. Por ejemplo, humedad horaria presenta una correlación superior a <strong>0.98</strong> con humedad máxima y humedad mínima, lo que sugiere una fuerte redundancia entre estas variables. Asimismo, presión atmosférica tiene una correlación de <strong>0.89</strong> con presión atmosférica mínima y una correlación de <strong>0.88</strong> con presión atmosférica máxima. Debido a esta alta multicolinealidad, estas variables podrían afectar negativamente el desempeño del modelo, introduciendo sesgos o sobreajuste. Por lo tanto, se eliminarán del análisis para reducir la colinealidad y mejorar la precisión del modelo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar las variables &#39;hum_horaria&#39; y &#39;pres_atmo&#39; de la base de datos</span>
+<span class="n">data_modelo</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hora&#39;</span><span class="p">,</span> <span class="s1">&#39;hum_horaria&#39;</span><span class="p">,</span> <span class="s1">&#39;pres_atmo&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora, dado que el objetivo del modelo es predecir la cantidad de energía eólica que se puede generar a partir de la velocidad del viento, aplicar el VIF para reducir la multicolinealidad podría llevar a la eliminación de variables meteorológicas importantes para el análisis. Por ejemplo, la <strong>velocidad del viento</strong> está altamente correlacionada con la <strong>ráfaga máxima</strong>, y eliminar cualquiera de estas variables podría resultar en la pérdida de información clave para modelar correctamente el comportamiento del viento. Esto reduciría la precisión y la capacidad del modelo para capturar todos los factores relevantes que influyen en la predicción de la energía eólica.</p>
+</section>
+<section id="analisis-bivariado">
+<h3><strong>Análisis bivariado</strong><a class="headerlink" href="#analisis-bivariado" title="Link to this heading">#</a></h3>
+<p>En esta sección, se llevarán a cabo diversos análisis bivariados para explorar la relación entre la variable objetivo (vel_viento) y las variables explicativas. Estos análisis permitirán identificar patrones, tendencias y correlaciones significativas que pueden influir en la velocidad del viento. A través de gráficos como <code class="docutils literal notranslate"><span class="pre">scatterplot()</span></code> y <code class="docutils literal notranslate"><span class="pre">regplot()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ejex</span> <span class="o">=</span> <span class="n">data_modelo</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;vel_viento&#39;</span><span class="p">)</span> 
+<span class="n">ejey</span> <span class="o">=</span> <span class="n">data_modelo</span><span class="p">[</span><span class="s1">&#39;vel_viento&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="c1"># Aplanar la matriz de ejes para facilitar el acceso</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Generar scatter plots</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ejex</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">data_modelo</span><span class="p">[</span><span class="n">variables</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ejey</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;darkblue&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Scatterplot entre: </span><span class="si">{</span><span class="n">variables</span><span class="si">}</span><span class="s1"> y vel_viento&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;vel_viento&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6c7f8a5e4ac7dac90ea4e0ad6797a88eeee29b1338059e42176b0cf508f95478.png" src="_images/6c7f8a5e4ac7dac90ea4e0ad6797a88eeee29b1338059e42176b0cf508f95478.png" />
+</div>
+</div>
+<p>Los gráficos de dispersión presentan las relaciones entre la velocidad del viento (<code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>) y diversas variables explicativas. En el gráfico de <strong>dirección del viento</strong> vs <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>, se observa una dispersión amplia, lo que sugiere que la dirección no tiene un efecto claro sobre la velocidad. La relación entre <strong>humedad máxima</strong> y <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code> también muestra poca correlación, con una dispersión similar. En el caso de <strong>temperatura máxima</strong> y <strong>mínima</strong>, ambos gráficos indican que hay un rango considerable de velocidades del viento, aunque no se observa una tendencia definida. El gráfico de <strong>rafaga máxima</strong> vs <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code> revela una relación positiva, donde a mayor ráfaga, tiende a aumentar la velocidad del viento, indicando una correlación más fuerte. Finalmente, las variables de <strong>presión máxima</strong> y <strong>mínima</strong> muestran dispersión en sus relaciones, pero con algunos valores atípicos, especialmente a presiones más bajas, lo que podría estar asociado a condiciones meteorológicas específicas. En conclusión, estos gráficos sugieren que algunas variables como la ráfaga máxima pueden influir más en la velocidad del viento que otras, como la humedad o la temperatura.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ejex</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">data_modelo</span><span class="p">[</span><span class="n">variables</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ejey</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">scatter_kws</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="n">line_kws</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;darkblue&#39;</span><span class="p">})</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Regplot entre </span><span class="si">{</span><span class="n">variables</span><span class="si">}</span><span class="s1"> y vel_viento&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;vel_viento&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6b6f87b1256911c56d49dbc77de5e2ef887278a1a53a1d3a737f8dd7cbdf3dd1.png" src="_images/6b6f87b1256911c56d49dbc77de5e2ef887278a1a53a1d3a737f8dd7cbdf3dd1.png" />
+</div>
+</div>
+<p>Los gráficos de regresión muestran las relaciones entre la velocidad del viento (<code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>) y varias variables explicativas. En el gráfico de <strong>dirección del viento</strong> vs <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>, se observa una ligera tendencia positiva, lo que sugiere que un aumento en la dirección del viento podría estar asociado con un incremento en la velocidad del viento, aunque la relación es débil. Para <strong>humedad máxima</strong> y <strong>mínima</strong>, los gráficos revelan que no hay una correlación significativa, ya que la línea de regresión es casi horizontal, lo que indica que la humedad no parece afectar considerablemente la velocidad del viento. En cuanto a <strong>temperatura máxima</strong> y <strong>mínima</strong>, ambos gráficos muestran una ligera tendencia positiva, indicando que temperaturas más altas podrían estar relacionadas con mayores velocidades del viento, aunque la dispersión sigue siendo considerable. La <strong>rafaga máxima</strong> presenta una clara relación positiva con <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>, mostrando que a mayores ráfagas corresponden velocidades del viento más altas. Por otro lado, las variables de <strong>presión máxima</strong> y <strong>mínima</strong> muestran una tendencia positiva, sugiriendo que las presiones más altas podrían estar asociadas con un incremento en la velocidad del viento, aunque la relación no es tan marcada.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -849,6 +2040,62 @@ Traceback (most recent call last):  File &quot;C:\Users\kamac\miniconda3\envs\ml
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Ejercicio 1.1</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-y-modulos-necesarios"><strong>Librerías y módulos necesarios</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#default-probability-prediction"><strong>Default Probability Prediction</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-speed"><strong>Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualizacion"><strong>Contextualización</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos"><strong>Objetivos</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-importantes"><strong>Datos importantes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables"><strong>Diccionario de variables</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-de-datos"><strong>Base de datos</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-la-base-de-datos"><strong>Características de la base de datos</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#renombrado-de-columnas"><strong>Renombrado de Columnas</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables-actualizado"><strong>Diccionario de variables actualizado</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-faltantes"><strong>Datos Faltantes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas"><strong>Variables categóricas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas"><strong>Variables numéricas</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-dir-viento"><strong>Variable numérica: dir_viento</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-variable-objetivo-vel-viento"><strong>Variable numérica (Variable objetivo): vel_viento</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-hum-max"><strong>Variable numérica: hum_max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-hum-min"><strong>Variable numérica: hum_min</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-temp-max"><strong>Variable numérica: temp_max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-temp-min"><strong>Variable numérica: temp_min</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-hum-horaria"><strong>Variable numérica: hum_horaria</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-pres-atmo"><strong>Variable numérica: pres_atmo</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-precip-total"><strong>Variable numérica: precip_total</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-rafaga-max"><strong>Variable numérica: rafaga_max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-pres-max"><strong>Variable numérica: pres_max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-pres-min"><strong>Variable numérica: pres_min</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad"><strong>Multicolinealidad</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado"><strong>Análisis bivariado</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
