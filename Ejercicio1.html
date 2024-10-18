@@ -187,6 +187,9 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="Ejercicio2.html"><strong>Ejercicio 2: Modelos de Clasificación</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ejercicio3.html"><strong>Ejercicio 3: Modelos de Regresión</strong></a></li>
+
 </ul>
 
     </div>
@@ -390,7 +393,6 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-speed"><strong>Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualizacion"><strong>Contextualización</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos"><strong>Objetivos</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-importantes"><strong>Datos importantes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables"><strong>Diccionario de variables</strong></a></li>
 </ul>
 </li>
@@ -452,13 +454,6 @@ Dado los siguientes conjuntos de datos: <strong>Default Probability Prediction</
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kstest</span><span class="p">,</span> <span class="n">norm</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectKBest</span><span class="p">,</span> <span class="n">chi2</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LinearSegmentedColormap</span>
 </pre></div>
 </div>
 </div>
@@ -483,9 +478,6 @@ Dado los siguientes conjuntos de datos: <strong>Default Probability Prediction</
 <li><p>Analizar diferentes variables meteorológicas para identificar cuáles tienen mayor impacto en la predicción de la velocidad del viento, mejorando la comprensión de los factores que influyen en su comportamiento.</p></li>
 <li><p>Predecir la cantidad de energía eólica que se puede generar en un período de 24 horas, a partir de las predicciones de velocidad del viento, con el objetivo de estimar la viabilidad de comercializar esta energía a empresas productoras de hidrógeno verde.</p></li>
 </ul>
-</section>
-<section id="datos-importantes">
-<h3><strong>Datos importantes</strong><a class="headerlink" href="#datos-importantes" title="Link to this heading">#</a></h3>
 </section>
 <section id="diccionario-de-variables">
 <h3><strong>Diccionario de variables</strong><a class="headerlink" href="#diccionario-de-variables" title="Link to this heading">#</a></h3>
@@ -723,7 +715,7 @@ memory usage: 8.7+ MB
 </div>
 </div>
 </div>
-<p>En este caso, la base de datos de entrenamiento tiene <strong>87,693</strong> observaciones y <strong>13 columnas</strong> en total, doce de estas columnas contienen datos numéricos de tipo <code class="docutils literal notranslate"><span class="pre">float64</span></code>, mientras que una columna está clasificada como <code class="docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>En este caso, la base de datos de entrenamiento tiene <strong>87,693</strong> observaciones y <strong>13 columnas</strong> en total, doce de estas columnas contienen datos numéricos de tipo <code class="docutils literal notranslate"><span class="pre">float64</span></code>(variables numéricas), mientras que una columna está clasificada como <code class="docutils literal notranslate"><span class="pre">object</span></code>(variable categórica)</p>
 <section id="renombrado-de-columnas">
 <h4><strong>Renombrado de Columnas</strong><a class="headerlink" href="#renombrado-de-columnas" title="Link to this heading">#</a></h4>
 <p>Veamos ahora los nombres de las columnas</p>
@@ -1128,7 +1120,83 @@ memory usage: 8.7+ MB
 </section>
 <section id="datos-faltantes">
 <h3><strong>Datos Faltantes</strong><a class="headerlink" href="#datos-faltantes" title="Link to this heading">#</a></h3>
-<p>En esta parte se realiza un análisis para identificar la cantidad de datos faltantes en cada columna de la base de datos. Se utiliza la librería <code class="docutils literal notranslate"><span class="pre">missingno</span></code> para generar una visualización en forma de barra que muestra el porcentaje de datos faltantes en cada columna, ordenados de manera ascendente.</p>
+<p>En esta parte se realiza un análisis para identificar la cantidad de datos faltantes en cada columna de la base de datos. Primeroo se cuentan la cantidad de valores nulos por variable y se muestra en forma de porcentaje. También se utiliza la librería <code class="docutils literal notranslate"><span class="pre">missingno</span></code> para generar una visualización en forma de barra que muestra el porcentaje de datos faltantes en cada columna, ordenados de manera ascendente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hora            0
+dir_viento      0
+vel_viento      0
+hum_max         0
+hum_min         0
+temp_max        0
+temp_min        0
+hum_horaria     0
+pres_atmo       0
+precip_total    0
+rafaga_max      0
+pres_max        0
+pres_min        0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hora            0
+dir_viento      0
+vel_viento      0
+hum_max         0
+hum_min         0
+temp_max        0
+temp_min        0
+hum_horaria     0
+pres_atmo       0
+precip_total    0
+rafaga_max      0
+pres_max        0
+pres_min        0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">missing_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">missing_percentage</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hora            0.0
+dir_viento      0.0
+vel_viento      0.0
+hum_max         0.0
+hum_min         0.0
+temp_max        0.0
+temp_min        0.0
+hum_horaria     0.0
+pres_atmo       0.0
+precip_total    0.0
+rafaga_max      0.0
+pres_max        0.0
+pres_min        0.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">msno</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#74A2C7&quot;</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="s1">&#39;ascending&#39;</span><span class="p">)</span>
@@ -1406,7 +1474,7 @@ Name: hum_max, dtype: float64
 </div>
 </div>
 </div>
-<p>Al analizar las estadísticas de la variable <strong>humedad máxima</strong>, se tiene un total de <strong>87,693</strong> observaciones sin datos faltantes. El valor promedio de la humedad máxima es <strong>69.06%</strong>, lo que indica que, en general, la humedad suele ser alta. La desviación estándar es <strong>19.64%</strong>, lo que muestra una variabilidad moderada en los datos. Los valores mínimos y máximos son <strong>12%</strong> y <strong>100%</strong>, respectivamente, lo que sugiere una gran amplitud en las condiciones atmosféricas observadas. Los percentiles muestran que el 25% de los datos están por debajo de <strong>54%</strong>, el 50% (mediana) está en <strong>72%</strong>, y el 75% está por debajo de <strong>87%</strong>, lo que indica que la mayoría de las observaciones tienen niveles altos de humedad y son observaciones que abarcan la mayor parte del rango lo que puede sugerir que no hay presencia de valores atípicos</p>
+<p>Al evaluar las estadísticas de la variable <strong>humedad máxima</strong>, se observa un total de <strong>87,693</strong> registros sin datos faltantes. El promedio de la humedad máxima es <strong>69.06%</strong>, lo que refleja una tendencia general hacia niveles elevados de humedad. La desviación estándar de <strong>19.64%</strong> indica una variabilidad moderada en los datos recopilados. En cuanto a los extremos, los valores mínimo y máximo son <strong>12%</strong> y <strong>100%</strong>, respectivamente, lo que sugiere una amplia gama de condiciones atmosféricas observadas. Los percentiles indican que el <strong>25%</strong> de las mediciones están por debajo de <strong>54%</strong>, la <strong>mediana</strong> se sitúa en <strong>72%</strong>, y el <strong>75%</strong> de las observaciones están por debajo de <strong>87%</strong>. Esto sugiere que la mayoría de las mediciones reflejan niveles altos de humedad, lo que implica que las observaciones abarcan la mayor parte del rango y sugiere la ausencia de valores atípicos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
@@ -1559,7 +1627,7 @@ Name: temp_min, dtype: float64
 </div>
 </div>
 </div>
-<p>Al analizar las estadísticas de la variable <strong>temperatura mínima</strong>, se tienen <strong>87,693</strong> observaciones sin datos faltantes. El valor promedio es <strong>20.68°C</strong>, lo que sugiere temperaturas generalmente moderadas. La desviación estándar es <strong>3.51°C</strong>, lo que indica una variabilidad moderada en las temperaturas mínimas registradas. El valor mínimo es <strong>8.4°C</strong> y el máximo es <strong>34.4°C</strong>, lo que refleja una amplia gama de temperaturas. Los percentiles muestran que el 25% de los valores están por debajo de <strong>18.4°C</strong>, el 50% (mediana) está en <strong>20.2°C</strong>, y el 75% de las observaciones están por debajo de <strong>23.1°C</strong>, lo que sugiere que la mayor parte de las temperaturas mínimas se concentra en rangos moderados.</p>
+<p>Al examinar las estadísticas de la variable <strong>temperatura mínima</strong>, se registran un total de <strong>87,693</strong> observaciones sin valores faltantes. La media de las temperaturas mínimas es de <strong>20.68°C</strong>, lo que indica que, por lo general, las temperaturas son moderadas. La desviación estándar, que es de <strong>3.51°C</strong>, refleja una variabilidad moderada en las lecturas de temperatura. Los extremos de los datos muestran un mínimo de <strong>8.4°C</strong> y un máximo de <strong>34.4°C</strong>, sugiriendo así una amplia gama de temperaturas observadas. En cuanto a los percentiles, el <strong>25%</strong> de los datos están por debajo de <strong>18.4°C</strong>, la <strong>mediana</strong> se sitúa en <strong>20.2°C</strong>, y el <strong>75%</strong> de las mediciones se encuentran por debajo de <strong>23.1°C</strong>. Esto indica que la mayoría de las temperaturas mínimas tienden a concentrarse en rangos moderados.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
@@ -1661,7 +1729,7 @@ Name: pres_atmo, dtype: float64
 </div>
 </div>
 </div>
-<p>Al revisar las estadísticas de la variable <strong>presión atmosférica</strong>, se dispone de un total de <strong>87,693</strong> registros sin ningún dato faltante. El valor promedio es de <strong>887.25 mB</strong>, lo que sugiere que la presión atmosférica se mantiene relativamente constante. Con una desviación estándar de <strong>4.01 mB</strong>, se observa una variabilidad baja en los datos. Los valores mínimo y máximo son <strong>863.4 mB</strong> y <strong>1023.5 mB</strong>, lo que refleja una amplitud considerable en las mediciones. Los percentiles indican que el 25% de las mediciones están por debajo de <strong>885.3 mB</strong>, la mediana se sitúa en <strong>887.2 mB</strong>, y el 75% de los valores están por debajo de <strong>889.1 mB</strong>, lo que sugiere que la mayoría de las observaciones se encuentran dentro de un rango estrecho de presión atmosférica.</p>
+<p>La variable <strong>presión atmosférica</strong> cuenta con <strong>87,693</strong> observaciones sin datos faltantes. El promedio es de <strong>887.25 mB</strong>, y la desviación estándar es de <strong>4.01 mB</strong>, lo que sugiere una baja variabilidad en las lecturas de presión. Los valores mínimo y máximo son <strong>863.4 mB</strong> y <strong>1023.5 mB</strong>, respectivamente. Los percentiles indican que el <strong>50%</strong> de las mediciones están por debajo de <strong>887.2 mB</strong>, mientras que el <strong>75%</strong> no supera los <strong>889.1 mB</strong>, lo que implica que la mayoría de las observaciones se encuentran en un rango relativamente estrecho de presión atmosférica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
@@ -1919,7 +1987,7 @@ Name: pres_min, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar las variables &#39;hum_horaria&#39; y &#39;pres_atmo&#39; de la base de datos</span>
-<span class="n">data_modelo</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hora&#39;</span><span class="p">,</span> <span class="s1">&#39;hum_horaria&#39;</span><span class="p">,</span> <span class="s1">&#39;pres_atmo&#39;</span><span class="p">])</span>
+<span class="n">data_modelo</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hora&#39;</span><span class="p">,</span><span class="s1">&#39;hum_horaria&#39;</span><span class="p">,</span> <span class="s1">&#39;pres_atmo&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1939,15 +2007,13 @@ Name: pres_min, dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="c1"># Aplanar la matriz de ejes para facilitar el acceso</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
-<span class="c1"># Generar scatter plots</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ejex</span><span class="p">):</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">data_modelo</span><span class="p">[</span><span class="n">variables</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ejey</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;darkblue&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Scatterplot entre: </span><span class="si">{</span><span class="n">variables</span><span class="si">}</span><span class="s1"> y vel_viento&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">variable</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ejex</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">data_modelo</span><span class="p">[</span><span class="n">variable</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ejey</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;darkblue&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Scatterplot entre: </span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s1"> y vel_viento&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
     <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;vel_viento&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -1956,10 +2022,10 @@ Name: pres_min, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6c7f8a5e4ac7dac90ea4e0ad6797a88eeee29b1338059e42176b0cf508f95478.png" src="_images/6c7f8a5e4ac7dac90ea4e0ad6797a88eeee29b1338059e42176b0cf508f95478.png" />
+<img alt="_images/237e034917479cf5f2bbf2c8461ef79289083902473b3da7e3b1d66fe64d4e43.png" src="_images/237e034917479cf5f2bbf2c8461ef79289083902473b3da7e3b1d66fe64d4e43.png" />
 </div>
 </div>
-<p>Los gráficos de dispersión presentan las relaciones entre la velocidad del viento (<code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>) y diversas variables explicativas. En el gráfico de <strong>dirección del viento</strong> vs <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>, se observa una dispersión amplia, lo que sugiere que la dirección no tiene un efecto claro sobre la velocidad. La relación entre <strong>humedad máxima</strong> y <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code> también muestra poca correlación, con una dispersión similar. En el caso de <strong>temperatura máxima</strong> y <strong>mínima</strong>, ambos gráficos indican que hay un rango considerable de velocidades del viento, aunque no se observa una tendencia definida. El gráfico de <strong>rafaga máxima</strong> vs <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code> revela una relación positiva, donde a mayor ráfaga, tiende a aumentar la velocidad del viento, indicando una correlación más fuerte. Finalmente, las variables de <strong>presión máxima</strong> y <strong>mínima</strong> muestran dispersión en sus relaciones, pero con algunos valores atípicos, especialmente a presiones más bajas, lo que podría estar asociado a condiciones meteorológicas específicas. En conclusión, estos gráficos sugieren que algunas variables como la ráfaga máxima pueden influir más en la velocidad del viento que otras, como la humedad o la temperatura.</p>
+<p>Los gráficos de dispersión presentan las relaciones entre la velocidad del viento (<code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>) y diversas variables explicativas. En el gráfico de <strong>dirección del viento</strong> y <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>, se observa una dispersión amplia, lo que sugiere que la dirección no tiene un efecto claro sobre la velocidad. La relación entre <strong>humedad máxima</strong> y <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code> también muestra poca correlación, con una dispersión similar. En el caso de <strong>temperatura máxima</strong> y <strong>mínima</strong>, ambos gráficos indican que hay un rango considerable de velocidades del viento, aunque no se observa una tendencia definida. El gráfico de <strong>rafaga máxima</strong> y <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code> revela una relación positiva, donde a mayor ráfaga, tiende a aumentar la velocidad del viento, indicando una correlación más fuerte. Finalmente, las variables de <strong>presión máxima</strong> y <strong>mínima</strong> muestran dispersión en sus relaciones, pero con algunos valores atípicos, especialmente a presiones más bajas, lo que podría estar asociado a condiciones meteorológicas específicas. En conclusión, estos gráficos sugieren que algunas variables como la ráfaga máxima pueden influir más en la velocidad del viento que otras, como la humedad o la temperatura.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
@@ -1978,7 +2044,7 @@ Name: pres_min, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6b6f87b1256911c56d49dbc77de5e2ef887278a1a53a1d3a737f8dd7cbdf3dd1.png" src="_images/6b6f87b1256911c56d49dbc77de5e2ef887278a1a53a1d3a737f8dd7cbdf3dd1.png" />
+<img alt="_images/b903438afa518d1e84c12480d57f4a2eebb76b4840cb1925c30e0a1f4d620d48.png" src="_images/b903438afa518d1e84c12480d57f4a2eebb76b4840cb1925c30e0a1f4d620d48.png" />
 </div>
 </div>
 <p>Los gráficos de regresión muestran las relaciones entre la velocidad del viento (<code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>) y varias variables explicativas. En el gráfico de <strong>dirección del viento</strong> vs <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>, se observa una ligera tendencia positiva, lo que sugiere que un aumento en la dirección del viento podría estar asociado con un incremento en la velocidad del viento, aunque la relación es débil. Para <strong>humedad máxima</strong> y <strong>mínima</strong>, los gráficos revelan que no hay una correlación significativa, ya que la línea de regresión es casi horizontal, lo que indica que la humedad no parece afectar considerablemente la velocidad del viento. En cuanto a <strong>temperatura máxima</strong> y <strong>mínima</strong>, ambos gráficos muestran una ligera tendencia positiva, indicando que temperaturas más altas podrían estar relacionadas con mayores velocidades del viento, aunque la dispersión sigue siendo considerable. La <strong>rafaga máxima</strong> presenta una clara relación positiva con <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code>, mostrando que a mayores ráfagas corresponden velocidades del viento más altas. Por otro lado, las variables de <strong>presión máxima</strong> y <strong>mínima</strong> muestran una tendencia positiva, sugiriendo que las presiones más altas podrían estar asociadas con un incremento en la velocidad del viento, aunque la relación no es tan marcada.</p>
@@ -2058,7 +2124,6 @@ Name: pres_min, dtype: float64
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-speed"><strong>Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualizacion"><strong>Contextualización</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos"><strong>Objetivos</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-importantes"><strong>Datos importantes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables"><strong>Diccionario de variables</strong></a></li>
 </ul>
 </li>

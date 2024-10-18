@@ -6,8 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Machine Learning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Ejercicio 2: Modelos de Clasificación &#8212; Machine Learning</title>
   
   
   
@@ -56,9 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
-    <link rel="index" title="Index" href="#" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Ejercicio2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ejercicio 3: Modelos de Regresión" href="Ejercicio3.html" />
+    <link rel="prev" title="Ejercicio 1.2: Research" href="informe.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -178,7 +179,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Ejercicio1.html"><strong>Ejercicio 1.1</strong></a></li>
 
 
@@ -186,7 +187,7 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="Ejercicio2.html"><strong>Ejercicio 2: Modelos de Clasificación</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Ejercicio 2: Modelos de Clasificación</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Ejercicio3.html"><strong>Ejercicio 3: Modelos de Regresión</strong></a></li>
 
 </ul>
@@ -260,7 +261,7 @@
       
       
       
-      <li><a href="https://github.com/kmarcela11/Parcial2_MachineLearning/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/kmarcela11/Parcial2_MachineLearning/issues/new?title=Issue%20on%20page%20%2FEjercicio2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -272,6 +273,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Ejercicio2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -324,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1>Ejercicio 2: Modelos de Clasificación</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -338,13 +387,66 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section class="tex2jax_ignore mathjax_ignore" id="ejercicio-2-modelos-de-clasificacion">
+<h1><strong>Ejercicio 2: Modelos de Clasificación</strong><a class="headerlink" href="#ejercicio-2-modelos-de-clasificacion" title="Link to this heading">#</a></h1>
+<p>Considere el conjunto de datos <strong>Default Probability Prediction</strong>. Implemente la versión de clasificación para cada uno de los modelos estudiados en clases, y prediga la variable respuesta, <strong>probabilidad para la variable target (default probability)</strong>. Construya una <strong>tabla de error</strong> que contenga las métricas usuales de clasificación: <strong>precision</strong>, <strong>recall</strong>, <strong>f1-score</strong>, <strong>AUC</strong>. Además, agregue <strong>matrices de confusión</strong> (ver <code class="docutils literal notranslate"><span class="pre">confusion_matrix</span></code>) y <strong>curvas ROC</strong> (ver <code class="docutils literal notranslate"><span class="pre">plot_roc</span></code>). Inicialmente, realice un <strong>balanceo de clases</strong> usando <strong>ADASYN</strong> (Adaptive Synthetic Sampling), luego compare los resultados predictivos con o sin balanceo ADASYN. Posteriormente, realice <strong>hiperparametrización</strong> usando <strong>BayesianOptimization</strong>, <strong>GridSearchCV</strong>, y <strong>Pipeline</strong> para evaluar cada modelo, comparando los resultados en términos de <strong>tiempo de cómputo</strong>. Verifique que la <strong>validación cruzada</strong> seleccionada es la adecuada, y justifíquela. Utilice la métrica <strong>M = 0.5 · (G + D)</strong>, para seleccionar el <strong>mejor modelo de clasificación</strong> (maximizar M) (ver sección Default Probability Prediction). os resultados deben estar registrados en una <strong>tabla de error</strong> (ver Tabla 1) que resuma cada <strong>score</strong> obtenido por el modelo implementado.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>precision</p></th>
+<th class="head"><p>recall</p></th>
+<th class="head"><p>f1-score</p></th>
+<th class="head"><p>AUC</p></th>
+<th class="head"><p>M</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Clasificación Bayesiana</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+</tr>
+<tr class="row-odd"><td><p>K-NN</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+</tr>
+<tr class="row-even"><td><p>L1/L2 Penalty Logistic Regression</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+<td><p>···</p></td>
+</tr>
+</tbody>
+</table>
 </div>
+<p>Cuadro 1: Modelo de clasificación para predicción de probabilidad de default.</p>
+</section>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -356,6 +458,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="informe.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Ejercicio 1.2: Research</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Ejercicio3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>Ejercicio 3: Modelos de Regresión</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
