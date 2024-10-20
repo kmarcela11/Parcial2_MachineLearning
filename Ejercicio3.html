@@ -389,14 +389,21 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-wind-speed"><strong>Modelo de regresión: Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas"><strong>Métricas</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mape-mean-absolute-percentage-error"><strong>MAPE: Mean Absolute Percentage Error</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rmse-root-mean-square-error"><strong>RMSE: Root Mean Square Error</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r2-coefficient-of-determination"><strong>R2: Coefficient of Determination</strong></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos"><strong>Datos</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-la-base-de-datos-original-y-la-del-modelo"><strong>Diferencias entre la base de datos original y la del modelo</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametrizacion-optimizacion-bayesiana"><strong>Hiperparametrización: Optimización Bayesiana</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-k-nn"><strong>Regresión K-NN</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal"><strong>Regresión lineal</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge"><strong>Regresión Ridge</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lasso"><strong>Regresión Lasso</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-hiperparametrizacion"><strong>Modelos con la hiperparametrización</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-individuales-por-horas-24-horas"><strong>Modelos individuales por horas (24 horas)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-en-general"><strong>Modelos en general</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejores-modelos"><strong>Mejores modelos</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -464,18 +471,18 @@ document.write(`
 <h2><strong>Librerías y modulos necesarios</strong><a class="headerlink" href="#librerias-y-modulos-necesarios" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">jarque_bera</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.diagnostic</span> <span class="kn">import</span> <span class="n">acorr_ljungbox</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">Lasso</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span><span class="n">make_scorer</span><span class="p">,</span> <span class="n">mean_absolute_percentage_error</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">skopt</span> <span class="kn">import</span> <span class="n">gp_minimize</span>
+<span class="kn">from</span> <span class="nn">skopt.space</span> <span class="kn">import</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">Categorical</span><span class="p">,</span> <span class="n">Real</span>
+<span class="kn">from</span> <span class="nn">skopt.utils</span> <span class="kn">import</span> <span class="n">use_named_args</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -484,42 +491,6 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="modelo-de-regresion-wind-speed">
 <h1><strong>Modelo de regresión: Wind Speed</strong><a class="headerlink" href="#modelo-de-regresion-wind-speed" title="Link to this heading">#</a></h1>
-<section id="metricas">
-<h2><strong>Métricas</strong><a class="headerlink" href="#metricas" title="Link to this heading">#</a></h2>
-<section id="mape-mean-absolute-percentage-error">
-<h3><strong>MAPE: Mean Absolute Percentage Error</strong><a class="headerlink" href="#mape-mean-absolute-percentage-error" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MAPE</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="rmse-root-mean-square-error">
-<h3><strong>RMSE: Root Mean Square Error</strong><a class="headerlink" href="#rmse-root-mean-square-error" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">RMSE</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
-    <span class="k">return</span>  <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)),</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="r2-coefficient-of-determination">
-<h3><strong>R2: Coefficient of Determination</strong><a class="headerlink" href="#r2-coefficient-of-determination" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">R2</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
 <section id="datos">
 <h2><strong>Datos</strong><a class="headerlink" href="#datos" title="Link to this heading">#</a></h2>
 <p>Después de haber realizado un análisis descriptivo de la base de datos original (detallado <a class="reference external" href="https://kmarcela11.github.io/Parcial2_MachineLearning/Ejercicio1.html#wind-speed">Wind Speed - Ejercicio 1</a>
@@ -744,17 +715,5487 @@ document.write(`
 </div>
 </div>
 <p>Ahora, usaremos un diccionario para almacenar todos los modelos que se van a entrenar.</p>
+</section>
+</section>
+<section id="hiperparametrizacion-optimizacion-bayesiana">
+<h2><strong>Hiperparametrización: Optimización Bayesiana</strong><a class="headerlink" href="#hiperparametrizacion-optimizacion-bayesiana" title="Link to this heading">#</a></h2>
+<section id="regresion-k-nn">
+<h3><strong>Regresión K-NN</strong><a class="headerlink" href="#regresion-k-nn" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modelos</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;K-NN Regressor&#39;</span><span class="p">:</span> <span class="n">KNeighborsRegressor</span><span class="p">(),</span>
-    <span class="s1">&#39;Linear Regression&#39;</span><span class="p">:</span> <span class="n">LinearRegression</span><span class="p">(),</span>
-    <span class="s1">&#39;Ridge Regression&#39;</span><span class="p">:</span> <span class="n">Ridge</span><span class="p">(),</span>
-    <span class="s1">&#39;Lasso Regression&#39;</span><span class="p">:</span> <span class="n">Lasso</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Paso 1: Definir el espacio de búsqueda</span>
+<span class="n">knn_space</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;n_neighbors&#39;</span><span class="p">),</span>  <span class="c1"># Número de vecinos entre 1 y 50</span>
+    <span class="n">Categorical</span><span class="p">([</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="s1">&#39;distance&#39;</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;weights&#39;</span><span class="p">)</span>  <span class="c1"># Opciones de pesos</span>
+<span class="p">]</span>
+<span class="c1"># Paso 2: Definir la función objetivo para KNN</span>
+<span class="k">def</span> <span class="nf">knn_objective</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">rmse</span>
+
+<span class="c1"># Paso 3: Ejecutar la optimización bayesiana</span>
+<span class="n">knn_result</span> <span class="o">=</span> <span class="n">gp_minimize</span><span class="p">(</span>
+    <span class="n">knn_objective</span><span class="p">,</span>  <span class="c1"># La función objetivo</span>
+    <span class="n">knn_space</span><span class="p">,</span>  <span class="c1"># El espacio de búsqueda</span>
+    <span class="n">n_calls</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>  <span class="c1"># Número de evaluaciones</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="p">)</span>
+<span class="c1"># Paso 4: Mostrar los mejores hiperparámetros encontrados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejores hiperparámetros:&quot;</span><span class="p">,</span> <span class="n">knn_result</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejor valor de RMSE:&quot;</span><span class="p">,</span> <span class="n">knn_result</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejores hiperparámetros: [4, &#39;distance&#39;]
+Mejor valor de RMSE: 0.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="regresion-lineal">
+<h3><strong>Regresión lineal</strong><a class="headerlink" href="#regresion-lineal" title="Link to this heading">#</a></h3>
+</section>
+<section id="regresion-ridge">
+<h3><strong>Regresión Ridge</strong><a class="headerlink" href="#regresion-ridge" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Paso 1: Definir el espacio de búsqueda</span>
+<span class="n">ridge_space</span> <span class="o">=</span> <span class="p">[</span><span class="n">Real</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;alpha&#39;</span><span class="p">)]</span>
+
+<span class="c1"># Paso 2: Definir la función objetivo para Ridge</span>
+<span class="k">def</span> <span class="nf">ridge_objective</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">rmse</span>
+
+<span class="c1"># Paso 3: Ejecutar la optimización bayesiana para Ridge</span>
+<span class="n">result_ridge</span> <span class="o">=</span> <span class="n">gp_minimize</span><span class="p">(</span>
+    <span class="n">ridge_objective</span><span class="p">,</span>  <span class="c1"># La función objetivo</span>
+    <span class="n">ridge_space</span><span class="p">,</span>  <span class="c1"># El espacio de búsqueda</span>
+    <span class="n">n_calls</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>  <span class="c1"># Número de evaluaciones</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="p">)</span>
+
+<span class="c1"># Paso 4: Mostrar los mejores hiperparámetros encontrados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejores hiperparámetros para Ridge:&quot;</span><span class="p">,</span> <span class="n">result_ridge</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejor valor de RMSE:&quot;</span><span class="p">,</span> <span class="n">result_ridge</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejores hiperparámetros para Ridge: [0.010133543758906174]
+Mejor valor de RMSE: 0.6082881656906584
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="regresion-lasso">
+<h3><strong>Regresión Lasso</strong><a class="headerlink" href="#regresion-lasso" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Paso 1: Definir el espacio de búsqueda</span>
+<span class="n">lasso_space</span> <span class="o">=</span> <span class="p">[</span><span class="n">Real</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;alpha&#39;</span><span class="p">)]</span>
+
+<span class="c1"># Paso 2: Definir la función objetivo para Lasso</span>
+<span class="k">def</span> <span class="nf">lasso_objective</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">rmse</span>
+
+<span class="c1"># Paso 3: Ejecutar la optimización bayesiana para Lasso</span>
+<span class="n">result_lasso</span> <span class="o">=</span> <span class="n">gp_minimize</span><span class="p">(</span>
+    <span class="n">lasso_objective</span><span class="p">,</span>  <span class="c1"># La función objetivo</span>
+    <span class="n">lasso_space</span><span class="p">,</span>  <span class="c1"># El espacio de búsqueda</span>
+    <span class="n">n_calls</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>  <span class="c1"># Número de evaluaciones</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Paso 4: Mostrar los mejores hiperparámetros encontrados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejores hiperparámetros para Lasso:&quot;</span><span class="p">,</span> <span class="n">result_lasso</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejor valor de RMSE:&quot;</span><span class="p">,</span> <span class="n">result_lasso</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejores hiperparámetros para Lasso: [0.01]
+Mejor valor de RMSE: 0.6091278536982275
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un valor de alpha de 0.010222 en Ridge indica que el modelo necesita muy poca regularización. Esto suele ser una señal de que los datos no son ruidosos y las características son importantes para predecir el objetivo. Sin embargo, también es esencial verificar el rendimiento en el conjunto de prueba para confirmar que el modelo generaliza bien y no está sobreajustando.</p>
+<p>En resumen, un alpha bajo como 0.01 en Lasso indica que el modelo necesita muy poca regularización, lo que sugiere que los datos son buenos, las relaciones entre las características y el objetivo son claras, y no hay mucho riesgo de sobreajuste. Sin embargo, debes asegurarte de que el rendimiento sea consistente en el conjunto de prueba o validación para confirmar que no hay sobreajuste en los datos de entrenamiento.</p>
+</section>
+</section>
+<section id="modelos-con-la-hiperparametrizacion">
+<h2><strong>Modelos con la hiperparametrización</strong><a class="headerlink" href="#modelos-con-la-hiperparametrizacion" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definir los modelos</span>
+<span class="n">modelos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Regresión K-NN&#39;</span><span class="p">:</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="s1">&#39;distance&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Regresión Lineal&#39;</span><span class="p">:</span> <span class="n">LinearRegression</span><span class="p">(),</span>
+    <span class="s1">&#39;Regresión Ridge&#39;</span><span class="p">:</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.010133543758906174</span><span class="p">),</span>
+    <span class="s1">&#39;Regresión Lasso&#39;</span><span class="p">:</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">def</span> <span class="nf">entrenar_y_evaluar</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">hora</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">modelo</span> <span class="ow">in</span> <span class="n">modelos</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> 
+        <span class="n">modelo</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="n">RMSE</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">MAPE</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">R2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span> 
+            <span class="s1">&#39;Modelo&#39;</span><span class="p">:</span> <span class="n">nombre</span><span class="p">,</span>
+            <span class="s1">&#39;Hora&#39;</span><span class="p">:</span> <span class="n">hora</span><span class="p">,</span>
+            <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span>
+            <span class="s1">&#39;MAPE&#39;</span><span class="p">:</span> <span class="n">MAPE</span><span class="p">,</span>
+            <span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="n">RMSE</span><span class="p">,</span>
+            <span class="s1">&#39;R^2&#39;</span><span class="p">:</span> <span class="n">R2</span>
+        <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">periodos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>  <span class="c1"># Vector que almacena el valor de los períodos díarios a tener en cuenta</span>
+
+
+<span class="k">def</span> <span class="nf">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="n">hora</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">periodos</span><span class="p">:</span>  <span class="c1"># Ciclo que recorre vector de periodos para que el proceso se realice para cada una de las ventanas de predicción (7, 14, 21, 28)</span>
+        <span class="n">train_inicial</span> <span class="o">=</span> <span class="mi">0</span> 
+        
+        <span class="k">while</span> <span class="p">(</span><span class="n">train_inicial</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span> <span class="o">+</span> <span class="n">hora</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">):</span> 
+            
+            <span class="n">train_final</span> <span class="o">=</span> <span class="n">train_inicial</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span> 
+            
+            <span class="c1"># Filtrado booleano para X_train y y_train</span>
+            <span class="n">entrenamiento_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">train_inicial</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">train_final</span><span class="p">)</span>
+            <span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">entrenamiento_indices</span><span class="p">]</span>
+            <span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">entrenamiento_indices</span><span class="p">]</span>
+
+            <span class="c1"># Filtrado booleano para X_test y y_test</span>
+            <span class="n">test_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">train_final</span> <span class="o">+</span> <span class="n">hora</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">train_final</span> <span class="o">+</span> <span class="n">hora</span> <span class="o">+</span> <span class="mi">24</span><span class="p">))</span>
+            <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">test_indices</span><span class="p">]</span>
+            <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">test_indices</span><span class="p">]</span>
+            
+            <span class="n">entrenar_y_evaluar</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">hora</span><span class="p">)</span>
+            <span class="n">train_inicial</span> <span class="o">=</span> <span class="n">train_final</span>  <span class="c1"># Actualizar el inicio para la próxima iteración </span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="modelos-individuales-por-horas-24-horas">
+<h3><strong>Modelos individuales por horas (24 horas)</strong><a class="headerlink" href="#modelos-individuales-por-horas-24-horas" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora1</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
+<span class="n">hora1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora1_mean</span> <span class="o">=</span> <span class="n">hora1</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora1_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>1</td>
+      <td>1.212769e+14</td>
+      <td>0.943734</td>
+      <td>-0.015716</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>1</td>
+      <td>1.242531e+14</td>
+      <td>0.872554</td>
+      <td>0.128152</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>1</td>
+      <td>1.142225e+14</td>
+      <td>0.841189</td>
+      <td>0.163101</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>1</td>
+      <td>1.346887e+14</td>
+      <td>0.802341</td>
+      <td>0.245252</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>1</td>
+      <td>6.713434e+13</td>
+      <td>0.603769</td>
+      <td>0.584057</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>1</td>
+      <td>6.836641e+13</td>
+      <td>0.597289</td>
+      <td>0.582902</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>1</td>
+      <td>6.613615e+13</td>
+      <td>0.605674</td>
+      <td>0.563441</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>1</td>
+      <td>7.703381e+13</td>
+      <td>0.592457</td>
+      <td>0.571722</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>1</td>
+      <td>6.761480e+13</td>
+      <td>0.673537</td>
+      <td>0.096999</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>1</td>
+      <td>6.824845e+13</td>
+      <td>0.602642</td>
+      <td>0.571402</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>1</td>
+      <td>6.496088e+13</td>
+      <td>0.611461</td>
+      <td>0.550204</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>1</td>
+      <td>7.619893e+13</td>
+      <td>0.594453</td>
+      <td>0.568691</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>1</td>
+      <td>6.758647e+13</td>
+      <td>0.663066</td>
+      <td>0.216165</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>1</td>
+      <td>6.824910e+13</td>
+      <td>0.602632</td>
+      <td>0.571426</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>1</td>
+      <td>6.496206e+13</td>
+      <td>0.611457</td>
+      <td>0.550214</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>1</td>
+      <td>7.619929e+13</td>
+      <td>0.594451</td>
+      <td>0.568696</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora2</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">hora2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora2_mean</span> <span class="o">=</span> <span class="n">hora2</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora2_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>2</td>
+      <td>1.219342e+14</td>
+      <td>0.947041</td>
+      <td>-0.020686</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>2</td>
+      <td>1.278941e+14</td>
+      <td>0.874224</td>
+      <td>0.137212</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>2</td>
+      <td>1.124774e+14</td>
+      <td>0.839641</td>
+      <td>0.161173</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>2</td>
+      <td>1.363926e+14</td>
+      <td>0.802590</td>
+      <td>0.263748</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>2</td>
+      <td>6.723935e+13</td>
+      <td>0.603293</td>
+      <td>0.586117</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>2</td>
+      <td>7.067440e+13</td>
+      <td>0.598154</td>
+      <td>0.586768</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>2</td>
+      <td>6.599073e+13</td>
+      <td>0.605262</td>
+      <td>0.560894</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>2</td>
+      <td>7.699090e+13</td>
+      <td>0.592933</td>
+      <td>0.578071</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>2</td>
+      <td>6.822835e+13</td>
+      <td>0.673782</td>
+      <td>0.107158</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>2</td>
+      <td>7.068660e+13</td>
+      <td>0.603870</td>
+      <td>0.574220</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>2</td>
+      <td>6.495528e+13</td>
+      <td>0.611092</td>
+      <td>0.547212</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>2</td>
+      <td>7.624988e+13</td>
+      <td>0.594290</td>
+      <td>0.574564</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>2</td>
+      <td>6.818607e+13</td>
+      <td>0.663295</td>
+      <td>0.217269</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>2</td>
+      <td>7.068379e+13</td>
+      <td>0.603859</td>
+      <td>0.574244</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>2</td>
+      <td>6.495633e+13</td>
+      <td>0.611089</td>
+      <td>0.547221</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>2</td>
+      <td>7.625030e+13</td>
+      <td>0.594288</td>
+      <td>0.574569</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora3</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">hora3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora3_mean</span> <span class="o">=</span> <span class="n">hora3</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora3_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>3</td>
+      <td>1.218868e+14</td>
+      <td>0.948277</td>
+      <td>-0.017980</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>3</td>
+      <td>1.303198e+14</td>
+      <td>0.875087</td>
+      <td>0.146059</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>3</td>
+      <td>1.098891e+14</td>
+      <td>0.841777</td>
+      <td>0.157703</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>3</td>
+      <td>1.436102e+14</td>
+      <td>0.804603</td>
+      <td>0.272623</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>3</td>
+      <td>6.769516e+13</td>
+      <td>0.606227</td>
+      <td>0.583767</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>3</td>
+      <td>7.312562e+13</td>
+      <td>0.599112</td>
+      <td>0.591695</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>3</td>
+      <td>6.464690e+13</td>
+      <td>0.608355</td>
+      <td>0.559233</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>3</td>
+      <td>8.139357e+13</td>
+      <td>0.591637</td>
+      <td>0.588252</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>3</td>
+      <td>6.913073e+13</td>
+      <td>0.677723</td>
+      <td>0.139853</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>3</td>
+      <td>7.267780e+13</td>
+      <td>0.605045</td>
+      <td>0.578554</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>3</td>
+      <td>6.315433e+13</td>
+      <td>0.614457</td>
+      <td>0.544781</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>3</td>
+      <td>8.024040e+13</td>
+      <td>0.592846</td>
+      <td>0.584614</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>3</td>
+      <td>6.908315e+13</td>
+      <td>0.667227</td>
+      <td>0.241106</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>3</td>
+      <td>7.267523e+13</td>
+      <td>0.605034</td>
+      <td>0.578578</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>3</td>
+      <td>6.315566e+13</td>
+      <td>0.614453</td>
+      <td>0.544789</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>3</td>
+      <td>8.024068e+13</td>
+      <td>0.592844</td>
+      <td>0.584619</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora4</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">hora4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora4_mean</span> <span class="o">=</span> <span class="n">hora4</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora4_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>4</td>
+      <td>1.260351e+14</td>
+      <td>0.951306</td>
+      <td>-0.009563</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>4</td>
+      <td>1.355868e+14</td>
+      <td>0.875728</td>
+      <td>0.156866</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>4</td>
+      <td>1.122683e+14</td>
+      <td>0.842879</td>
+      <td>0.169246</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>4</td>
+      <td>1.523223e+14</td>
+      <td>0.805011</td>
+      <td>0.287179</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>4</td>
+      <td>6.757284e+13</td>
+      <td>0.609485</td>
+      <td>0.584992</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>4</td>
+      <td>7.251651e+13</td>
+      <td>0.599322</td>
+      <td>0.599461</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>4</td>
+      <td>6.534146e+13</td>
+      <td>0.616503</td>
+      <td>0.551002</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>4</td>
+      <td>8.057170e+13</td>
+      <td>0.591386</td>
+      <td>0.599248</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>4</td>
+      <td>6.944742e+13</td>
+      <td>0.682103</td>
+      <td>0.156629</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>4</td>
+      <td>7.152553e+13</td>
+      <td>0.605303</td>
+      <td>0.586177</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>4</td>
+      <td>6.379468e+13</td>
+      <td>0.622612</td>
+      <td>0.535675</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>4</td>
+      <td>7.932564e+13</td>
+      <td>0.592609</td>
+      <td>0.594972</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>4</td>
+      <td>6.938932e+13</td>
+      <td>0.671589</td>
+      <td>0.255541</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>4</td>
+      <td>7.152316e+13</td>
+      <td>0.605290</td>
+      <td>0.586202</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>4</td>
+      <td>6.379602e+13</td>
+      <td>0.622607</td>
+      <td>0.535687</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>4</td>
+      <td>7.932591e+13</td>
+      <td>0.592606</td>
+      <td>0.594978</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora5</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">hora5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora5_mean</span> <span class="o">=</span> <span class="n">hora5</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora5_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>5</td>
+      <td>1.266902e+14</td>
+      <td>0.955201</td>
+      <td>-0.018099</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>5</td>
+      <td>1.369592e+14</td>
+      <td>0.876894</td>
+      <td>0.152561</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>5</td>
+      <td>1.096087e+14</td>
+      <td>0.843961</td>
+      <td>0.164957</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>5</td>
+      <td>1.571630e+14</td>
+      <td>0.804915</td>
+      <td>0.292399</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>5</td>
+      <td>6.765661e+13</td>
+      <td>0.614329</td>
+      <td>0.569777</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>5</td>
+      <td>7.363634e+13</td>
+      <td>0.599167</td>
+      <td>0.601345</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>5</td>
+      <td>6.608617e+13</td>
+      <td>0.618089</td>
+      <td>0.545182</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>5</td>
+      <td>8.215659e+13</td>
+      <td>0.593208</td>
+      <td>0.602662</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>5</td>
+      <td>7.029045e+13</td>
+      <td>0.687860</td>
+      <td>0.099099</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>5</td>
+      <td>7.265261e+13</td>
+      <td>0.603855</td>
+      <td>0.589571</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>5</td>
+      <td>6.453542e+13</td>
+      <td>0.623673</td>
+      <td>0.530511</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>5</td>
+      <td>8.114193e+13</td>
+      <td>0.594155</td>
+      <td>0.599593</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>5</td>
+      <td>7.021939e+13</td>
+      <td>0.677333</td>
+      <td>0.199813</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>5</td>
+      <td>7.265017e+13</td>
+      <td>0.603849</td>
+      <td>0.589587</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>5</td>
+      <td>6.453683e+13</td>
+      <td>0.623666</td>
+      <td>0.530526</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>5</td>
+      <td>8.114212e+13</td>
+      <td>0.594153</td>
+      <td>0.599598</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora6</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">hora6</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora6_mean</span> <span class="o">=</span> <span class="n">hora6</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora6_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>6</td>
+      <td>1.315589e+14</td>
+      <td>0.961862</td>
+      <td>-0.027896</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>6</td>
+      <td>1.379634e+14</td>
+      <td>0.880140</td>
+      <td>0.150215</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>6</td>
+      <td>1.122052e+14</td>
+      <td>0.847233</td>
+      <td>0.158145</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>6</td>
+      <td>1.574634e+14</td>
+      <td>0.800859</td>
+      <td>0.305300</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>6</td>
+      <td>6.891580e+13</td>
+      <td>0.614478</td>
+      <td>0.572064</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>6</td>
+      <td>7.227242e+13</td>
+      <td>0.596579</td>
+      <td>0.608869</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>6</td>
+      <td>6.552965e+13</td>
+      <td>0.618124</td>
+      <td>0.548455</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>6</td>
+      <td>8.005861e+13</td>
+      <td>0.585605</td>
+      <td>0.619249</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>6</td>
+      <td>7.202682e+13</td>
+      <td>0.689710</td>
+      <td>0.096982</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>6</td>
+      <td>7.126171e+13</td>
+      <td>0.601134</td>
+      <td>0.596787</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>6</td>
+      <td>6.412814e+13</td>
+      <td>0.623654</td>
+      <td>0.533480</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>6</td>
+      <td>7.911916e+13</td>
+      <td>0.586517</td>
+      <td>0.616344</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>6</td>
+      <td>7.194841e+13</td>
+      <td>0.679173</td>
+      <td>0.196553</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>6</td>
+      <td>7.126022e+13</td>
+      <td>0.601130</td>
+      <td>0.596801</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>6</td>
+      <td>6.412954e+13</td>
+      <td>0.623648</td>
+      <td>0.533495</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>6</td>
+      <td>7.911983e+13</td>
+      <td>0.586516</td>
+      <td>0.616347</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora7</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">hora7</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora7_mean</span> <span class="o">=</span> <span class="n">hora7</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora7_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>7</td>
+      <td>1.372141e+14</td>
+      <td>0.966095</td>
+      <td>-0.043145</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>7</td>
+      <td>1.431123e+14</td>
+      <td>0.882028</td>
+      <td>0.147069</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>7</td>
+      <td>1.128984e+14</td>
+      <td>0.846647</td>
+      <td>0.170969</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>7</td>
+      <td>1.607207e+14</td>
+      <td>0.802191</td>
+      <td>0.299540</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>7</td>
+      <td>7.163302e+13</td>
+      <td>0.615363</td>
+      <td>0.568151</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>7</td>
+      <td>7.596174e+13</td>
+      <td>0.597042</td>
+      <td>0.609185</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>7</td>
+      <td>6.575408e+13</td>
+      <td>0.619252</td>
+      <td>0.545595</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>7</td>
+      <td>8.278554e+13</td>
+      <td>0.586040</td>
+      <td>0.618235</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>7</td>
+      <td>7.600685e+13</td>
+      <td>0.691748</td>
+      <td>0.091118</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>7</td>
+      <td>7.496095e+13</td>
+      <td>0.602048</td>
+      <td>0.595951</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>7</td>
+      <td>6.450882e+13</td>
+      <td>0.624664</td>
+      <td>0.530510</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>7</td>
+      <td>8.188100e+13</td>
+      <td>0.587209</td>
+      <td>0.615636</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>7</td>
+      <td>7.592024e+13</td>
+      <td>0.681199</td>
+      <td>0.188130</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>7</td>
+      <td>7.496007e+13</td>
+      <td>0.602038</td>
+      <td>0.595973</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>7</td>
+      <td>6.451083e+13</td>
+      <td>0.624658</td>
+      <td>0.530525</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>7</td>
+      <td>8.188160e+13</td>
+      <td>0.587209</td>
+      <td>0.615637</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora8</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">hora8</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora8_mean</span> <span class="o">=</span> <span class="n">hora8</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora8_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>8</td>
+      <td>1.450688e+14</td>
+      <td>0.969981</td>
+      <td>-0.061259</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>8</td>
+      <td>1.492996e+14</td>
+      <td>0.886137</td>
+      <td>0.130438</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>8</td>
+      <td>1.217145e+14</td>
+      <td>0.850887</td>
+      <td>0.149754</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>8</td>
+      <td>1.651412e+14</td>
+      <td>0.804287</td>
+      <td>0.296143</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>8</td>
+      <td>7.560055e+13</td>
+      <td>0.618185</td>
+      <td>0.545448</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>8</td>
+      <td>7.962732e+13</td>
+      <td>0.598821</td>
+      <td>0.604814</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>8</td>
+      <td>6.918255e+13</td>
+      <td>0.627026</td>
+      <td>0.520015</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>8</td>
+      <td>8.519359e+13</td>
+      <td>0.588156</td>
+      <td>0.618501</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>8</td>
+      <td>8.055070e+13</td>
+      <td>0.695463</td>
+      <td>0.050164</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>8</td>
+      <td>7.877116e+13</td>
+      <td>0.603697</td>
+      <td>0.591980</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>8</td>
+      <td>6.817627e+13</td>
+      <td>0.632431</td>
+      <td>0.503960</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>8</td>
+      <td>8.436711e+13</td>
+      <td>0.589178</td>
+      <td>0.616522</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>8</td>
+      <td>8.045533e+13</td>
+      <td>0.684896</td>
+      <td>0.149881</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>8</td>
+      <td>7.877000e+13</td>
+      <td>0.603677</td>
+      <td>0.592010</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>8</td>
+      <td>6.817811e+13</td>
+      <td>0.632424</td>
+      <td>0.503977</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>8</td>
+      <td>8.436766e+13</td>
+      <td>0.589178</td>
+      <td>0.616524</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora9</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">hora9</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora9_mean</span> <span class="o">=</span> <span class="n">hora9</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora9_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>9</td>
+      <td>1.454648e+14</td>
+      <td>0.973517</td>
+      <td>-0.081194</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>9</td>
+      <td>1.510484e+14</td>
+      <td>0.891530</td>
+      <td>0.118211</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>9</td>
+      <td>1.218588e+14</td>
+      <td>0.857025</td>
+      <td>0.116744</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>9</td>
+      <td>1.657011e+14</td>
+      <td>0.808854</td>
+      <td>0.287799</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>9</td>
+      <td>7.582952e+13</td>
+      <td>0.618848</td>
+      <td>0.542864</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>9</td>
+      <td>7.919366e+13</td>
+      <td>0.600951</td>
+      <td>0.612702</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>9</td>
+      <td>6.796123e+13</td>
+      <td>0.626426</td>
+      <td>0.516530</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>9</td>
+      <td>8.459538e+13</td>
+      <td>0.589583</td>
+      <td>0.620372</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>9</td>
+      <td>8.118027e+13</td>
+      <td>0.699925</td>
+      <td>0.013978</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>9</td>
+      <td>7.811076e+13</td>
+      <td>0.605001</td>
+      <td>0.602758</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>9</td>
+      <td>6.711681e+13</td>
+      <td>0.630676</td>
+      <td>0.502941</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>9</td>
+      <td>8.368490e+13</td>
+      <td>0.590766</td>
+      <td>0.618392</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>9</td>
+      <td>8.108196e+13</td>
+      <td>0.688580</td>
+      <td>0.127251</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>9</td>
+      <td>7.810374e+13</td>
+      <td>0.604982</td>
+      <td>0.602787</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>9</td>
+      <td>6.711851e+13</td>
+      <td>0.630671</td>
+      <td>0.502955</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>9</td>
+      <td>8.368545e+13</td>
+      <td>0.590765</td>
+      <td>0.618393</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora10</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">hora10</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora10_mean</span> <span class="o">=</span> <span class="n">hora10</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora10_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>10</td>
+      <td>1.451551e+14</td>
+      <td>0.975755</td>
+      <td>-0.087377</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>10</td>
+      <td>1.447564e+14</td>
+      <td>0.894661</td>
+      <td>0.118485</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>10</td>
+      <td>1.222613e+14</td>
+      <td>0.861008</td>
+      <td>0.102938</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>10</td>
+      <td>1.560186e+14</td>
+      <td>0.808224</td>
+      <td>0.293168</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>10</td>
+      <td>7.437083e+13</td>
+      <td>0.621382</td>
+      <td>0.539224</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>10</td>
+      <td>7.595880e+13</td>
+      <td>0.603952</td>
+      <td>0.613311</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>10</td>
+      <td>6.723485e+13</td>
+      <td>0.629850</td>
+      <td>0.509029</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>10</td>
+      <td>8.176767e+13</td>
+      <td>0.593500</td>
+      <td>0.618654</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>10</td>
+      <td>7.968248e+13</td>
+      <td>0.702611</td>
+      <td>0.014051</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>10</td>
+      <td>7.437227e+13</td>
+      <td>0.609154</td>
+      <td>0.601415</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>10</td>
+      <td>6.634354e+13</td>
+      <td>0.634131</td>
+      <td>0.494745</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>10</td>
+      <td>8.073633e+13</td>
+      <td>0.594608</td>
+      <td>0.616891</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>10</td>
+      <td>7.959010e+13</td>
+      <td>0.691400</td>
+      <td>0.129338</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>10</td>
+      <td>7.436616e+13</td>
+      <td>0.609122</td>
+      <td>0.601473</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>10</td>
+      <td>6.634528e+13</td>
+      <td>0.634125</td>
+      <td>0.494761</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>10</td>
+      <td>8.073691e+13</td>
+      <td>0.594608</td>
+      <td>0.616893</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora11</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">hora11</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora11_mean</span> <span class="o">=</span> <span class="n">hora11</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora11_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>11</td>
+      <td>1.422974e+14</td>
+      <td>0.979605</td>
+      <td>-0.087642</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>11</td>
+      <td>1.388026e+14</td>
+      <td>0.901829</td>
+      <td>0.118864</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>11</td>
+      <td>1.189282e+14</td>
+      <td>0.861928</td>
+      <td>0.122948</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>11</td>
+      <td>1.480550e+14</td>
+      <td>0.812757</td>
+      <td>0.293278</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>11</td>
+      <td>7.275689e+13</td>
+      <td>0.621759</td>
+      <td>0.540963</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>11</td>
+      <td>7.414675e+13</td>
+      <td>0.607750</td>
+      <td>0.609799</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>11</td>
+      <td>6.400580e+13</td>
+      <td>0.627154</td>
+      <td>0.524920</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>11</td>
+      <td>7.942840e+13</td>
+      <td>0.599263</td>
+      <td>0.610511</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>11</td>
+      <td>7.809817e+13</td>
+      <td>0.703517</td>
+      <td>-0.001036</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>11</td>
+      <td>7.276701e+13</td>
+      <td>0.613858</td>
+      <td>0.596068</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>11</td>
+      <td>6.310387e+13</td>
+      <td>0.632328</td>
+      <td>0.511754</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>11</td>
+      <td>7.835735e+13</td>
+      <td>0.600106</td>
+      <td>0.609728</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>11</td>
+      <td>7.799151e+13</td>
+      <td>0.692324</td>
+      <td>0.119983</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>11</td>
+      <td>7.276065e+13</td>
+      <td>0.613820</td>
+      <td>0.596146</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>11</td>
+      <td>6.310551e+13</td>
+      <td>0.632216</td>
+      <td>0.512185</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>11</td>
+      <td>7.835790e+13</td>
+      <td>0.599988</td>
+      <td>0.610153</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora12</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">hora12</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora12_mean</span> <span class="o">=</span> <span class="n">hora12</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora12_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>12</td>
+      <td>1.422336e+14</td>
+      <td>0.982342</td>
+      <td>-0.084384</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>12</td>
+      <td>1.346878e+14</td>
+      <td>0.904873</td>
+      <td>0.123590</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>12</td>
+      <td>1.237124e+14</td>
+      <td>0.866742</td>
+      <td>0.126037</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>12</td>
+      <td>1.326713e+14</td>
+      <td>0.814710</td>
+      <td>0.297818</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>12</td>
+      <td>7.291242e+13</td>
+      <td>0.626272</td>
+      <td>0.526700</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>12</td>
+      <td>7.118238e+13</td>
+      <td>0.612494</td>
+      <td>0.594134</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>12</td>
+      <td>6.818009e+13</td>
+      <td>0.640287</td>
+      <td>0.507409</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>12</td>
+      <td>7.146618e+13</td>
+      <td>0.596205</td>
+      <td>0.616471</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>12</td>
+      <td>7.832653e+13</td>
+      <td>0.708169</td>
+      <td>-0.051892</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>12</td>
+      <td>6.963340e+13</td>
+      <td>0.618759</td>
+      <td>0.578007</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>12</td>
+      <td>6.730698e+13</td>
+      <td>0.644866</td>
+      <td>0.494659</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>12</td>
+      <td>7.037337e+13</td>
+      <td>0.596700</td>
+      <td>0.616221</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>12</td>
+      <td>7.821908e+13</td>
+      <td>0.696997</td>
+      <td>0.077780</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>12</td>
+      <td>6.962710e+13</td>
+      <td>0.618718</td>
+      <td>0.578089</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>12</td>
+      <td>6.730854e+13</td>
+      <td>0.644754</td>
+      <td>0.495054</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>12</td>
+      <td>7.037391e+13</td>
+      <td>0.596582</td>
+      <td>0.616610</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora13</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">hora13</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora13_mean</span> <span class="o">=</span> <span class="n">hora13</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora13_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>13</td>
+      <td>1.382905e+14</td>
+      <td>0.983685</td>
+      <td>-0.089978</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>13</td>
+      <td>1.322882e+14</td>
+      <td>0.908784</td>
+      <td>0.111723</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>13</td>
+      <td>1.218216e+14</td>
+      <td>0.869269</td>
+      <td>0.123655</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>13</td>
+      <td>1.353955e+14</td>
+      <td>0.817973</td>
+      <td>0.302365</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>13</td>
+      <td>7.163062e+13</td>
+      <td>0.625155</td>
+      <td>0.523976</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>13</td>
+      <td>7.061771e+13</td>
+      <td>0.612712</td>
+      <td>0.589672</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>13</td>
+      <td>6.776732e+13</td>
+      <td>0.639705</td>
+      <td>0.508965</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>13</td>
+      <td>7.398887e+13</td>
+      <td>0.597333</td>
+      <td>0.621081</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>13</td>
+      <td>7.701390e+13</td>
+      <td>0.703535</td>
+      <td>-0.053644</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>13</td>
+      <td>6.921172e+13</td>
+      <td>0.618787</td>
+      <td>0.573374</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>13</td>
+      <td>6.692219e+13</td>
+      <td>0.644161</td>
+      <td>0.497391</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>13</td>
+      <td>7.281227e+13</td>
+      <td>0.597408</td>
+      <td>0.621271</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>13</td>
+      <td>7.690680e+13</td>
+      <td>0.692681</td>
+      <td>0.077164</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>13</td>
+      <td>6.920539e+13</td>
+      <td>0.618746</td>
+      <td>0.573456</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>13</td>
+      <td>6.692375e+13</td>
+      <td>0.644053</td>
+      <td>0.497729</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>13</td>
+      <td>7.281261e+13</td>
+      <td>0.597296</td>
+      <td>0.621602</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora14</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">hora14</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora14_mean</span> <span class="o">=</span> <span class="n">hora14</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora14_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>14</td>
+      <td>1.393788e+14</td>
+      <td>0.986811</td>
+      <td>-0.091791</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>14</td>
+      <td>1.326608e+14</td>
+      <td>0.915545</td>
+      <td>0.110736</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>14</td>
+      <td>1.214745e+14</td>
+      <td>0.865752</td>
+      <td>0.124448</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>14</td>
+      <td>1.343875e+14</td>
+      <td>0.827906</td>
+      <td>0.302065</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>14</td>
+      <td>7.184986e+13</td>
+      <td>0.626093</td>
+      <td>0.517732</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>14</td>
+      <td>7.078447e+13</td>
+      <td>0.616636</td>
+      <td>0.587986</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>14</td>
+      <td>6.724561e+13</td>
+      <td>0.635379</td>
+      <td>0.513543</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>14</td>
+      <td>7.301751e+13</td>
+      <td>0.600688</td>
+      <td>0.621572</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>14</td>
+      <td>7.714385e+13</td>
+      <td>0.696285</td>
+      <td>0.068286</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>14</td>
+      <td>6.941922e+13</td>
+      <td>0.622957</td>
+      <td>0.571752</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>14</td>
+      <td>6.590779e+13</td>
+      <td>0.640144</td>
+      <td>0.502736</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>14</td>
+      <td>7.191515e+13</td>
+      <td>0.600665</td>
+      <td>0.621831</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>14</td>
+      <td>7.703777e+13</td>
+      <td>0.686411</td>
+      <td>0.175167</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>14</td>
+      <td>6.941286e+13</td>
+      <td>0.622913</td>
+      <td>0.571841</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>14</td>
+      <td>6.590990e+13</td>
+      <td>0.640036</td>
+      <td>0.503090</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>14</td>
+      <td>7.191543e+13</td>
+      <td>0.600552</td>
+      <td>0.622180</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora15</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">hora15</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora15_mean</span> <span class="o">=</span> <span class="n">hora15</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora15_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>15</td>
+      <td>1.400746e+14</td>
+      <td>0.988414</td>
+      <td>-0.093064</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>15</td>
+      <td>1.346429e+14</td>
+      <td>0.921126</td>
+      <td>0.097177</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>15</td>
+      <td>1.254527e+14</td>
+      <td>0.863296</td>
+      <td>0.127174</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>15</td>
+      <td>1.338303e+14</td>
+      <td>0.830816</td>
+      <td>0.297875</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>15</td>
+      <td>7.218274e+13</td>
+      <td>0.627180</td>
+      <td>0.516771</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>15</td>
+      <td>7.252302e+13</td>
+      <td>0.618142</td>
+      <td>0.583310</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>15</td>
+      <td>7.148516e+13</td>
+      <td>0.633482</td>
+      <td>0.514223</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>15</td>
+      <td>7.662639e+13</td>
+      <td>0.603053</td>
+      <td>0.618039</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>15</td>
+      <td>7.812443e+13</td>
+      <td>0.694300</td>
+      <td>0.142528</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>15</td>
+      <td>7.190186e+13</td>
+      <td>0.624086</td>
+      <td>0.568919</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>15</td>
+      <td>6.996889e+13</td>
+      <td>0.638029</td>
+      <td>0.505682</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>15</td>
+      <td>7.540907e+13</td>
+      <td>0.602906</td>
+      <td>0.618410</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>15</td>
+      <td>7.799209e+13</td>
+      <td>0.685077</td>
+      <td>0.238174</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>15</td>
+      <td>7.188267e+13</td>
+      <td>0.624040</td>
+      <td>0.569005</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>15</td>
+      <td>6.997098e+13</td>
+      <td>0.637912</td>
+      <td>0.506004</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>15</td>
+      <td>7.540924e+13</td>
+      <td>0.602781</td>
+      <td>0.618729</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora16</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">hora16</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora16_mean</span> <span class="o">=</span> <span class="n">hora16</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora16_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>15</td>
+      <td>1.603277e+14</td>
+      <td>1.000167</td>
+      <td>-0.087113</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1.402729e+14</td>
+      <td>0.990186</td>
+      <td>-0.100703</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>16</td>
+      <td>1.338817e+14</td>
+      <td>0.920774</td>
+      <td>0.095169</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>16</td>
+      <td>1.306620e+14</td>
+      <td>0.866723</td>
+      <td>0.121657</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>16</td>
+      <td>1.342862e+14</td>
+      <td>0.830442</td>
+      <td>0.299379</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>15</td>
+      <td>8.196451e+13</td>
+      <td>0.630331</td>
+      <td>0.503385</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>16</td>
+      <td>7.165891e+13</td>
+      <td>0.628749</td>
+      <td>0.515909</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>16</td>
+      <td>7.226775e+13</td>
+      <td>0.618430</td>
+      <td>0.585556</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>16</td>
+      <td>7.499838e+13</td>
+      <td>0.633322</td>
+      <td>0.520690</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>16</td>
+      <td>7.744547e+13</td>
+      <td>0.605091</td>
+      <td>0.619744</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>15</td>
+      <td>8.603846e+13</td>
+      <td>0.670651</td>
+      <td>0.283543</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>16</td>
+      <td>7.927341e+13</td>
+      <td>0.689575</td>
+      <td>0.216065</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>16</td>
+      <td>7.174565e+13</td>
+      <td>0.624999</td>
+      <td>0.570567</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>16</td>
+      <td>7.341420e+13</td>
+      <td>0.637417</td>
+      <td>0.513147</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>16</td>
+      <td>7.624496e+13</td>
+      <td>0.604716</td>
+      <td>0.620199</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>15</td>
+      <td>8.618078e+13</td>
+      <td>0.669028</td>
+      <td>0.295969</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>16</td>
+      <td>7.907278e+13</td>
+      <td>0.680906</td>
+      <td>0.304767</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>16</td>
+      <td>7.172639e+13</td>
+      <td>0.624945</td>
+      <td>0.570674</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>16</td>
+      <td>7.341635e+13</td>
+      <td>0.637299</td>
+      <td>0.513451</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>16</td>
+      <td>7.624510e+13</td>
+      <td>0.604592</td>
+      <td>0.620499</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora17</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+<span class="n">hora17</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora17_mean</span> <span class="o">=</span> <span class="n">hora17</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora17_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>17</td>
+      <td>1.418355e+14</td>
+      <td>0.992145</td>
+      <td>-0.090633</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>17</td>
+      <td>1.339824e+14</td>
+      <td>0.930110</td>
+      <td>0.094392</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>17</td>
+      <td>1.297443e+14</td>
+      <td>0.871436</td>
+      <td>0.130616</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>17</td>
+      <td>1.335412e+14</td>
+      <td>0.836227</td>
+      <td>0.299626</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>17</td>
+      <td>7.123059e+13</td>
+      <td>0.628158</td>
+      <td>0.523139</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>17</td>
+      <td>7.130311e+13</td>
+      <td>0.617044</td>
+      <td>0.593050</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>17</td>
+      <td>7.581934e+13</td>
+      <td>0.631762</td>
+      <td>0.533704</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>17</td>
+      <td>7.659002e+13</td>
+      <td>0.600860</td>
+      <td>0.630398</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>17</td>
+      <td>8.144414e+13</td>
+      <td>0.680632</td>
+      <td>0.306037</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>17</td>
+      <td>7.090614e+13</td>
+      <td>0.624224</td>
+      <td>0.577174</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>17</td>
+      <td>7.456329e+13</td>
+      <td>0.636102</td>
+      <td>0.526472</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>17</td>
+      <td>7.556346e+13</td>
+      <td>0.600272</td>
+      <td>0.631060</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>17</td>
+      <td>8.116656e+13</td>
+      <td>0.674032</td>
+      <td>0.363310</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>17</td>
+      <td>7.088665e+13</td>
+      <td>0.624164</td>
+      <td>0.577300</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>17</td>
+      <td>7.456537e+13</td>
+      <td>0.635984</td>
+      <td>0.526769</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>17</td>
+      <td>7.556339e+13</td>
+      <td>0.600147</td>
+      <td>0.631353</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora18</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+<span class="n">hora18</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora18_mean</span> <span class="o">=</span> <span class="n">hora18</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora18_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>18</td>
+      <td>1.466625e+14</td>
+      <td>0.995171</td>
+      <td>-0.087958</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>18</td>
+      <td>1.376889e+14</td>
+      <td>0.933889</td>
+      <td>0.099840</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>18</td>
+      <td>1.305919e+14</td>
+      <td>0.872082</td>
+      <td>0.133096</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>18</td>
+      <td>1.384148e+14</td>
+      <td>0.841641</td>
+      <td>0.299281</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>18</td>
+      <td>7.329709e+13</td>
+      <td>0.629057</td>
+      <td>0.529429</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>18</td>
+      <td>7.379560e+13</td>
+      <td>0.616179</td>
+      <td>0.598993</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>18</td>
+      <td>7.672236e+13</td>
+      <td>0.636351</td>
+      <td>0.531614</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>18</td>
+      <td>7.998811e+13</td>
+      <td>0.595235</td>
+      <td>0.643994</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>18</td>
+      <td>8.365091e+13</td>
+      <td>0.676481</td>
+      <td>0.349379</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>18</td>
+      <td>7.312229e+13</td>
+      <td>0.623705</td>
+      <td>0.581839</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>18</td>
+      <td>7.518415e+13</td>
+      <td>0.640542</td>
+      <td>0.524624</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>18</td>
+      <td>7.882380e+13</td>
+      <td>0.594631</td>
+      <td>0.644238</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>18</td>
+      <td>8.337096e+13</td>
+      <td>0.670859</td>
+      <td>0.392238</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>18</td>
+      <td>7.310294e+13</td>
+      <td>0.623643</td>
+      <td>0.581993</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>18</td>
+      <td>7.518639e+13</td>
+      <td>0.640424</td>
+      <td>0.524913</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>18</td>
+      <td>7.882357e+13</td>
+      <td>0.594504</td>
+      <td>0.644522</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora19</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
+<span class="n">hora19</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora19_mean</span> <span class="o">=</span> <span class="n">hora19</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora19_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>19</td>
+      <td>1.430817e+14</td>
+      <td>0.997863</td>
+      <td>-0.088662</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>19</td>
+      <td>1.337170e+14</td>
+      <td>0.932752</td>
+      <td>0.095385</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>19</td>
+      <td>1.297561e+14</td>
+      <td>0.873193</td>
+      <td>0.134773</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>19</td>
+      <td>1.315453e+14</td>
+      <td>0.837212</td>
+      <td>0.299284</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>19</td>
+      <td>7.058826e+13</td>
+      <td>0.630283</td>
+      <td>0.519560</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>19</td>
+      <td>6.952325e+13</td>
+      <td>0.616468</td>
+      <td>0.592412</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>19</td>
+      <td>7.413684e+13</td>
+      <td>0.636106</td>
+      <td>0.526281</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>19</td>
+      <td>7.429788e+13</td>
+      <td>0.597247</td>
+      <td>0.630158</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>19</td>
+      <td>8.163891e+13</td>
+      <td>0.678187</td>
+      <td>0.326025</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>19</td>
+      <td>6.937755e+13</td>
+      <td>0.623925</td>
+      <td>0.575193</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>19</td>
+      <td>7.279038e+13</td>
+      <td>0.640243</td>
+      <td>0.519155</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>19</td>
+      <td>7.300542e+13</td>
+      <td>0.596810</td>
+      <td>0.630168</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>19</td>
+      <td>8.132979e+13</td>
+      <td>0.672564</td>
+      <td>0.372531</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>19</td>
+      <td>6.934409e+13</td>
+      <td>0.623860</td>
+      <td>0.575351</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>19</td>
+      <td>7.279247e+13</td>
+      <td>0.640123</td>
+      <td>0.519440</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>19</td>
+      <td>7.300521e+13</td>
+      <td>0.596682</td>
+      <td>0.630448</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora20</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">hora20</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora20_mean</span> <span class="o">=</span> <span class="n">hora20</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora20_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>20</td>
+      <td>1.489429e+14</td>
+      <td>1.003122</td>
+      <td>-0.093877</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>20</td>
+      <td>1.354935e+14</td>
+      <td>0.935183</td>
+      <td>0.090013</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>20</td>
+      <td>1.308977e+14</td>
+      <td>0.872138</td>
+      <td>0.141404</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>20</td>
+      <td>1.342088e+14</td>
+      <td>0.835592</td>
+      <td>0.298952</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>20</td>
+      <td>7.326215e+13</td>
+      <td>0.630701</td>
+      <td>0.495221</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>20</td>
+      <td>7.091554e+13</td>
+      <td>0.615861</td>
+      <td>0.589582</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>20</td>
+      <td>7.535902e+13</td>
+      <td>0.631196</td>
+      <td>0.523596</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>20</td>
+      <td>7.735041e+13</td>
+      <td>0.596694</td>
+      <td>0.634311</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>20</td>
+      <td>8.514535e+13</td>
+      <td>0.720250</td>
+      <td>-0.518052</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>20</td>
+      <td>7.096308e+13</td>
+      <td>0.623309</td>
+      <td>0.571671</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>20</td>
+      <td>7.402882e+13</td>
+      <td>0.635201</td>
+      <td>0.517563</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>20</td>
+      <td>7.609116e+13</td>
+      <td>0.595740</td>
+      <td>0.634878</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>20</td>
+      <td>8.481175e+13</td>
+      <td>0.705089</td>
+      <td>-0.134176</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>20</td>
+      <td>7.091968e+13</td>
+      <td>0.623243</td>
+      <td>0.571838</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>20</td>
+      <td>7.403081e+13</td>
+      <td>0.635082</td>
+      <td>0.517824</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>20</td>
+      <td>7.609083e+13</td>
+      <td>0.595613</td>
+      <td>0.635133</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora21</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="n">hora21</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora21_mean</span> <span class="o">=</span> <span class="n">hora21</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora21_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>21</td>
+      <td>1.486656e+14</td>
+      <td>1.005467</td>
+      <td>-0.094325</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>21</td>
+      <td>1.370251e+14</td>
+      <td>0.933464</td>
+      <td>0.087675</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>21</td>
+      <td>1.301876e+14</td>
+      <td>0.869334</td>
+      <td>0.155715</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>21</td>
+      <td>1.297289e+14</td>
+      <td>0.834411</td>
+      <td>0.297522</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>21</td>
+      <td>7.351924e+13</td>
+      <td>0.631555</td>
+      <td>0.492333</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>21</td>
+      <td>7.323393e+13</td>
+      <td>0.616986</td>
+      <td>0.586294</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>21</td>
+      <td>7.507913e+13</td>
+      <td>0.631804</td>
+      <td>0.520462</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>21</td>
+      <td>7.346744e+13</td>
+      <td>0.598520</td>
+      <td>0.631250</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>21</td>
+      <td>8.638324e+13</td>
+      <td>0.775889</td>
+      <td>-2.924005</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>21</td>
+      <td>7.342429e+13</td>
+      <td>0.624798</td>
+      <td>0.563134</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>21</td>
+      <td>7.393707e+13</td>
+      <td>0.636067</td>
+      <td>0.513587</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>21</td>
+      <td>7.249747e+13</td>
+      <td>0.597725</td>
+      <td>0.631346</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>21</td>
+      <td>8.604741e+13</td>
+      <td>0.749030</td>
+      <td>-1.553288</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>21</td>
+      <td>7.338007e+13</td>
+      <td>0.624731</td>
+      <td>0.563363</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>21</td>
+      <td>7.393865e+13</td>
+      <td>0.635949</td>
+      <td>0.513836</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>21</td>
+      <td>7.249699e+13</td>
+      <td>0.597599</td>
+      <td>0.631589</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora22</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+<span class="n">hora22</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>  
+<span class="n">hora22_mean</span> <span class="o">=</span> <span class="n">hora22</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora22_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>22</td>
+      <td>1.534973e+14</td>
+      <td>1.006244</td>
+      <td>-0.100969</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>22</td>
+      <td>1.405640e+14</td>
+      <td>0.936957</td>
+      <td>0.067622</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>22</td>
+      <td>1.292450e+14</td>
+      <td>0.871138</td>
+      <td>0.156231</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>22</td>
+      <td>1.304666e+14</td>
+      <td>0.838255</td>
+      <td>0.281681</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>22</td>
+      <td>7.501829e+13</td>
+      <td>0.631490</td>
+      <td>0.489832</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>22</td>
+      <td>7.507964e+13</td>
+      <td>0.617280</td>
+      <td>0.578805</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>22</td>
+      <td>7.324549e+13</td>
+      <td>0.634232</td>
+      <td>0.516075</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>22</td>
+      <td>7.403471e+13</td>
+      <td>0.599177</td>
+      <td>0.626355</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>22</td>
+      <td>8.850710e+13</td>
+      <td>0.777165</td>
+      <td>-2.947476</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>22</td>
+      <td>7.525735e+13</td>
+      <td>0.625743</td>
+      <td>0.550819</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>22</td>
+      <td>7.202665e+13</td>
+      <td>0.638831</td>
+      <td>0.506608</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>22</td>
+      <td>7.306530e+13</td>
+      <td>0.598953</td>
+      <td>0.625123</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>22</td>
+      <td>8.816452e+13</td>
+      <td>0.750286</td>
+      <td>-1.577594</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>22</td>
+      <td>7.521311e+13</td>
+      <td>0.625673</td>
+      <td>0.551087</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>22</td>
+      <td>7.202827e+13</td>
+      <td>0.638713</td>
+      <td>0.506859</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>22</td>
+      <td>7.306470e+13</td>
+      <td>0.598827</td>
+      <td>0.625367</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora23</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="n">hora23</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora23_mean</span> <span class="o">=</span> <span class="n">hora23</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hora23_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>23</td>
+      <td>1.546604e+14</td>
+      <td>1.011643</td>
+      <td>-0.115754</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>23</td>
+      <td>1.415112e+14</td>
+      <td>0.940364</td>
+      <td>0.057992</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>23</td>
+      <td>1.276950e+14</td>
+      <td>0.873191</td>
+      <td>0.161573</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>23</td>
+      <td>1.282142e+14</td>
+      <td>0.840258</td>
+      <td>0.273725</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>23</td>
+      <td>7.402055e+13</td>
+      <td>0.632531</td>
+      <td>0.490176</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>23</td>
+      <td>7.485952e+13</td>
+      <td>0.619250</td>
+      <td>0.573877</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>23</td>
+      <td>7.190616e+13</td>
+      <td>0.649079</td>
+      <td>0.481218</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>23</td>
+      <td>7.220586e+13</td>
+      <td>0.600801</td>
+      <td>0.625274</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>23</td>
+      <td>8.748233e+13</td>
+      <td>0.779976</td>
+      <td>-2.936036</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>23</td>
+      <td>7.493916e+13</td>
+      <td>0.628314</td>
+      <td>0.545692</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>23</td>
+      <td>7.090157e+13</td>
+      <td>0.656362</td>
+      <td>0.460282</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>23</td>
+      <td>7.119151e+13</td>
+      <td>0.600333</td>
+      <td>0.624224</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>23</td>
+      <td>8.714301e+13</td>
+      <td>0.753102</td>
+      <td>-1.578516</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>23</td>
+      <td>7.489503e+13</td>
+      <td>0.628245</td>
+      <td>0.545950</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>23</td>
+      <td>7.090301e+13</td>
+      <td>0.656240</td>
+      <td>0.460532</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>23</td>
+      <td>7.119086e+13</td>
+      <td>0.600207</td>
+      <td>0.624451</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hora24</span> <span class="o">=</span> <span class="n">modelo_por_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+<span class="n">hora24</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+<span class="n">hora24_mean</span> <span class="o">=</span> <span class="n">hora24</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">,</span> <span class="s1">&#39;Hora&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">hora24_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>24</td>
+      <td>1.552245e+14</td>
+      <td>1.013020</td>
+      <td>-0.128838</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>24</td>
+      <td>1.429848e+14</td>
+      <td>0.941596</td>
+      <td>0.045003</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>24</td>
+      <td>1.232380e+14</td>
+      <td>0.872376</td>
+      <td>0.161778</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>24</td>
+      <td>1.313559e+14</td>
+      <td>0.834806</td>
+      <td>0.275989</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>24</td>
+      <td>7.411502e+13</td>
+      <td>0.634015</td>
+      <td>0.484499</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>24</td>
+      <td>7.608803e+13</td>
+      <td>0.620284</td>
+      <td>0.568026</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>24</td>
+      <td>7.160667e+13</td>
+      <td>0.650407</td>
+      <td>0.474015</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>24</td>
+      <td>7.339307e+13</td>
+      <td>0.602230</td>
+      <td>0.624888</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>24</td>
+      <td>8.789784e+13</td>
+      <td>0.784813</td>
+      <td>-3.235478</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>24</td>
+      <td>7.607238e+13</td>
+      <td>0.630082</td>
+      <td>0.543308</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>24</td>
+      <td>7.093243e+13</td>
+      <td>0.658181</td>
+      <td>0.451284</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>24</td>
+      <td>7.229125e+13</td>
+      <td>0.602728</td>
+      <td>0.622352</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>24</td>
+      <td>8.755558e+13</td>
+      <td>0.757605</td>
+      <td>-1.749240</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>24</td>
+      <td>7.602754e+13</td>
+      <td>0.630011</td>
+      <td>0.543498</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>24</td>
+      <td>7.093285e+13</td>
+      <td>0.658057</td>
+      <td>0.451525</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>24</td>
+      <td>7.229055e+13</td>
+      <td>0.602600</td>
+      <td>0.622568</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="modelos-en-general">
+<h3><strong>Modelos en general</strong><a class="headerlink" href="#modelos-en-general" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn_dataframes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">linear_dataframes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ridge_dataframes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">lasso_dataframes</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>  
+    <span class="c1"># Utilizar locals() para acceder a las variables dinámicamente</span>
+    <span class="n">hora_mean</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()[</span><span class="sa">f</span><span class="s1">&#39;hora</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">_mean&#39;</span><span class="p">]</span>  <span class="c1"># Esto obtiene hora1_mean, hora2_mean, ..., hora24_mean</span>
+
+    <span class="c1"># Filtrar y almacenar en las listas correspondientes</span>
+    <span class="n">knn_dataframes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hora_mean</span><span class="p">[</span><span class="n">hora_mean</span><span class="p">[</span><span class="s1">&#39;Modelo&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;K-NN Regressor&#39;</span><span class="p">])</span>
+    <span class="n">linear_dataframes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hora_mean</span><span class="p">[</span><span class="n">hora_mean</span><span class="p">[</span><span class="s1">&#39;Modelo&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Linear Regression&#39;</span><span class="p">])</span>
+    <span class="n">ridge_dataframes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hora_mean</span><span class="p">[</span><span class="n">hora_mean</span><span class="p">[</span><span class="s1">&#39;Modelo&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Ridge Regression&#39;</span><span class="p">])</span>
+    <span class="n">lasso_dataframes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hora_mean</span><span class="p">[</span><span class="n">hora_mean</span><span class="p">[</span><span class="s1">&#39;Modelo&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Lasso Regression&#39;</span><span class="p">])</span>
+
+<span class="c1"># Concatenar los DataFrames filtrados por modelo</span>
+<span class="n">all_knn_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">knn_dataframes</span><span class="p">,</span> <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">all_linear_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">linear_dataframes</span><span class="p">,</span> <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">all_ridge_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">ridge_dataframes</span><span class="p">,</span> <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">all_lasso_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">lasso_dataframes</span><span class="p">,</span> <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmse_knn</span> <span class="o">=</span> <span class="n">all_knn_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">all_knn_data</span><span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span>
+<span class="n">all_knn_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>1</td>
+      <td>1.212769e+14</td>
+      <td>0.943734</td>
+      <td>-0.015716</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>1</td>
+      <td>1.242531e+14</td>
+      <td>0.872554</td>
+      <td>0.128152</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>1</td>
+      <td>1.142225e+14</td>
+      <td>0.841189</td>
+      <td>0.163101</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>1</td>
+      <td>1.346887e+14</td>
+      <td>0.802341</td>
+      <td>0.245252</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>2</td>
+      <td>1.219342e+14</td>
+      <td>0.947041</td>
+      <td>-0.020686</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>23</td>
+      <td>1.282142e+14</td>
+      <td>0.840258</td>
+      <td>0.273725</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>K-NN Regressor</td>
+      <td>7</td>
+      <td>24</td>
+      <td>1.552245e+14</td>
+      <td>1.013020</td>
+      <td>-0.128838</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>K-NN Regressor</td>
+      <td>14</td>
+      <td>24</td>
+      <td>1.429848e+14</td>
+      <td>0.941596</td>
+      <td>0.045003</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>K-NN Regressor</td>
+      <td>21</td>
+      <td>24</td>
+      <td>1.232380e+14</td>
+      <td>0.872376</td>
+      <td>0.161778</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>24</td>
+      <td>1.313559e+14</td>
+      <td>0.834806</td>
+      <td>0.275989</td>
+    </tr>
+  </tbody>
+</table>
+<p>97 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmse_linear</span> <span class="o">=</span> <span class="n">all_linear_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">all_linear_data</span><span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span>
+<span class="n">all_linear_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>1</td>
+      <td>6.761480e+13</td>
+      <td>0.673537</td>
+      <td>0.096999</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>1</td>
+      <td>6.824845e+13</td>
+      <td>0.602642</td>
+      <td>0.571402</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>1</td>
+      <td>6.496088e+13</td>
+      <td>0.611461</td>
+      <td>0.550204</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>1</td>
+      <td>7.619893e+13</td>
+      <td>0.594453</td>
+      <td>0.568691</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>2</td>
+      <td>6.822835e+13</td>
+      <td>0.673782</td>
+      <td>0.107158</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>23</td>
+      <td>7.119151e+13</td>
+      <td>0.600333</td>
+      <td>0.624224</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>Linear Regression</td>
+      <td>7</td>
+      <td>24</td>
+      <td>8.789784e+13</td>
+      <td>0.784813</td>
+      <td>-3.235478</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>Linear Regression</td>
+      <td>14</td>
+      <td>24</td>
+      <td>7.607238e+13</td>
+      <td>0.630082</td>
+      <td>0.543308</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>Linear Regression</td>
+      <td>21</td>
+      <td>24</td>
+      <td>7.093243e+13</td>
+      <td>0.658181</td>
+      <td>0.451284</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>24</td>
+      <td>7.229125e+13</td>
+      <td>0.602728</td>
+      <td>0.622352</td>
+    </tr>
+  </tbody>
+</table>
+<p>97 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmse_ridge</span> <span class="o">=</span> <span class="n">all_ridge_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">all_ridge_data</span><span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span>
+<span class="n">all_ridge_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>1</td>
+      <td>6.758647e+13</td>
+      <td>0.663066</td>
+      <td>0.216165</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>1</td>
+      <td>6.824910e+13</td>
+      <td>0.602632</td>
+      <td>0.571426</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>1</td>
+      <td>6.496206e+13</td>
+      <td>0.611457</td>
+      <td>0.550214</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>1</td>
+      <td>7.619929e+13</td>
+      <td>0.594451</td>
+      <td>0.568696</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>2</td>
+      <td>6.818607e+13</td>
+      <td>0.663295</td>
+      <td>0.217269</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>23</td>
+      <td>7.119086e+13</td>
+      <td>0.600207</td>
+      <td>0.624451</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>Ridge Regression</td>
+      <td>7</td>
+      <td>24</td>
+      <td>8.755558e+13</td>
+      <td>0.757605</td>
+      <td>-1.749240</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>Ridge Regression</td>
+      <td>14</td>
+      <td>24</td>
+      <td>7.602754e+13</td>
+      <td>0.630011</td>
+      <td>0.543498</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>Ridge Regression</td>
+      <td>21</td>
+      <td>24</td>
+      <td>7.093285e+13</td>
+      <td>0.658057</td>
+      <td>0.451525</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>24</td>
+      <td>7.229055e+13</td>
+      <td>0.602600</td>
+      <td>0.622568</td>
+    </tr>
+  </tbody>
+</table>
+<p>97 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmse_lasso</span> <span class="o">=</span> <span class="n">all_lasso_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">all_lasso_data</span><span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span>
+<span class="n">all_lasso_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>1</td>
+      <td>6.713434e+13</td>
+      <td>0.603769</td>
+      <td>0.584057</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>1</td>
+      <td>6.836641e+13</td>
+      <td>0.597289</td>
+      <td>0.582902</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>1</td>
+      <td>6.613615e+13</td>
+      <td>0.605674</td>
+      <td>0.563441</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>1</td>
+      <td>7.703381e+13</td>
+      <td>0.592457</td>
+      <td>0.571722</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>2</td>
+      <td>6.723935e+13</td>
+      <td>0.603293</td>
+      <td>0.586117</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>23</td>
+      <td>7.220586e+13</td>
+      <td>0.600801</td>
+      <td>0.625274</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>Lasso Regression</td>
+      <td>7</td>
+      <td>24</td>
+      <td>7.411502e+13</td>
+      <td>0.634015</td>
+      <td>0.484499</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>Lasso Regression</td>
+      <td>14</td>
+      <td>24</td>
+      <td>7.608803e+13</td>
+      <td>0.620284</td>
+      <td>0.568026</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>Lasso Regression</td>
+      <td>21</td>
+      <td>24</td>
+      <td>7.160667e+13</td>
+      <td>0.650407</td>
+      <td>0.474015</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>24</td>
+      <td>7.339307e+13</td>
+      <td>0.602230</td>
+      <td>0.624888</td>
+    </tr>
+  </tbody>
+</table>
+<p>97 rows × 6 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="mejores-modelos">
+<h3><strong>Mejores modelos</strong><a class="headerlink" href="#mejores-modelos" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mejores_modelos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">rmse_knn</span><span class="p">,</span> <span class="n">rmse_linear</span><span class="p">,</span> <span class="n">rmse_ridge</span><span class="p">,</span> <span class="n">rmse_lasso</span><span class="p">])</span>
+<span class="n">mejores_modelos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Ventana de predicción</th>
+      <th>Hora</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>23</th>
+      <td>K-NN Regressor</td>
+      <td>28</td>
+      <td>6</td>
+      <td>1.574634e+14</td>
+      <td>0.800859</td>
+      <td>0.305300</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Linear Regression</td>
+      <td>28</td>
+      <td>6</td>
+      <td>7.911916e+13</td>
+      <td>0.586517</td>
+      <td>0.616344</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Ridge Regression</td>
+      <td>28</td>
+      <td>6</td>
+      <td>7.911983e+13</td>
+      <td>0.586516</td>
+      <td>0.616347</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Lasso Regression</td>
+      <td>28</td>
+      <td>6</td>
+      <td>8.005861e+13</td>
+      <td>0.585605</td>
+      <td>0.619249</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">28</span>  <span class="c1"># Mejor periodo de predicción (28 días)</span>
+<span class="n">hora</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># Mejor hora</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">nombre_modelo</span><span class="p">,</span> <span class="n">modelo</span> <span class="ow">in</span> <span class="n">modelos</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    
+    <span class="n">train_inicial</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">train_final</span> <span class="o">=</span> <span class="n">train_inicial</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
+
+    <span class="n">entrenamiento_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">train_inicial</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">train_final</span><span class="p">)</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">entrenamiento_indices</span><span class="p">]</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">entrenamiento_indices</span><span class="p">]</span>
+
+    <span class="n">test_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">train_final</span> <span class="o">+</span> <span class="n">hora</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">train_final</span> <span class="o">+</span> <span class="n">hora</span> <span class="o">+</span> <span class="mi">24</span><span class="p">))</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">test_indices</span><span class="p">]</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">test_indices</span><span class="p">]</span>
+    
+    <span class="n">modelo</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="n">residuals</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">-</span> <span class="n">y_pred</span> <span class="c1"># Residuos</span>
+
+    <span class="n">RMSE</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">MAPE</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">R2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="c1"># Calcular las métricas para los resiudos</span>
+    <span class="n">jb_test_stat</span><span class="p">,</span> <span class="n">jb_p_value</span> <span class="o">=</span> <span class="n">jarque_bera</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+    <span class="n">lb_test</span> <span class="o">=</span> <span class="n">acorr_ljungbox</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">lags</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">return_df</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">ljung_box_p_value</span> <span class="o">=</span> <span class="n">lb_test</span><span class="p">[</span><span class="s1">&#39;lb_pvalue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;Modelo&quot;</span><span class="p">:</span> <span class="n">nombre_modelo</span><span class="p">,</span>
+        <span class="s2">&quot;Periodo de predicción (días)&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span>
+        <span class="s2">&quot;Hora&quot;</span><span class="p">:</span> <span class="n">hora</span><span class="p">,</span>
+        <span class="s2">&quot;RMSE&quot;</span><span class="p">:</span> <span class="n">RMSE</span><span class="p">,</span>
+        <span class="s2">&quot;MAPE&quot;</span><span class="p">:</span> <span class="n">MAPE</span><span class="p">,</span>
+        <span class="s2">&quot;R^2&quot;</span><span class="p">:</span> <span class="n">R2</span><span class="p">,</span>
+        <span class="s2">&quot;Ljung-Box p-value&quot;</span><span class="p">:</span> <span class="n">ljung_box_p_value</span><span class="p">,</span>
+        <span class="s2">&quot;Jarque-Bera p-value&quot;</span><span class="p">:</span> <span class="n">jb_p_value</span>
+    <span class="p">})</span>
+
+<span class="n">resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">resultados</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Periodo de predicción (días)</th>
+      <th>Hora</th>
+      <th>RMSE</th>
+      <th>MAPE</th>
+      <th>R^2</th>
+      <th>Ljung-Box p-value</th>
+      <th>Jarque-Bera p-value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Regresión K-NN</td>
+      <td>28</td>
+      <td>6</td>
+      <td>0.655531</td>
+      <td>0.315985</td>
+      <td>0.606036</td>
+      <td>0.321228</td>
+      <td>0.441403</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Regresión Lineal</td>
+      <td>28</td>
+      <td>6</td>
+      <td>0.453918</td>
+      <td>0.199940</td>
+      <td>0.811103</td>
+      <td>0.539782</td>
+      <td>0.696738</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Regresión Ridge</td>
+      <td>28</td>
+      <td>6</td>
+      <td>0.453916</td>
+      <td>0.199942</td>
+      <td>0.811105</td>
+      <td>0.539745</td>
+      <td>0.696729</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Regresión Lasso</td>
+      <td>28</td>
+      <td>6</td>
+      <td>0.444080</td>
+      <td>0.196319</td>
+      <td>0.819202</td>
+      <td>0.482946</td>
+      <td>0.687404</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -820,14 +6261,21 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-wind-speed"><strong>Modelo de regresión: Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas"><strong>Métricas</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mape-mean-absolute-percentage-error"><strong>MAPE: Mean Absolute Percentage Error</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rmse-root-mean-square-error"><strong>RMSE: Root Mean Square Error</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r2-coefficient-of-determination"><strong>R2: Coefficient of Determination</strong></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos"><strong>Datos</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-la-base-de-datos-original-y-la-del-modelo"><strong>Diferencias entre la base de datos original y la del modelo</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametrizacion-optimizacion-bayesiana"><strong>Hiperparametrización: Optimización Bayesiana</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-k-nn"><strong>Regresión K-NN</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal"><strong>Regresión lineal</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge"><strong>Regresión Ridge</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lasso"><strong>Regresión Lasso</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-hiperparametrizacion"><strong>Modelos con la hiperparametrización</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-individuales-por-horas-24-horas"><strong>Modelos individuales por horas (24 horas)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-en-general"><strong>Modelos en general</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejores-modelos"><strong>Mejores modelos</strong></a></li>
 </ul>
 </li>
 </ul>
