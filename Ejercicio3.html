@@ -390,13 +390,17 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-y-modulos-necesarios"><strong>Librerías y modulos necesarios</strong></a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-wind-speed"><strong>Modelo de regresión: Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-regresion-wind-speed"><strong>Modelos de regresión: Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos"><strong>Datos</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-la-base-de-datos-original-y-la-del-modelo"><strong>Diferencias entre la base de datos original y la del modelo</strong></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importante"><strong>Importante</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos"><strong>Modelos</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-para-construir-los-pliegues"><strong>Función para construir los pliegues</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-funciones-a-usar"><strong>Definición de funciones a usar</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-para-construir-los-pliegues"><strong>Función para construir los pliegues</strong></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-individuales-por-horas-24-horas"><strong>Modelos individuales por horas (24 horas)</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pronostico-de-la-hora-1"><strong>Pronóstico de la hora 1</strong></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pronostico-de-la-hora-2"><strong>Pronóstico de la hora 2</strong></a></li>
@@ -440,7 +444,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametrizacion-optimizacion-bayesiana"><strong>Hiperparametrización: Optimización Bayesiana</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-final"><strong>Modelo final</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-los-mejores-hiperparametros"><strong>Modelo con los mejores hiperpárametros</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-los-mejores-hiperparametros"><strong>Modelo con los mejores hiperparámetros</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafica-del-modelo-final"><strong>Gráfica del modelo final</strong></a></li>
 </ul>
 </li>
@@ -528,11 +532,11 @@ document.write(`
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="modelo-de-regresion-wind-speed">
-<h1><strong>Modelo de regresión: Wind Speed</strong><a class="headerlink" href="#modelo-de-regresion-wind-speed" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="modelos-de-regresion-wind-speed">
+<h1><strong>Modelos de regresión: Wind Speed</strong><a class="headerlink" href="#modelos-de-regresion-wind-speed" title="Link to this heading">#</a></h1>
 <section id="datos">
 <h2><strong>Datos</strong><a class="headerlink" href="#datos" title="Link to this heading">#</a></h2>
-<p>Después de haber realizado un análisis descriptivo de la base de datos original (detallado <a class="reference external" href="https://kmarcela11.github.io/Parcial2_MachineLearning/Ejercicio1.html#wind-speed">Wind Speed - Ejercicio 1</a>
+<p>Después de haber realizado un análisis descriptivo de la base de datos original (detallado en <a class="reference external" href="https://kmarcela11.github.io/Parcial2_MachineLearning/Ejercicio1.html#wind-speed">Wind Speed - Ejercicio 1</a>
 ), finalmente se ha obtenido una base de datos preparada para realizar el modelo, la cual ha sido almacenada en un archivo CSV.</p>
 <section id="diferencias-entre-la-base-de-datos-original-y-la-del-modelo">
 <h3><strong>Diferencias entre la base de datos original y la del modelo</strong><a class="headerlink" href="#diferencias-entre-la-base-de-datos-original-y-la-del-modelo" title="Link to this heading">#</a></h3>
@@ -559,7 +563,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -660,87 +664,8 @@ document.write(`
       <td>887.4</td>
       <td>886.5</td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>87688</th>
-      <td>-0.615661</td>
-      <td>5.6</td>
-      <td>83.0</td>
-      <td>78.0</td>
-      <td>21.8</td>
-      <td>21.1</td>
-      <td>0.0</td>
-      <td>12.3</td>
-      <td>879.8</td>
-      <td>879.1</td>
-    </tr>
-    <tr>
-      <th>87689</th>
-      <td>-0.469472</td>
-      <td>4.9</td>
-      <td>84.0</td>
-      <td>79.0</td>
-      <td>21.7</td>
-      <td>21.0</td>
-      <td>0.0</td>
-      <td>9.9</td>
-      <td>879.2</td>
-      <td>878.9</td>
-    </tr>
-    <tr>
-      <th>87690</th>
-      <td>-0.484810</td>
-      <td>4.5</td>
-      <td>86.0</td>
-      <td>82.0</td>
-      <td>21.2</td>
-      <td>20.6</td>
-      <td>0.0</td>
-      <td>8.9</td>
-      <td>879.8</td>
-      <td>879.2</td>
-    </tr>
-    <tr>
-      <th>87691</th>
-      <td>-0.484810</td>
-      <td>3.2</td>
-      <td>88.0</td>
-      <td>85.0</td>
-      <td>20.6</td>
-      <td>20.2</td>
-      <td>0.0</td>
-      <td>8.0</td>
-      <td>880.5</td>
-      <td>879.6</td>
-    </tr>
-    <tr>
-      <th>87692</th>
-      <td>-0.573576</td>
-      <td>2.3</td>
-      <td>95.0</td>
-      <td>88.0</td>
-      <td>20.2</td>
-      <td>19.3</td>
-      <td>0.6</td>
-      <td>7.5</td>
-      <td>881.1</td>
-      <td>880.5</td>
-    </tr>
   </tbody>
 </table>
-<p>87693 rows × 10 columns</p>
 </div></div></div>
 </div>
 <p>Nótese que la base de datos actual cuenta con <strong>87693</strong> observaciones y <strong>10</strong> columnas</p>
@@ -753,30 +678,46 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="importante">
+<h2><strong>Importante</strong><a class="headerlink" href="#importante" title="Link to this heading">#</a></h2>
+<p>En este trabajo se utilizará la métrica <code class="docutils literal notranslate"><span class="pre">RMSE</span></code> (Root Mean Squared Error) para evaluar el desempeño de los modelos de predicción de <strong>velocidad del viento</strong>, ya que penaliza más severamente los errores grandes que los pequeños, lo que resulta ideal para capturar la variabilidad de esta variable, caracterizada por sus oscilaciones amplias y eventos extremos como ráfagas o cambios bruscos. Estas oscilaciones pueden tener un impacto considerable en aplicaciones como la generación de energía eólica.</p>
+<p>En esta sección del código, definimos una función llamada <code class="docutils literal notranslate"><span class="pre">MAPEP</span></code> para calcular el <strong>Mean Absolute Percentage Error (MAPE)</strong>. Se opta por implementar esta función de forma manual porque, al utilizar librerías estándar de Python, pueden surgir errores inesperados, como divisiones por cero cuando los valores reales (<code class="docutils literal notranslate"><span class="pre">y_true</span></code>) son iguales a cero. Al escribir esta función personalizada, podemos evitar estos errores manejando los casos en los que el denominador es cero, mejorando así la robustez de los modelos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MAPEP</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="c1"># Convertimos las entradas a arrays de numpy para facilitar el cálculo vectorizado</span>
     <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_true</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+    
     <span class="c1"># Evitar la división por cero, ignorando los valores donde y_true es 0</span>
+    <span class="c1"># Creamos un filtro para seleccionar solo los índices donde y_true no sea igual a 0</span>
     <span class="n">non_zero_indices</span> <span class="o">=</span> <span class="n">y_true</span> <span class="o">!=</span> <span class="mi">0</span>
+    
+    <span class="c1"># Calculamos el MAPE solo para los valores donde y_true no es cero.</span>
+    <span class="c1"># La fórmula del MAPE es el promedio del valor absoluto del error porcentual entre y_true y y_pred</span>
+    <span class="c1"># Multiplicamos por 100 para convertirlo en porcentaje</span>
     <span class="n">mape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">y_true</span><span class="p">[</span><span class="n">non_zero_indices</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">non_zero_indices</span><span class="p">])</span> <span class="o">/</span> <span class="n">y_true</span><span class="p">[</span><span class="n">non_zero_indices</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">100</span>
+    
+    <span class="c1"># Retornamos el valor del MAPE</span>
     <span class="k">return</span> <span class="n">mape</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-</section>
 <section id="modelos">
 <h2><strong>Modelos</strong><a class="headerlink" href="#modelos" title="Link to this heading">#</a></h2>
 <p>El objetivo de este trabajo es realizar pruebas con datos para 24 horas, aplicando 4 modelos de regresión a cada una de esas horas (<strong>KNN Regressor</strong>, <strong>Linear Regression</strong>, <strong>Ridge</strong> y <strong>Lasso</strong>), lo que resultará en un total de <strong>96 modelos</strong>. Estos modelos serán representados en <strong>24 tablas</strong>, una para cada hora, y adicionalmente se agruparán en <strong>4 tablas por modelo</strong>, es decir, una tabla para <strong>KNN</strong>, una para <strong>Ridge</strong>, una para <strong>Lasso</strong> y otra para <strong>Linear Regression</strong>. En cada tabla, se analizará cómo varía la construcción de los pliegues y cómo estos afectan el rendimiento de los modelos.</p>
-<p>Para la validación de los modelos, se utilizarán las métricas <strong>RMSE</strong>, <strong>MAPE</strong> y <strong><span class="math notranslate nohighlight">\(R^2\)</span></strong>. El propósito es seleccionar, de cada una de las cuatro tablas por modelo de regresión, el modelo con el menor <strong>RMSE</strong>. Estos se agruparán en una tabla que contendrá los <strong>4 mejores modelos</strong> obtenidos. Finalmente, de esos cuatro, el mejor será aquel que presente el menor <strong>RMSE</strong>, que, a su vez, será equivalente al que tenga el mejor <strong><span class="math notranslate nohighlight">\(R^2\)</span></strong>.</p>
-<p>Se utiliza <strong>RMSE</strong> como métrica principal porque, al calcular la <strong>raíz cuadrada del promedio de los errores al cuadrado</strong>, penaliza más los errores grandes, proporcionando una evaluación más precisa del rendimiento del modelo en comparación con otras métricas como el MAPE o el MSE. Además, el <strong>RMSE</strong> es equivalente con el <strong><span class="math notranslate nohighlight">\(R^2\)</span></strong>, dado que a menor <strong>RMSE</strong> mayor coeficiente de determinación (<strong><span class="math notranslate nohighlight">\(R^2\)</span></strong>)</p>
-<p>A continuación, se define un diccionario que contiene los modelos junto con los hiperparámetros óptimos obtenidos tras la optimización bayesiana. Estos valores ajustados permitirán evaluar y comparar el rendimiento de cada modelo de manera eficiente.</p>
+<p>Para la validación de los modelos, se utilizarán las métricas <strong>RMSE</strong>, <strong>MAPE</strong> y <span class="math notranslate nohighlight">\(\mathbf{R^2}\)</span>. El propósito es seleccionar, de cada una de las cuatro tablas por modelo de regresión, el modelo con el menor <strong>RMSE</strong>. Estos se agruparán en una tabla que contendrá los <strong>4 mejores modelos</strong> obtenidos. Finalmente, de esos cuatro, el mejor será aquel que presente el menor <strong>RMSE</strong></p>
+<p>Se utiliza <strong>RMSE</strong> como métrica principal porque, al calcular la <strong>raíz cuadrada del promedio de los errores al cuadrado</strong>, penaliza más los errores grandes, proporcionando una evaluación más precisa del rendimiento del modelo en comparación con otras métricas como el MAPE o el MSE. Además, el <strong>RMSE</strong> es equivalente con el <span class="math notranslate nohighlight">\(\mathbf{R^2}\)</span>, dado que a menor <strong>RMSE</strong> mayor coeficiente de determinación (<span class="math notranslate nohighlight">\(\mathbf{R^2}\)</span>)</p>
+<section id="definicion-de-funciones-a-usar">
+<h3><strong>Definición de funciones a usar</strong><a class="headerlink" href="#definicion-de-funciones-a-usar" title="Link to this heading">#</a></h3>
+<p>A continuación vamos a definir las funciones que se usarán para evaluar cada modelo y obtener las métricas necesarias.</p>
+<p>Inicialmente, se define un diccionario sin hiperparámetros explícitos, lo que permite utilizar los valores predeterminados que cada modelo asigna por defecto. Esto se hace con el propósito de aplicar posteriormente la <strong>optimización bayesiana</strong> para ajustar los hiperparámetros del mejor modelo y así comparar cómo mejora el rendimiento del modelo antes y después del ajuste de hiperparámetros. Además, es importante destacar que realizar la optimización bayesiana para cada modelo generado en cada pliegue y para cada hora puede resultar computacionalmente costoso, lo que aumenta considerablemente el tiempo de procesamiento y la carga computacional del sistema.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definir los modelos</span>
-<span class="n">modelos</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modelos</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;Regresión K-NN&#39;</span><span class="p">:</span> <span class="n">KNeighborsRegressor</span><span class="p">(),</span>
     <span class="s1">&#39;Regresión Lineal&#39;</span><span class="p">:</span> <span class="n">LinearRegression</span><span class="p">(),</span>
     <span class="s1">&#39;Regresión Ridge&#39;</span><span class="p">:</span> <span class="n">Ridge</span><span class="p">(),</span>
@@ -810,7 +751,7 @@ document.write(`
 </div>
 </div>
 <section id="funcion-para-construir-los-pliegues">
-<h3><strong>Función para construir los pliegues</strong><a class="headerlink" href="#funcion-para-construir-los-pliegues" title="Link to this heading">#</a></h3>
+<h4><strong>Función para construir los pliegues</strong><a class="headerlink" href="#funcion-para-construir-los-pliegues" title="Link to this heading">#</a></h4>
 <p>En esta sección, se definen dos funciones importantes para generar los pliegues de entrenamiento y prueba en función de distintas ventanas de predicción (7, 14, 21 y 28 días).</p>
 <ol class="arabic simple">
 <li><p>La primera función, <strong><code class="docutils literal notranslate"><span class="pre">pliegues</span></code></strong>, recibe los parámetros <code class="docutils literal notranslate"><span class="pre">train_inicial</span></code>, <code class="docutils literal notranslate"><span class="pre">train_final</span></code> y <code class="docutils literal notranslate"><span class="pre">hora</span></code>, y se encarga de calcular los índices para seleccionar los subconjuntos de datos de entrenamiento (<code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code>) y prueba (<code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code>) mediante filtrado booleano sobre los índices del DataFrame. Devuelve estos subconjuntos para ser utilizados posteriormente.</p></li>
@@ -842,6 +783,7 @@ document.write(`
         <span class="n">train_inicial</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Se inicializa el índice de inicio de la ventana de entrenamiento</span>
         
         <span class="k">while</span> <span class="p">(</span><span class="n">train_inicial</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span> <span class="o">+</span> <span class="n">hora</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>  <span class="c1"># Ciclo que se ejecuta mientras la ventana de entrenamiento no sobrepase el tamaño del dataset</span>
+                                                           <span class="c1"># Se multiplican los días de la ventana de predicción por 24 para obtener el número de horas</span>
             
             <span class="n">train_final</span> <span class="o">=</span> <span class="n">train_inicial</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>  <span class="c1"># Se calcula el índice final de la ventana de entrenamiento</span>
             
@@ -854,14 +796,16 @@ document.write(`
 </div>
 </div>
 </section>
+</section>
 <section id="modelos-individuales-por-horas-24-horas">
 <h3><strong>Modelos individuales por horas (24 horas)</strong><a class="headerlink" href="#modelos-individuales-por-horas-24-horas" title="Link to this heading">#</a></h3>
 <p>Ahora, veamos lo anteriormente mencionado: los modelos individuales para cada una de las 24 horas, donde se aplican los cuatro modelos (<strong>KNN</strong>, <strong>Ridge</strong>, <strong>Lasso</strong> y <strong>Linear Regression</strong>).</p>
 <ul class="simple">
-<li><p>Para realizar esto:  Se ejecuta la función <strong><code class="docutils literal notranslate"><span class="pre">pliegues_modelo_hora</span></code></strong> para cada una de las 24 horas y se almacenan los resultados en el DataFrame <strong><code class="docutils literal notranslate"><span class="pre">hora{i}</span></code></strong>, donde <strong>i = 1,…,24</strong>. Luego, este DataFrame se agrupa por <strong>modelo</strong>, <strong>ventana de predicción</strong> y <strong>hora</strong>, utilizando el método <strong><code class="docutils literal notranslate"><span class="pre">groupby</span></code></strong> para calcular el promedio de las métricas de rendimiento. Finalmente, se genera <strong><code class="docutils literal notranslate"><span class="pre">hora{i}_mean</span></code></strong>, que contiene los valores medios de las métricas para cada modelo y ventana de predicción, lo que facilita el análisis comparativo de los resultados y permite identificar el mejor modelo según las métricas calculadas para cada hora específica.</p></li>
+<li><p>Para realizar esto:  Se ejecuta la función <strong><code class="docutils literal notranslate"><span class="pre">pliegues_modelo_hora</span></code></strong> para cada una de las 24 horas y se almacenan los resultados en el DataFrame <strong><code class="docutils literal notranslate"><span class="pre">hora{i}</span></code></strong>, donde <strong>i = 1,…,24</strong>. Luego, este DataFrame se agrupa por <strong>modelo</strong> y <strong>ventana de predicción</strong>, utilizando el método <strong><code class="docutils literal notranslate"><span class="pre">groupby</span></code></strong> para agrupar los modelos generados. Finalmente, se genera <strong><code class="docutils literal notranslate"><span class="pre">hora{i}_min_rmse</span></code></strong>, que contiene los mejores valores de <strong>RMSE</strong> para cada modelo y ventana de predicción.</p></li>
 <li><p>Para comprender esto: Los resultados se presentan en una tabla con <strong>6 columnas y 16 filas</strong>, donde cada conjunto de 4 filas corresponde a uno de los 4 modelos aplicados  (<strong>KNN</strong>, <strong>Ridge</strong>, <strong>Lasso</strong> y <strong>Linear Regression</strong>) en las diferentes ventanas de predicción (7, 14, 21 y 28 días). Las columnas incluyen el <strong>modelo</strong>, la <strong>ventana de predicción</strong>, la <strong>hora</strong>, y las métricas de rendimiento: <strong>MAPE</strong>, <strong>RMSE</strong> y <strong>R²</strong>. Es importante destacar que la columna de la hora no varía dentro de cada tabla, ya que cada tabla es específica para una hora en particular. Las métricas permiten observar el comportamiento de los modelos en función de las ventanas de predicción, facilitando la comparación entre ellos.</p></li>
 </ul>
-<p><strong>Nota:</strong> Dado la cantidad de tablas generadas, las interpretaciones se encuentran de manera general al final, cuando se terminan las tablas.</p>
+<p><strong>Nota:</strong> Dado la cantidad de tablas generadas, las interpretaciones se encuentran de manera general al final, cuando se terminan las tablas. Si usted desea omitir la visualización de estas tablas puede dirigirse a la sección donde se encuentran los resultados para cada <a class="reference external" href="https://kmarcela11.github.io/Parcial2_MachineLearning/Ejercicio3.html#modelos-en-general">modelo en general</a>
+(<code class="docutils literal notranslate"><span class="pre">KNN,</span> <span class="pre">Lineal,</span> <span class="pre">Ridge</span> <span class="pre">y</span> <span class="pre">Lasso</span></code>) , o directamente a los <a class="reference external" href="https://kmarcela11.github.io/Parcial2_MachineLearning/Ejercicio3.html#mejores-modelos">mejores modelos</a>.</p>
 <section id="pronostico-de-la-hora-1">
 <h4><strong>Pronóstico de la hora 1</strong><a class="headerlink" href="#pronostico-de-la-hora-1" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
@@ -1104,7 +1048,7 @@ document.write(`
       <td>Regresión K-NN</td>
       <td>2</td>
       <td>14</td>
-      <td>14.770741</td>
+      <td>inf</td>
       <td>0.494014</td>
       <td>0.736038</td>
     </tr>
@@ -1167,7 +1111,7 @@ document.write(`
       <td>Regresión Lineal</td>
       <td>2</td>
       <td>7</td>
-      <td>35.154450</td>
+      <td>inf</td>
       <td>0.311646</td>
       <td>0.842928</td>
     </tr>
@@ -1203,7 +1147,7 @@ document.write(`
       <td>Regresión Ridge</td>
       <td>2</td>
       <td>7</td>
-      <td>35.714950</td>
+      <td>inf</td>
       <td>0.314434</td>
       <td>0.840105</td>
     </tr>
@@ -2759,9 +2703,185 @@ document.write(`
 <span class="n">hora11</span> <span class="o">=</span> <span class="n">pliegues_modelo_hora</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">modelos</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="n">hora11</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
 <span class="n">hora11_min_rmse</span> <span class="o">=</span> <span class="n">hora11</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">hora11</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Modelo&#39;</span><span class="p">,</span> <span class="s1">&#39;Ventana de predicción&#39;</span><span class="p">])[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">hora11_min_rmse</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Modelo</th>
+      <th>Hora</th>
+      <th>Ventana de predicción</th>
+      <th>MAPE</th>
+      <th>RMSE</th>
+      <th>R^2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Regresión K-NN</td>
+      <td>11</td>
+      <td>7</td>
+      <td>22.439353</td>
+      <td>0.463033</td>
+      <td>0.510564</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Regresión K-NN</td>
+      <td>11</td>
+      <td>14</td>
+      <td>22.774880</td>
+      <td>0.478940</td>
+      <td>0.476360</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Regresión K-NN</td>
+      <td>11</td>
+      <td>21</td>
+      <td>22.527035</td>
+      <td>0.470992</td>
+      <td>0.493595</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Regresión K-NN</td>
+      <td>11</td>
+      <td>28</td>
+      <td>14.721496</td>
+      <td>0.409959</td>
+      <td>0.768162</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Regresión Lasso</td>
+      <td>11</td>
+      <td>7</td>
+      <td>15.170128</td>
+      <td>0.323862</td>
+      <td>0.760564</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Regresión Lasso</td>
+      <td>11</td>
+      <td>14</td>
+      <td>21.781708</td>
+      <td>0.430762</td>
+      <td>0.576410</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Regresión Lasso</td>
+      <td>11</td>
+      <td>21</td>
+      <td>16.165107</td>
+      <td>0.438918</td>
+      <td>0.402605</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Regresión Lasso</td>
+      <td>11</td>
+      <td>28</td>
+      <td>16.784509</td>
+      <td>0.413283</td>
+      <td>0.759691</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Regresión Lineal</td>
+      <td>11</td>
+      <td>7</td>
+      <td>8.918326</td>
+      <td>0.328114</td>
+      <td>0.826570</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Regresión Lineal</td>
+      <td>11</td>
+      <td>14</td>
+      <td>9.568458</td>
+      <td>0.311085</td>
+      <td>0.927597</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Regresión Lineal</td>
+      <td>11</td>
+      <td>21</td>
+      <td>9.327503</td>
+      <td>0.339157</td>
+      <td>0.667123</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Regresión Lineal</td>
+      <td>11</td>
+      <td>28</td>
+      <td>9.312118</td>
+      <td>0.339457</td>
+      <td>0.666535</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Regresión Ridge</td>
+      <td>11</td>
+      <td>7</td>
+      <td>8.910700</td>
+      <td>0.327205</td>
+      <td>0.827530</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Regresión Ridge</td>
+      <td>11</td>
+      <td>14</td>
+      <td>9.593730</td>
+      <td>0.310505</td>
+      <td>0.927866</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Regresión Ridge</td>
+      <td>11</td>
+      <td>21</td>
+      <td>9.311199</td>
+      <td>0.339109</td>
+      <td>0.667217</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Regresión Ridge</td>
+      <td>11</td>
+      <td>28</td>
+      <td>9.286081</td>
+      <td>0.339244</td>
+      <td>0.666951</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="pronostico-de-la-hora-12">
@@ -5223,14 +5343,13 @@ document.write(`
 </section>
 <section id="interpretacion-general">
 <h4><strong>Interpretación general</strong><a class="headerlink" href="#interpretacion-general" title="Link to this heading">#</a></h4>
-<p>A lo largo de las 24 horas analizadas, se observan tendencias claras en los cuatro modelos de predicción: <strong>Regresión K-NN</strong>, <strong>Regresión Lasso</strong>, <strong>Regresión Lineal</strong>, y <strong>Regresión Ridge</strong>.</p>
+<p>A lo largo de las horas y ventanas de predicción analizadas, se observan diferentes patrones  de desempeño en los cuatro modelos de predicción y son los siguientes:</p>
 <ul class="simple">
-<li><p><strong>Regresión K-NN</strong> muestra consistentemente un mal rendimiento en todas las horas, con altos valores de <strong>MAPE</strong> y <strong>RMSE</strong>, y en varios casos, valores negativos de <strong>R^2</strong>. Esto sugiere que este modelo no es adecuado para este tipo de predicciones, ya que sus predicciones son a menudo peores que asumir la media de los datos. Aunque en algunas horas mejora ligeramente, sus valores de <strong>R^2</strong> rara vez superan 0.3, lo que lo convierte en el peor modelo a lo largo de las 24 horas.</p></li>
-<li><p><strong>Regresión Lasso</strong> es uno de los modelos más estables y efectivos. Presenta <strong>MAPE</strong> relativamente bajos y <strong>RMSE</strong> más reducidos en comparación con K-NN. Su <strong>R^2</strong> se mantiene de manera consistente entre 0.54 y 0.62, lo que indica que captura bien la variabilidad de los datos y es una opción confiable para la mayoría de las horas. Durante las últimas horas (21 a 24), <strong>Lasso</strong> continúa siendo robusto, con un buen equilibrio entre error y precisión.</p></li>
-<li><p><strong>Regresión Lineal</strong> tiene un rendimiento intermedio, con un <strong>R^2</strong> que oscila entre 0.49 y 0.61, mostrando que es un modelo decente, pero no tan eficaz como <strong>Lasso</strong> o <strong>Ridge</strong> en algunas horas. Si bien en ciertas horas su <strong>R^2</strong> alcanza valores razonables, como en las primeras 20 horas, también tiene momentos de inconsistencia, como en la hora 23, donde el <strong>R^2</strong> es negativo. Esto sugiere que la regresión lineal depende mucho de la hora y la ventana de predicción, siendo menos confiable en comparación con <strong>Lasso</strong> y <strong>Ridge</strong>.</p></li>
-<li><p><strong>Regresión Ridge</strong> es el modelo que ofrece el mejor equilibrio entre precisión y error. A lo largo de las 24 horas, su <strong>R^2</strong> se mantiene consistentemente alto, entre 0.53 y 0.64, acompañado de valores bajos y estables de <strong>RMSE</strong>, lo que lo convierte en una de las mejores opciones para la predicción. En las horas finales, <strong>Ridge</strong> sigue siendo eficiente, con un <strong>R^2</strong> de hasta 0.63 en la hora 24, lo que reafirma su capacidad de realizar predicciones precisas en una variedad de escenarios.</p></li>
+<li><p><strong>Regresión K-NN</strong> muestra un rendimiento variable y en general bajo. En varias horas, especialmente en la <strong>hora 12</strong> y <strong>hora 13</strong>, se observan altos valores de <strong>MAPE</strong> (superiores a 20), como en las ventanas de 7 días (22.93 y 22.96) y 14 días (14.25 y 33.69), junto con valores elevados de <strong>RMSE</strong> (0.47 y 0.50). Aunque en algunas ventanas más largas (como la ventana de 28 días en la <strong>hora 21</strong>), <strong>K-NN</strong> alcanza un <strong>R^2</strong> de hasta 0.85, su desempeño general en otras horas y ventanas es pobre, con valores de <strong>R^2</strong> frecuentemente por debajo de 0.7, lo que lo convierte en un modelo inconsistente y poco fiable para la mayoría de las predicciones.</p></li>
+<li><p><strong>Regresión Lasso</strong> presenta un comportamiento más estable a lo largo de las horas. En particular, en la <strong>hora 12</strong>, la ventana de 7 días presenta un <strong>MAPE</strong> de 15.17 y un <strong>RMSE</strong> bajo de 0.32, con un <strong>R^2</strong> aceptable de 0.76. Sin embargo, en algunas horas, como la <strong>hora 14</strong> en la ventana de 21 días, <strong>Lasso</strong> muestra un descenso en rendimiento con un <strong>R^2</strong> de solo 0.19 y un <strong>MAPE</strong> de 20.04, lo que indica que su rendimiento puede ser sensible a la longitud de la ventana de predicción. En general, <strong>Lasso</strong> tiene un rendimiento razonable, pero muestra variabilidad en función de la hora y ventana.</p></li>
+<li><p><strong>Regresión Lineal</strong> es uno de los modelos más consistentes, con un <strong>R^2</strong> elevado en muchas de las horas y ventanas. Por ejemplo, en la <strong>hora 12</strong>, su <strong>R^2</strong> oscila entre 0.91 y 0.73, dependiendo de la ventana de predicción, con <strong>MAPE</strong> bajos como 9.38 en la ventana de 7 días. Esto indica que la <strong>Regresión Lineal</strong> es un modelo robusto para predecir la velocidad del viento en la mayoría de las horas, aunque en algunas horas, como la <strong>hora 14</strong> y la <strong>ventana de 21 días</strong>, su <strong>R^2</strong> baja a 0.88, lo que muestra una pequeña pérdida de precisión en ventanas largas.</p></li>
+<li><p><strong>Regresión Ridge</strong> es el modelo con el mejor rendimiento global. En la mayoría de las horas, <strong>Ridge</strong> presenta valores de <strong>R^2</strong> consistentemente altos, frecuentemente superiores a 0.90, como en la <strong>hora 12</strong> con un <strong>R^2</strong> de 0.91 para la ventana de 7 días, y 0.84 para la ventana de 28 días. Además, <strong>Ridge</strong> tiene valores bajos de <strong>MAPE</strong> (como 9.67 en la <strong>hora 15</strong>, ventana de 7 días) y <strong>RMSE</strong> reducidos (cercanos a 0.29 y 0.32), lo que lo convierte en el modelo más estable y preciso. Además tiene la capacidad de mantener un buen desempeño independientemente de la hora.</p></li>
 </ul>
-<p>En general, <strong>Regresión Lasso</strong> y <strong>Regresión Ridge</strong> son las opciones más confiables para este conjunto de datos, con <strong>Ridge</strong> siendo ligeramente superior en estabilidad y precisión. <strong>Regresión K-NN</strong> muestra un mal rendimiento general a lo largo de todas las horas, mientras que <strong>Regresión Lineal</strong> ofrece un rendimiento intermedio, pero es menos consistente en comparación con <strong>Lasso</strong> y <strong>Ridge</strong>.</p>
 </section>
 </section>
 <section id="modelos-en-general">
@@ -5238,6 +5357,7 @@ document.write(`
 <p>En esta parte del código, se agrupan todos los modelos obtenidos para cada una de las 24 horas con respecto a los cuatro modelos de regresión: <strong>KNN</strong>, <strong>Linear Regression</strong>, <strong>Ridge</strong>, y <strong>Lasso</strong>.</p>
 <p>El proceso comienza creando listas vacías para cada uno de los modelos: <strong><code class="docutils literal notranslate"><span class="pre">knn_dataframes</span></code></strong>, <strong><code class="docutils literal notranslate"><span class="pre">linear_dataframes</span></code></strong>, <strong><code class="docutils literal notranslate"><span class="pre">ridge_dataframes</span></code></strong>, y <strong><code class="docutils literal notranslate"><span class="pre">lasso_dataframes</span></code></strong>, donde se almacenarán los DataFrames filtrados por cada modelo y cada hora. Luego, dentro de un bucle que recorre las 24 horas (<code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">25)</span></code>), se accede a las variables dinámicamente mediante <strong><code class="docutils literal notranslate"><span class="pre">locals()</span></code></strong>, obteniendo los DataFrames agregados de cada hora (<strong>hora1_mean</strong>, <strong>hora2_mean</strong>, …, <strong>hora24_mean</strong>).</p>
 <p>Para cada hora, se filtran los resultados específicos de cada modelo usando el método <strong><code class="docutils literal notranslate"><span class="pre">append</span></code></strong> y se añaden a las respectivas listas de DataFrames de cada modelo. Finalmente, estos DataFrames por modelo son concatenados usando <strong><code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code></strong> en variables agrupadas: <strong><code class="docutils literal notranslate"><span class="pre">all_knn_data</span></code></strong>, <strong><code class="docutils literal notranslate"><span class="pre">all_linear_data</span></code></strong>, <strong><code class="docutils literal notranslate"><span class="pre">all_ridge_data</span></code></strong>, y <strong><code class="docutils literal notranslate"><span class="pre">all_lasso_data</span></code></strong>, lo que permite tener todos los resultados organizados por modelo a lo largo de las 24 horas.</p>
+<p><strong>Nota</strong>: Este proceso se hace con el objetivo de visualizar cada modelo dependiendo la hora y la ventana de predicción, para quien le agrade mejor la idea de verlos agrupados por modelos (<code class="docutils literal notranslate"><span class="pre">KNN,</span> <span class="pre">lineal,</span> <span class="pre">Ridge,</span> <span class="pre">Lasso</span></code>)  y no por hora.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn_dataframes</span> <span class="o">=</span> <span class="p">[]</span>
@@ -5913,24 +6033,25 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>Nótese que para cada uno de los diferentes tipos de modelo (<code class="docutils literal notranslate"><span class="pre">Regresión</span> <span class="pre">K-NN,</span> <span class="pre">Regresión</span> <span class="pre">Lineal,</span> <span class="pre">Regresión</span> <span class="pre">Ridge,</span> <span class="pre">Regresión</span> <span class="pre">Lasso</span></code>) la mejor ventana de predicción corresponde a 28 días y la mejor hora para predecir esto es diferente para cada uno de los modelos. Es decir, las mejores predicciones para este conjunto de datos se encuentran cuando se pronostica la hora 6, 7 u 8 para una ventana de predicción de 28 días.</p>
-<p>En esta sección entrenaremos los modelos (<code class="docutils literal notranslate"><span class="pre">KNN</span> <span class="pre">Regresión,</span> <span class="pre">Regresión</span> <span class="pre">lineal,</span> <span class="pre">Regresión</span> <span class="pre">Lasso,</span> <span class="pre">Regresión</span> <span class="pre">Ridge</span></code>) teniendo en cuenta los resultados que se obtuvieron anteriormente, que sugieren que la mejor ventana para predecir es de 28 días. Esto se hace con el objetivo de poder encontrar los residuos de cada modelo y almacenarlos en la gráfica. Adicional a ello tomar el mejor teniendo en cuenta el menor <code class="docutils literal notranslate"><span class="pre">RMSE</span></code> y no promediarlos, para asi notar un comportamiento normal en las gráficas.</p>
+<p>Nótese que para cada uno de los diferentes tipos de modelo (<code class="docutils literal notranslate"><span class="pre">Regresión</span> <span class="pre">K-NN,</span> <span class="pre">Regresión</span> <span class="pre">Lineal,</span> <span class="pre">Regresión</span> <span class="pre">Ridge,</span> <span class="pre">Regresión</span> <span class="pre">Lasso</span></code>), las mejores predicciones se observan en ventanas de predicción de 7, 21 o 28 días. En particular, <strong>Regresión K-NN</strong> alcanza su mejor desempeño en la <strong>hora 7</strong> con una ventana de predicción de 28 días. Por otro lado, <strong>Regresión Lineal</strong> y <strong>Regresión Ridge</strong> tienen un rendimiento similar en la <strong>hora 23</strong> y una ventana de 21 días. Finalmente, <strong>Regresión Lasso</strong> muestra su mejor rendimiento en la <strong>hora 6</strong> con una ventana de 7 días.</p>
+<p>En la siguiente sección entrenaremos los modelos (<code class="docutils literal notranslate"><span class="pre">KNN</span> <span class="pre">Regresión,</span> <span class="pre">Regresión</span> <span class="pre">lineal,</span> <span class="pre">Regresión</span> <span class="pre">Lasso,</span> <span class="pre">Regresión</span> <span class="pre">Ridge</span></code>) teniendo en cuenta únicamente los resultados que se obtuvieron anteriormente para cada modelo. Esto se hace con el objetivo de poder encontrar los residuos de cada modelo y almacenarlos en la gráfica. Adicional a ello tomar el mejor teniendo en cuenta el menor <code class="docutils literal notranslate"><span class="pre">RMSE</span></code> y no promediarlos, para asi notar un comportamiento normal en las gráficas.</p>
+<p>Pero antes de eso, se van a definir las pruebas de hipótesis usadas para determinar como se comporta el valor de cada modelo respecto a los residuos.</p>
 <section id="pruebas-de-hipotesis-para-los-residuos">
 <h4><strong>Pruebas de hipótesis para los residuos</strong><a class="headerlink" href="#pruebas-de-hipotesis-para-los-residuos" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
-<li><p><strong>Prueba de Ljung-Box (Ljung-Box p-value)</strong></p></li>
-</ol>
+<li><p><strong>Prueba de Ljung-Box (Ljung-Box p-value)</strong></p>
 <ul class="simple">
 <li><p><strong>Hipótesis nula (H₀)</strong>: No hay autocorrelación en los residuos (los residuos son independientes en el tiempo).</p></li>
 <li><p><strong>Hipótesis alternativa (H₁)</strong>: Hay autocorrelación en los residuos (los residuos no son independientes en el tiempo).</p></li>
 </ul>
-<ol class="arabic simple" start="2">
-<li><p><strong>Prueba de Jarque-Bera (Jarque-Bera p-value)</strong></p></li>
-</ol>
+</li>
+<li><p><strong>Prueba de Jarque-Bera (Jarque-Bera p-value)</strong></p>
 <ul class="simple">
 <li><p><strong>Hipótesis nula (H₀)</strong>: Los residuos siguen una distribución normal.</p></li>
 <li><p><strong>Hipótesis alternativa (H₁)</strong>: Los residuos no siguen una distribución normal.</p></li>
 </ul>
+</li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modelos</span> <span class="o">=</span> <span class="p">{</span>
@@ -5947,7 +6068,6 @@ document.write(`
     <span class="s1">&#39;Regresión Lasso&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;hora&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1"># Inicialización de variables</span>
 <span class="n">mejores</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
 <span class="n">menor_RMSE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
 <span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
@@ -6062,19 +6182,20 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>De la anterior tabla se puede decir, lo siguiente:</p>
+<p>De la anterior tabla se puede decir lo siguiente:</p>
 <ul class="simple">
-<li><p><strong>Regresión K-NN</strong> tiene el peor desempeño en cuanto a <strong>MAPE (15.41)</strong>, lo que indica que sus predicciones tienden a estar más lejos del valor real en comparación con otros modelos. Sin embargo, tiene un <strong>R² de 0.758</strong>, lo que sugiere que sigue explicando una parte considerable de la variabilidad de los datos. El <strong>valor de p de Ljung-Box es muy bajo (0.018834)</strong>, lo que podría sugerir autocorrelación en los residuos.</p></li>
-<li><p><strong>Regresión Lineal</strong> muestra un buen desempeño general, con un <strong>MAPE más bajo (9.03)</strong> y un <strong>RMSE moderado (0.309)</strong>. Su <strong>R² es 0.811</strong>, lo que indica una buena capacidad para explicar la varianza de los datos. Los valores de <strong>p de Ljung-Box y Jarque-Bera (0.795153 y 0.685522, respectivamente)</strong> sugieren que no hay autocorrelación en los residuos y que estos parecen seguir una distribución normal razonable.</p></li>
-<li><p><strong>Regresión Ridge</strong> tiene un rendimiento similar a la regresión lineal, con un <strong>MAPE ligeramente más bajo (9.009950)</strong> y un <strong>RMSE similar (0.309872)</strong>. Su <strong>R² es prácticamente idéntico (0.811718)</strong>, indicando un desempeño casi idéntico en cuanto a ajuste. Los valores de <strong>p también sugieren que no hay problemas de autocorrelación o distribución de los residuos</strong>.</p></li>
-<li><p><strong>Regresión Lasso</strong> tiene un <strong>MAPE más alto (14.01)</strong>, indicando que, aunque el <strong>RMSE es bajo (0.308020)</strong>, no es tan preciso como otros modelos para predecir valores individuales. Su <strong>R² (0.776762)</strong> es algo inferior a los modelos lineales y Ridge, pero sigue siendo razonable. Los valores de <strong>p indican que no hay problemas de autocorrelación y que los residuos son aceptablemente normales</strong>.</p></li>
+<li><p><strong>Regresión K-NN</strong> presenta un <strong>MAPE</strong> de 13.93, lo que indica un error relativamente alto en comparación con otros modelos. Su (R^2 = 0.846) sugiere que aún explica una buena parte de la variabilidad de los datos. El <strong>p-valor de Ljung-Box (0.066)</strong> indica que no hay suficiente evidencia para rechazar la <strong>hipótesis nula (Ho)</strong>, lo que significa que no se detecta autocorrelación significativa en los residuos. Además, el <strong>p-valor de Jarque-Bera (0.533)</strong> sugiere que no hay evidencia para rechazar la <strong>hipótesis nula (Ho)</strong>, lo que indica que los residuos siguen una distribución normal.</p></li>
+<li><p><strong>Regresión Lasso</strong> tiene el <strong>MAPE más bajo (12.61)</strong>, lo que indica que es el modelo más preciso en términos de error absoluto promedio. Su (R^2 = 0.913) es el más alto, lo que muestra que captura muy bien la variabilidad de los datos. El <strong>p-valor de Ljung-Box (0.298)</strong> indica que no hay autocorrelación en los residuos, por lo que no se rechaza la <strong>hipótesis nula (Ho)</strong>. Asimismo, el <strong>p-valor de Jarque-Bera (0.110)</strong> también sugiere que no hay evidencia de que los residuos no sigan una distribución normal.</p></li>
+<li><p><strong>Regresión Lineal</strong> tiene un <strong>MAPE de 13.38</strong> y un <strong>RMSE bajo de 0.284</strong>, lo que refleja un buen ajuste y precisión. Su (R^2 = 0.874) indica que explica bien la variabilidad de los datos. El <strong>p-valor de Ljung-Box (0.368)</strong> y el <strong>p-valor de Jarque-Bera (0.306)</strong> no presentan evidencia suficiente para rechazar las <strong>hipótesis nulas (Ho)</strong>, lo que implica que no hay autocorrelación en los residuos y que estos siguen una distribución normal.</p></li>
+<li><p><strong>Regresión Ridge</strong> tiene un desempeño similar a la <strong>Regresión Lineal</strong>, con un <strong>MAPE de 13.37</strong> y un <strong>RMSE bajo de 0.284</strong>. Su (R^2 = 0.874) también muestra que es efectivo para predecir los valores. Los <strong>p-valores de Ljung-Box (0.370)</strong> y <strong>Jarque-Bera (0.285)</strong> indican que no se rechaza la <strong>hipótesis nula (Ho)</strong> en ambos casos, sugiriendo que los residuos no presentan autocorrelación y que siguen una distribución normal.</p></li>
 </ul>
-<p>En general, <strong>la regresión lineal y Ridge</strong> parecen ser las mejores opciones en términos de precisión, con buenos valores en todas las métricas. <strong>La regresión Lasso y K-NN</strong> presentan mayores errores de predicción (<strong>MAPE más altos</strong>), siendo <strong>el K-NN el modelo menos eficaz</strong> en general debido a su alto error absoluto y posibles problemas de autocorrelación.</p>
+<p>En general, dado que en este trabajo se prioriza el modelo con menor <strong>RMSE</strong>, podríamos determinar que el modelo de <strong>Regresión Ridge</strong>, es el más adecuado para nuestros datos. Ahora veamos como mejora realizando la hiperparametrización.</p>
 </section>
 </section>
 </section>
 <section id="hiperparametrizacion-optimizacion-bayesiana">
 <h2><strong>Hiperparametrización: Optimización Bayesiana</strong><a class="headerlink" href="#hiperparametrizacion-optimizacion-bayesiana" title="Link to this heading">#</a></h2>
+<p>Ahora que hemos identificado el mejor modelo para predecir la velocidad del viento, procederemos a optimizar sus hiperparámetros para mejorar su rendimiento. Utilizaremos el método <code class="docutils literal notranslate"><span class="pre">gp_minimize</span></code> de la librería <strong>scikit-optimize (skopt)</strong> para llevar a cabo esta optimización. Este enfoque nos permitirá encontrar los hiperparámetros óptimos y evaluar cómo se incrementa la precisión del modelo al aplicar los mejores valores obtenidos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">periodos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
@@ -6141,11 +6262,13 @@ document.write(`
 </div>
 </div>
 </div>
+<p>En este caso, un valor de alpha cercano a 10 indica una moderada regularización, lo cual sugiere que, para estos datos, es importante limitar los coeficientes para mejorar la generalización del modelo. El solver “saga” es un algoritmo utilizado para optimizar el modelo y encontrar los coeficientes que mejor ajusten los datos. Este solver es adecuado para grandes conjuntos de datos y funciona bien con la regularización, lo que lo hace una buena elección para Ridge en este contexto.</p>
 </section>
 <section id="modelo-final">
 <h2><strong>Modelo final</strong><a class="headerlink" href="#modelo-final" title="Link to this heading">#</a></h2>
 <section id="modelo-con-los-mejores-hiperparametros">
-<h3><strong>Modelo con los mejores hiperpárametros</strong><a class="headerlink" href="#modelo-con-los-mejores-hiperparametros" title="Link to this heading">#</a></h3>
+<h3><strong>Modelo con los mejores hiperparámetros</strong><a class="headerlink" href="#modelo-con-los-mejores-hiperparametros" title="Link to this heading">#</a></h3>
+<p>Finalmente vamos a evaluar el modelo de <code class="docutils literal notranslate"><span class="pre">Regresión</span> <span class="pre">Ridge</span></code> con los mejores hiperparámetros obtenidos en la <code class="docutils literal notranslate"><span class="pre">Optimización</span> <span class="pre">Bayesiana</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">21</span>
@@ -6158,8 +6281,8 @@ document.write(`
     <span class="n">train_final</span> <span class="o">=</span> <span class="n">train_inicial</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
     <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">pliegues</span><span class="p">(</span><span class="n">train_inicial</span><span class="p">,</span> <span class="n">train_final</span><span class="p">,</span> <span class="n">hora</span><span class="p">)</span>
     
-    <span class="n">alpha_opt</span> <span class="o">=</span> <span class="mf">9.989305506028346</span>
-    <span class="n">solver_opt</span> <span class="o">=</span> <span class="s1">&#39;saga&#39;</span>
+    <span class="n">alpha_opt</span> <span class="o">=</span> <span class="mf">9.989305506028346</span> <span class="c1"># Mejores hiperparámetros obtenidos</span>
+    <span class="n">solver_opt</span> <span class="o">=</span> <span class="s1">&#39;saga&#39;</span> <span class="c1"># Mejores hiperparámetros obtenidos</span>
     <span class="n">ridge_model</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha_opt</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="n">solver_opt</span><span class="p">)</span>
     <span class="n">nombre_modelo</span> <span class="o">=</span> <span class="s1">&#39;Regresión Ridge&#39;</span>
     <span class="n">ridge_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -6187,8 +6310,15 @@ document.write(`
     <span class="n">train_inicial</span> <span class="o">=</span> <span class="n">train_final</span>
 
 <span class="n">resultadofinal</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">final</span><span class="p">)</span>
-<span class="n">modelofinal</span> <span class="o">=</span> <span class="n">resultadofinal</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">resultadofinal</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Modelo&#39;</span><span class="p">)[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span>
-<span class="n">modelofinal</span>
+
+
+<span class="n">con_hiperparametros</span> <span class="o">=</span> <span class="n">resultadofinal</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">resultadofinal</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Modelo&#39;</span><span class="p">)[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span>
+<span class="n">sin_hiperparametros</span> <span class="o">=</span> <span class="n">mejores_modelos</span><span class="p">[</span><span class="n">mejores_modelos</span><span class="p">[</span><span class="s1">&#39;Modelo&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Regresión Ridge&#39;</span><span class="p">]</span>
+
+<span class="n">con_hiperparametros</span><span class="p">[</span><span class="s1">&#39;Tipo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;CON Hiperparámetros&#39;</span>
+<span class="n">sin_hiperparametros</span><span class="p">[</span><span class="s1">&#39;Tipo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;SIN Hiperparámetros&#39;</span>
+<span class="n">resultado_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">con_hiperparametros</span><span class="p">,</span> <span class="n">sin_hiperparametros</span><span class="p">],</span> <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">resultado_final</span>
 </pre></div>
 </div>
 </div>
@@ -6217,25 +6347,40 @@ document.write(`
       <th>R^2</th>
       <th>Ljung-Box p-value</th>
       <th>Jarque-Bera p-value</th>
+      <th>Tipo</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <th>0</th>
+      <td>Regresión Ridge</td>
+      <td>13.356248</td>
+      <td>0.283330</td>
+      <td>0.875296</td>
+      <td>0.388215</td>
+      <td>0.180095</td>
+      <td>CON Hiperparámetros</td>
+    </tr>
+    <tr>
       <th>1</th>
       <td>Regresión Ridge</td>
-      <td>13.356363</td>
-      <td>0.283331</td>
-      <td>0.875296</td>
-      <td>0.388303</td>
-      <td>0.179993</td>
+      <td>13.377857</td>
+      <td>0.284339</td>
+      <td>0.874406</td>
+      <td>0.370875</td>
+      <td>0.285062</td>
+      <td>SIN Hiperparámetros</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+<p>Al comparar los resultados del modelo <strong>Regresión Ridge</strong> con y sin hiperparámetros ajustados, se observa que la diferencia en rendimiento es mínima. El modelo con hiperparámetros ajustados presenta un <strong>MAPE</strong> de 13.356 frente a 13.377 en el modelo sin ajustes, y un <strong>RMSE</strong> de 0.2833 comparado con 0.2843, lo que indica una mejora leve en el error absoluto promedio y en el error cuadrático medio. Asimismo, el <strong><span class="math notranslate nohighlight">\(R^2\)</span></strong> muestra una ligera ventaja para el modelo ajustado (0.8753 frente a 0.8744), lo que sugiere que explica un poco mejor la variabilidad de los datos. En cuanto a los residuos, ambos modelos no presentan autocorrelación ni desvíos significativos de la normalidad.</p>
+<p>En conclusión, aunque las diferencias entre el modelo con los mejores hiperparámetros y el modelo sin hiperparámetrización no son extremadamente significativas, sí se observa una leve mejora en el rendimiento. Esto sugiere que la optimización bayesiana fue efectiva, logrando afinar ligeramente el modelo. Además, esto indica que los parámetros originales con los que se entrenaba el modelo ya eran bastante buenos, pero no óptimos. La mejora obtenida con la optimización resalta la importancia de ajustar los hiperparámetros para maximizar el rendimiento, aunque en este caso la configuración original ya estaba cercana a su mejor versión.</p>
 </section>
 <section id="grafica-del-modelo-final">
 <h3><strong>Gráfica del modelo final</strong><a class="headerlink" href="#grafica-del-modelo-final" title="Link to this heading">#</a></h3>
+<p>Finalmente, veamos gráficamente los resultados obtenidos para el modelo de <code class="docutils literal notranslate"><span class="pre">Regresión</span> <span class="pre">Ridge</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">,</span> <span class="n">nombre_modelo</span><span class="p">):</span>
@@ -6280,7 +6425,8 @@ document.write(`
 <img alt="_images/de2baebcf88682435086fc7a5b134f7962fe0d92c993142c4803ec00f0cb5af2.png" src="_images/de2baebcf88682435086fc7a5b134f7962fe0d92c993142c4803ec00f0cb5af2.png" />
 </div>
 </div>
-<p>En la gráfica de la <strong>Regresión Ridge</strong> se observan los resultados para el conjunto de entrenamiento y el de prueba. En el conjunto de <strong>entrenamiento</strong>, el modelo presenta un <strong>R² de 0.78</strong> y un <strong>RMSE de 0.62</strong>, lo que indica un ajuste aceptable pero con un error algo elevado. Las predicciones siguen la tendencia de los datos originales, aunque con bastante ruido. En el conjunto de <strong>prueba</strong>, el desempeño mejora con un <strong>R² de 0.81</strong> y un <strong>RMSE de 0.31</strong>, lo que sugiere que el modelo generaliza bien, con predicciones mucho más precisas y alineadas con los valores reales. En conclusión, el modelo tiene mejor capacidad de predicción en los datos de prueba que en los de entrenamiento, lo que indica una buena generalización.</p>
+<p>En la gráficas de la <strong>Regresión Ridge</strong> se observan los resultados tanto para el conjunto de entrenamiento como para el de prueba. En el conjunto de <strong>entrenamiento</strong>, el modelo presenta un <strong>(R^2 = 0.84)</strong> y un <strong>RMSE de 0.49</strong>, lo que indica un buen ajuste a los datos, aunque aún con cierto nivel de error. Las predicciones siguen bien la tendencia de los datos originales, pero con algo de dispersión, lo que sugiere que el modelo captura bien las variaciones generales, aunque no de manera perfecta.</p>
+<p>En el conjunto de <strong>prueba</strong>, el desempeño mejora con un <strong>(R^2 = 0.87)</strong> y un <strong>RMSE de 0.28</strong>, lo que indica una mejor capacidad predictiva. Las predicciones se alinean más estrechamente con los valores reales, y el ajuste es más preciso. Esto sugiere que el modelo generaliza bien, ofreciendo predicciones más precisas fuera del conjunto de entrenamiento.</p>
 </section>
 </section>
 </section>
@@ -6344,13 +6490,17 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-y-modulos-necesarios"><strong>Librerías y modulos necesarios</strong></a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-wind-speed"><strong>Modelo de regresión: Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-regresion-wind-speed"><strong>Modelos de regresión: Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos"><strong>Datos</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-la-base-de-datos-original-y-la-del-modelo"><strong>Diferencias entre la base de datos original y la del modelo</strong></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importante"><strong>Importante</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos"><strong>Modelos</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-para-construir-los-pliegues"><strong>Función para construir los pliegues</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-funciones-a-usar"><strong>Definición de funciones a usar</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-para-construir-los-pliegues"><strong>Función para construir los pliegues</strong></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-individuales-por-horas-24-horas"><strong>Modelos individuales por horas (24 horas)</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pronostico-de-la-hora-1"><strong>Pronóstico de la hora 1</strong></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pronostico-de-la-hora-2"><strong>Pronóstico de la hora 2</strong></a></li>
@@ -6394,7 +6544,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametrizacion-optimizacion-bayesiana"><strong>Hiperparametrización: Optimización Bayesiana</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-final"><strong>Modelo final</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-los-mejores-hiperparametros"><strong>Modelo con los mejores hiperpárametros</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-los-mejores-hiperparametros"><strong>Modelo con los mejores hiperparámetros</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafica-del-modelo-final"><strong>Gráfica del modelo final</strong></a></li>
 </ul>
 </li>
