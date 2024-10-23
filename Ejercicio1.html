@@ -389,11 +389,37 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-y-modulos-necesarios"><strong>Librerías y módulos necesarios</strong></a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#default-probability-prediction"><strong>Default Probability Prediction</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-speed"><strong>Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#default-probability-prediction"><strong>Default Probability Prediction</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualizacion"><strong>Contextualización</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos"><strong>Objetivos</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables"><strong>Diccionario de variables</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas">Variables Categóricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-de-datos">Archivos de datos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos-de-datos"><strong>Conjuntos de datos</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principales-estadisticas-descrptivas"><strong>Principales estadísticas descrptivas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-faltantes"><strong>Datos faltantes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-general"><strong>En general:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-del-conjunto-de-datos-de-entrenamiento"><strong>Tratamiento del conjunto de datos de entrenamiento</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion"><strong>Imputación</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion-usando-knn"><strong>Imputación usando KNN</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion-iterativa-multiple"><strong>Imputación iterativa múltiple</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-componentes-principales-pca"><strong>Análisis de componentes principales (PCA)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-10-de-las-variables"><strong>Análisis de 10 de las variables</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado"><strong>Análisis Bivariado</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Análisis Bivariado</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-speed"><strong>Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Contextualización</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos"><strong>Objetivos</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Diccionario de variables</strong></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-de-datos"><strong>Base de datos</strong></a><ul class="nav section-nav flex-column">
@@ -402,8 +428,8 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables-actualizado"><strong>Diccionario de variables actualizado</strong></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-faltantes"><strong>Datos Faltantes</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas"><strong>Variables categóricas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Datos Faltantes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><strong>Variables categóricas</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas"><strong>Variables numéricas</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-dir-viento"><strong>Variable numérica: dir_viento</strong></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-variable-objetivo-vel-viento"><strong>Variable numérica (Variable objetivo): vel_viento</strong></a></li>
@@ -420,7 +446,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad"><strong>Multicolinealidad</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado"><strong>Análisis bivariado</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><strong>Análisis bivariado</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -454,6 +480,12 @@ Dado los siguientes conjuntos de datos: <strong>Default Probability Prediction</
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.experimental</span> <span class="kn">import</span> <span class="n">enable_iterative_imputer</span> 
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">IterativeImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">KNNImputer</span>
+<span class="kn">import</span> <span class="nn">category_encoders</span> <span class="k">as</span> <span class="nn">ce</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 </pre></div>
 </div>
 </div>
@@ -462,11 +494,2038 @@ Dado los siguientes conjuntos de datos: <strong>Default Probability Prediction</
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="default-probability-prediction">
 <h1><strong>Default Probability Prediction</strong><a class="headerlink" href="#default-probability-prediction" title="Link to this heading">#</a></h1>
+<section id="contextualizacion">
+<h2><strong>Contextualización</strong><a class="headerlink" href="#contextualizacion" title="Link to this heading">#</a></h2>
+<p>Este proyecto busca mejorar la predicción del riesgo de impago (default) en tarjetas de crédito, lo que es clave para optimizar la gestión del riesgo crediticio y la toma de decisiones de los prestamistas. El objetivo es desarrollar un modelo eficiente mediante el uso de técnicas de machine learning aplicadas a un conjunto de datos a gran escala, que contiene información anonimizada de clientes y su comportamiento financiero.</p>
+<p>El modelo pretende no solo predecir mejor los defaults, sino también mejorar la experiencia del cliente al facilitar la aprobación de tarjetas de crédito y reducir los riesgos para las instituciones financieras. Esto no solo tendrá un impacto en la optimización de los productos financieros, sino que también podría abrir oportunidades para nuevas carreras y mejoras en la interacción entre clientes y entidades financieras.</p>
+<section id="diccionario-de-variables">
+<h3><strong>Diccionario de variables</strong><a class="headerlink" href="#diccionario-de-variables" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Prefijo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>D_</strong></p></td>
+<td><p><strong>Delinquency variables</strong>: Representan la morosidad en el pago de las deudas. Se registran para cada cliente y reflejan el comportamiento respecto al cumplimiento de los pagos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>S_</strong></p></td>
+<td><p><strong>Spend variables</strong>: Reflejan los patrones de gasto del cliente a lo largo del tiempo, mostrando cuánto gasta un cliente en su tarjeta de crédito.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>P_</strong></p></td>
+<td><p><strong>Payment variables</strong>: Describen los pagos realizados por el cliente, incluyendo información sobre los montos y la frecuencia de los pagos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B_</strong></p></td>
+<td><p><strong>Balance variables</strong>: Describen el saldo de la cuenta de un cliente, indicando cuánto debe el cliente en un momento dado.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>R_</strong></p></td>
+<td><p><strong>Risk variables</strong>: Proporcionan una evaluación del nivel de riesgo asociado con el perfil crediticio del cliente.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="variables-categoricas">
+<h3>Variables Categóricas<a class="headerlink" href="#variables-categoricas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>B_30</strong></p></td>
+<td><p>Balance variable categórica que representa una métrica discreta del perfil financiero.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B_38</strong></p></td>
+<td><p>Balance variable categórica que representa una métrica discreta del perfil financiero.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>D_114</strong></p></td>
+<td><p>Delinquency variable categórica que representa una métrica discreta del comportamiento respecto a la morosidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>D_116</strong></p></td>
+<td><p>Delinquency variable categórica que representa una métrica discreta del comportamiento respecto a la morosidad.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>D_117</strong></p></td>
+<td><p>Delinquency variable categórica que representa una métrica discreta del comportamiento respecto a la morosidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>D_120</strong></p></td>
+<td><p>Delinquency variable categórica que representa una métrica discreta del comportamiento respecto a la morosidad.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>D_126</strong></p></td>
+<td><p>Delinquency variable categórica que representa una métrica discreta del comportamiento respecto a la morosidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>D_63</strong></p></td>
+<td><p>Delinquency variable categórica que representa una métrica discreta del comportamiento respecto a la morosidad.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>D_64</strong></p></td>
+<td><p>Delinquency variable categórica que representa una métrica discreta del comportamiento respecto a la morosidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>D_66</strong></p></td>
+<td><p>Delinquency variable categórica que representa una métrica discreta del comportamiento respecto a la morosidad.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>D_68</strong></p></td>
+<td><p>Delinquency variable categórica que representa una métrica discreta del comportamiento respecto a la morosidad.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="archivos-de-datos">
+<h3>Archivos de datos<a class="headerlink" href="#archivos-de-datos" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Archivo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>train_data.ftr</strong></p></td>
+<td><p>Datos de entrenamiento con múltiples fechas de estado de cuenta por <code class="docutils literal notranslate"><span class="pre">customer_ID</span></code>, junto con la variable objetivo.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>test_data.ftr</strong></p></td>
+<td><p>Etiqueta objetivo para cada <code class="docutils literal notranslate"><span class="pre">customer_ID</span></code> en base al modelo generado a partir de los datos de entrenamiento.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="conjuntos-de-datos">
+<h2><strong>Conjuntos de datos</strong><a class="headerlink" href="#conjuntos-de-datos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/Parcial 2/DATA/test_data.ftr&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/Parcial 2/DATA/train_data.ftr&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-0ff04636-b0e5-4b23-9c3c-aeaf3301949f" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_ID</th>
+      <th>S_2</th>
+      <th>P_2</th>
+      <th>D_39</th>
+      <th>B_1</th>
+      <th>B_2</th>
+      <th>R_1</th>
+      <th>S_3</th>
+      <th>D_41</th>
+      <th>B_3</th>
+      <th>...</th>
+      <th>D_136</th>
+      <th>D_137</th>
+      <th>D_138</th>
+      <th>D_139</th>
+      <th>D_140</th>
+      <th>D_141</th>
+      <th>D_142</th>
+      <th>D_143</th>
+      <th>D_144</th>
+      <th>D_145</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00000469ba478561f23a92a868bd366de6f6527a684c9a...</td>
+      <td>2019-02-19</td>
+      <td>0.631348</td>
+      <td>0.001912</td>
+      <td>0.010727</td>
+      <td>0.814453</td>
+      <td>0.007545</td>
+      <td>0.168701</td>
+      <td>0.009972</td>
+      <td>0.002348</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.004669</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.008278</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00000469ba478561f23a92a868bd366de6f6527a684c9a...</td>
+      <td>2019-03-25</td>
+      <td>0.586914</td>
+      <td>0.005276</td>
+      <td>0.011024</td>
+      <td>0.811035</td>
+      <td>0.001817</td>
+      <td>0.241333</td>
+      <td>0.000166</td>
+      <td>0.009132</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000142</td>
+      <td>0.004940</td>
+      <td>0.009018</td>
+      <td>NaN</td>
+      <td>0.003695</td>
+      <td>0.003754</td>
+      <td>0.001460</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00000469ba478561f23a92a868bd366de6f6527a684c9a...</td>
+      <td>2019-04-25</td>
+      <td>0.608887</td>
+      <td>0.003326</td>
+      <td>0.016388</td>
+      <td>1.004883</td>
+      <td>0.000114</td>
+      <td>0.267090</td>
+      <td>0.004196</td>
+      <td>0.004192</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000074</td>
+      <td>0.002113</td>
+      <td>0.004658</td>
+      <td>NaN</td>
+      <td>0.003155</td>
+      <td>0.002155</td>
+      <td>0.006481</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00000469ba478561f23a92a868bd366de6f6527a684c9a...</td>
+      <td>2019-05-20</td>
+      <td>0.614746</td>
+      <td>0.009064</td>
+      <td>0.021667</td>
+      <td>0.816406</td>
+      <td>0.009720</td>
+      <td>0.188965</td>
+      <td>0.004124</td>
+      <td>0.015327</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.004742</td>
+      <td>0.006393</td>
+      <td>0.002890</td>
+      <td>NaN</td>
+      <td>0.006042</td>
+      <td>0.005207</td>
+      <td>0.007858</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00000469ba478561f23a92a868bd366de6f6527a684c9a...</td>
+      <td>2019-06-15</td>
+      <td>0.591797</td>
+      <td>0.238770</td>
+      <td>0.015930</td>
+      <td>0.810547</td>
+      <td>0.002026</td>
+      <td>0.180054</td>
+      <td>0.000731</td>
+      <td>0.011284</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.008133</td>
+      <td>0.004330</td>
+      <td>0.008385</td>
+      <td>NaN</td>
+      <td>0.001008</td>
+      <td>0.007420</td>
+      <td>0.009468</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 190 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-0ff04636-b0e5-4b23-9c3c-aeaf3301949f')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-0ff04636-b0e5-4b23-9c3c-aeaf3301949f button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-0ff04636-b0e5-4b23-9c3c-aeaf3301949f');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-f26ec483-608f-4fcd-852b-c3e2c7ab4c89">
+  <button class="colab-df-quickchart" onclick="quickchart('df-f26ec483-608f-4fcd-852b-c3e2c7ab4c89')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-f26ec483-608f-4fcd-852b-c3e2c7ab4c89 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<section id="principales-estadisticas-descrptivas">
+<h3><strong>Principales estadísticas descrptivas</strong><a class="headerlink" href="#principales-estadisticas-descrptivas" title="Link to this heading">#</a></h3>
+<p>Este código realiza un análisis exploratorio de los datos, calculando estadísticas descriptivas como la media, desviación estándar, mínimo, máximo y cuartiles para las variables numéricas. También cuenta los datos faltantes por columna y su porcentaje. Finalmente, genera un histograma para la variable respuesta categórica (target).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">describe_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target_variable</span><span class="p">):</span>
+    <span class="c1"># Calcular estadísticas descriptivas generales para todas las columnas numéricas</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+
+    <span class="c1"># Contar los valores faltantes por columna</span>
+    <span class="n">missing_data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Calcular el porcentaje de datos faltantes</span>
+    <span class="n">missing_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">missing_data</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="c1"># Histograma para la variable respuesta (target) categórica</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">target_variable</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Histograma para la variable respuesta &#39;</span><span class="si">{</span><span class="n">target_variable</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+
+    <span class="k">return</span> <span class="n">stats</span><span class="p">,</span> <span class="n">missing_data</span><span class="p">,</span> <span class="n">missing_percentage</span>
+
+<span class="n">stats</span><span class="p">,</span> <span class="n">missing_data</span><span class="p">,</span> <span class="n">missing_percentage</span> <span class="o">=</span> <span class="n">describe_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4c82bd064ada421b23461497b51d4f08937c11ec111ed514318e3059491a71ee.png" src="_images/4c82bd064ada421b23461497b51d4f08937c11ec111ed514318e3059491a71ee.png" />
+</div>
+</div>
+</section>
+<section id="datos-faltantes">
+<h3><strong>Datos faltantes</strong><a class="headerlink" href="#datos-faltantes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numero_observaciones</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">datos_faltantes</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">porcentaje_faltantes</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Numero de observaciones: </span><span class="si">{</span><span class="n">numero_observaciones</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estadísticas descriptivas:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Datos faltantes por columna:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datos_faltantes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Porcentaje de datos faltantes por columna:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">porcentaje_faltantes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numero de observaciones: 5531451
+Estadísticas descriptivas:
+                                 S_2           P_2          D_39  \
+count                        5531451  5.485466e+06  5.531451e+06   
+mean   2017-09-20 21:47:03.013998080           NaN           NaN   
+min              2017-03-01 00:00:00 -4.589844e-01  0.000000e+00   
+25%              2017-06-15 00:00:00  4.802246e-01  4.528046e-03   
+50%              2017-09-23 00:00:00  6.943359e-01  9.056091e-03   
+75%              2017-12-29 00:00:00  8.647461e-01  2.366943e-01   
+max              2018-03-31 00:00:00  1.009766e+00  5.390625e+00   
+std                              NaN  0.000000e+00  0.000000e+00   
+
+                B_1           B_2           R_1           S_3          D_41  \
+count  5.531451e+06  5.529435e+06  5.531451e+06  4.510907e+06  5.529435e+06   
+mean            NaN           NaN           NaN           NaN           NaN   
+min   -7.589844e+00  0.000000e+00  0.000000e+00 -6.269531e-01  0.000000e+00   
+25%    8.865356e-03  1.053467e-01  2.895355e-03  1.273193e-01  2.872467e-03   
+50%    3.134155e-02  8.144531e-01  5.783081e-03  1.639404e-01  5.744934e-03   
+75%    1.258545e-01  1.001953e+00  8.659363e-03  2.580566e-01  8.613586e-03   
+max    1.324219e+00  1.009766e+00  3.255859e+00  5.484375e+00  8.992188e+00   
+std    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00   
+
+                B_3           D_42  ...          D_137         D_138  \
+count  5.529435e+06  791314.000000  ...  194699.000000  1.946990e+05   
+mean            NaN            NaN  ...       0.000000  0.000000e+00   
+min    0.000000e+00      -0.000454  ...       0.000000  5.960464e-08   
+25%    5.226135e-03       0.037506  ...       0.002533  3.517151e-03   
+50%    9.780884e-03       0.120544  ...       0.005070  7.038116e-03   
+75%    1.550293e-01       0.250977  ...       0.007572  5.014648e-01   
+max    1.625000e+00       4.191406  ...       1.009766  3.005859e+00   
+std    0.000000e+00       0.000000  ...       0.000000  0.000000e+00   
+
+              D_139         D_140         D_141          D_142         D_143  \
+count  5.429903e+06  5.490819e+06  5.429903e+06  944408.000000  5.429903e+06   
+mean            NaN           NaN           NaN            NaN           NaN   
+min    0.000000e+00  0.000000e+00  0.000000e+00      -0.014542  0.000000e+00   
+25%    3.026962e-03  2.555847e-03  3.026962e-03       0.199341  3.028870e-03   
+50%    6.053925e-03  5.111694e-03  6.050110e-03       0.382080  6.053925e-03   
+75%    9.078979e-03  7.663727e-03  9.078979e-03       0.559082  9.078979e-03   
+max    1.009766e+00  1.009766e+00  1.339844e+00       2.228516  1.009766e+00   
+std    0.000000e+00  0.000000e+00  0.000000e+00       0.000000  0.000000e+00   
+
+              D_144         D_145        target  
+count  5.490724e+06  5.429903e+06  5.531451e+06  
+mean            NaN           NaN  2.490972e-01  
+min    0.000000e+00  0.000000e+00  0.000000e+00  
+25%    2.752304e-03  3.028870e-03  0.000000e+00  
+50%    5.508423e-03  6.053925e-03  0.000000e+00  
+75%    8.262634e-03  9.078979e-03  0.000000e+00  
+max    1.343750e+00  4.828125e+00  1.000000e+00  
+std    0.000000e+00  0.000000e+00  4.324903e-01  
+
+[8 rows x 179 columns]
+
+Datos faltantes por columna:
+customer_ID          0
+S_2                  0
+P_2              45985
+D_39                 0
+B_1                  0
+                ...   
+D_142          4587043
+D_143           101548
+D_144            40727
+D_145           101548
+target               0
+Length: 191, dtype: int64
+
+Porcentaje de datos faltantes por columna:
+customer_ID     0.000000
+S_2             0.000000
+P_2             0.831337
+D_39            0.000000
+B_1             0.000000
+                 ...    
+D_142          82.926577
+D_143           1.835829
+D_144           0.736281
+D_145           1.835829
+target          0.000000
+Length: 191, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="en-general">
+<h3><strong>En general:</strong><a class="headerlink" href="#en-general" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Número de observaciones:</strong> El conjunto de datos tiene 5.5 millones de registros.</p></li>
+<li><p><strong>Estadísticas descriptivas:</strong> Las variables numéricas presentan valores variados con algunas distribuciones asimétricas, y target está desbalanceada con un 24.9% de registros en la clase 1.</p></li>
+<li><p><strong>Datos faltantes:</strong> Varias columnas tienen un porcentaje significativo de datos faltantes, con algunas como D_142 presentando hasta un 82.92% de valores nulos.</p></li>
+<li><p><strong>General:</strong> El dataset está desbalanceado y requiere imputación de datos faltantes antes del modelado.</p></li>
+</ul>
+</section>
+</section>
+<section id="tratamiento-del-conjunto-de-datos-de-entrenamiento">
+<h2><strong>Tratamiento del conjunto de datos de entrenamiento</strong><a class="headerlink" href="#tratamiento-del-conjunto-de-datos-de-entrenamiento" title="Link to this heading">#</a></h2>
+<p>Se tomo la decision que antes de hacer el analisis de las variables se haria un PCA para analizar el comportamiento de las variables que aporten mayor variabilidad para posterior implementacion en el modelo.</p>
+<p>Para eso el dataset tiene que estar completo y sin valores faltantes motivo por el cual habia que hacer imputacion, atendiendo la sugerencia, se uso el <strong>Iterative Imputer</strong> y posterior se realizo un PCA con las variables que aportaban un 75 % de los datos. Ademas se elimino las variables que tenian el 50 % de los datos faltantes ya que imputarlas pueden incurrir en un sesgo despues.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcula el porcentaje de valores faltantes por columna</span>
+<span class="n">missing_percentage</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Identifica las columnas con más del 50% de valores faltantes</span>
+<span class="n">columns_to_drop</span> <span class="o">=</span> <span class="n">missing_percentage</span><span class="p">[</span><span class="n">missing_percentage</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1"># Imprime las columnas que se eliminarán</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Columnas con más del 50</span><span class="si">% d</span><span class="s2">e datos faltantes que se eliminarán:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">columns_to_drop</span><span class="p">)</span>
+
+<span class="c1"># Elimina las columnas</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns_to_drop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columnas con más del 50% de datos faltantes que se eliminarán:
+[&#39;D_42&#39;, &#39;D_49&#39;, &#39;D_50&#39;, &#39;D_53&#39;, &#39;D_56&#39;, &#39;S_9&#39;, &#39;B_17&#39;, &#39;D_66&#39;, &#39;D_73&#39;, &#39;D_76&#39;, &#39;R_9&#39;, &#39;D_82&#39;, &#39;B_29&#39;, &#39;D_87&#39;, &#39;D_88&#39;, &#39;D_105&#39;, &#39;D_106&#39;, &#39;R_26&#39;, &#39;D_108&#39;, &#39;D_110&#39;, &#39;D_111&#39;, &#39;B_39&#39;, &#39;B_42&#39;, &#39;D_132&#39;, &#39;D_134&#39;, &#39;D_135&#39;, &#39;D_136&#39;, &#39;D_137&#39;, &#39;D_138&#39;, &#39;D_142&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Ajustar las opciones de visualización de pandas</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># Mostrar todas las filas</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># Mostrar todas las columnas</span>
+
+<span class="c1"># Calcular el porcentaje de datos faltantes por columna</span>
+<span class="n">missing_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Crear un DataFrame con el nombre de la variable y el porcentaje de datos faltantes</span>
+<span class="n">missing_data_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Variable&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="s1">&#39;Porcentaje de Datos Faltantes&#39;</span><span class="p">:</span> <span class="n">missing_percentage</span>
+<span class="p">})</span>
+
+<span class="c1"># Mostrar la tabla completa sin truncar</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_data_table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Variable  Porcentaje de Datos Faltantes
+customer_ID  customer_ID                       0.000000
+S_2                  S_2                       0.000000
+P_2                  P_2                       0.831337
+D_39                D_39                       0.000000
+B_1                  B_1                       0.000000
+B_2                  B_2                       0.036446
+R_1                  R_1                       0.000000
+S_3                  S_3                      18.449843
+D_41                D_41                       0.036446
+B_3                  B_3                       0.036446
+D_43                D_43                      29.981211
+D_44                D_44                       4.959259
+B_4                  B_4                       0.000000
+D_45                D_45                       0.036464
+B_5                  B_5                       0.000000
+R_2                  R_2                       0.000000
+D_46                D_46                      21.905627
+D_47                D_47                       0.000000
+D_48                D_48                      12.993426
+B_6                  B_6                       0.004212
+B_7                  B_7                       0.000000
+B_8                  B_8                       0.402571
+D_51                D_51                       0.000000
+B_9                  B_9                       0.000000
+R_3                  R_3                       0.000000
+D_52                D_52                       0.534453
+P_3                  P_3                       5.450505
+B_10                B_10                       0.000000
+S_5                  S_5                       0.000000
+B_11                B_11                       0.000000
+S_6                  S_6                       0.000000
+D_54                D_54                       0.036446
+R_4                  R_4                       0.000000
+S_7                  S_7                      18.449843
+B_12                B_12                       0.000000
+S_8                  S_8                       0.000000
+D_55                D_55                       3.340950
+B_13                B_13                       0.895226
+R_5                  R_5                       0.000000
+D_58                D_58                       0.000000
+B_14                B_14                       0.000000
+D_59                D_59                       1.929421
+D_60                D_60                       0.000000
+D_61                D_61                      10.811847
+B_15                B_15                       0.125157
+S_11                S_11                       0.000000
+D_62                D_62                      13.706367
+D_63                D_63                       0.000000
+D_64                D_64                       0.000000
+D_65                D_65                       0.000000
+B_16                B_16                       0.036446
+B_18                B_18                       0.000000
+B_19                B_19                       0.036446
+B_20                B_20                       0.036446
+D_68                D_68                       3.914036
+S_12                S_12                       0.000000
+R_6                  R_6                       0.000000
+S_13                S_13                       0.000000
+B_21                B_21                       0.000000
+D_69                D_69                       3.515768
+B_22                B_22                       0.036446
+D_70                D_70                       1.715951
+D_71                D_71                       0.000000
+D_72                D_72                       0.428604
+S_15                S_15                       0.000000
+B_23                B_23                       0.000000
+P_4                  P_4                       0.000000
+D_74                D_74                       0.393622
+D_75                D_75                       0.000000
+B_24                B_24                       0.000000
+R_7                  R_7                       0.000018
+D_77                D_77                      45.447605
+B_25                B_25                       0.125157
+B_26                B_26                       0.036446
+D_78                D_78                       4.959259
+D_79                D_79                       1.372859
+R_8                  R_8                       0.000000
+S_16                S_16                       0.000000
+D_80                D_80                       0.393622
+R_10                R_10                       0.000000
+R_11                R_11                       0.000000
+B_27                B_27                       0.036446
+D_81                D_81                       0.464381
+S_17                S_17                       0.000000
+R_12                R_12                       0.001012
+B_28                B_28                       0.000000
+R_13                R_13                       0.000000
+D_83                D_83                       3.515768
+R_14                R_14                       0.000018
+R_15                R_15                       0.000000
+D_84                D_84                       0.534453
+R_16                R_16                       0.000000
+B_30                B_30                       0.036446
+S_18                S_18                       0.000000
+D_86                D_86                       0.000000
+R_17                R_17                       0.000000
+R_18                R_18                       0.000000
+B_31                B_31                       0.000000
+S_19                S_19                       0.000000
+R_19                R_19                       0.000000
+B_32                B_32                       0.000000
+S_20                S_20                       0.000000
+R_20                R_20                       0.001356
+R_21                R_21                       0.000000
+B_33                B_33                       0.036446
+D_89                D_89                       0.534453
+R_22                R_22                       0.000000
+R_23                R_23                       0.000000
+D_91                D_91                       2.842220
+D_92                D_92                       0.000000
+D_93                D_93                       0.000000
+D_94                D_94                       0.000000
+R_24                R_24                       0.000000
+R_25                R_25                       0.000000
+D_96                D_96                       0.000000
+S_22                S_22                       0.343924
+S_23                S_23                       0.008045
+S_24                S_24                       0.336132
+S_25                S_25                       0.232254
+S_26                S_26                       0.011462
+D_102              D_102                       0.734979
+D_103              D_103                       1.835829
+D_104              D_104                       1.835829
+D_107              D_107                       1.835829
+B_36                B_36                       0.000000
+B_37                B_37                       0.001012
+R_27                R_27                       2.326749
+B_38                B_38                       0.036446
+D_109              D_109                       0.028871
+D_112              D_112                       0.047908
+B_40                B_40                       0.000958
+S_27                S_27                      25.326718
+D_113              D_113                       3.194749
+D_114              D_114                       3.194749
+D_115              D_115                       3.194749
+D_116              D_116                       3.194749
+D_117              D_117                       3.194749
+D_118              D_118                       3.194749
+D_119              D_119                       3.194749
+D_120              D_120                       3.194749
+D_121              D_121                       3.194749
+D_122              D_122                       3.194749
+D_123              D_123                       3.194749
+D_124              D_124                       3.194749
+D_125              D_125                       3.194749
+D_126              D_126                       2.111851
+D_127              D_127                       0.000000
+D_128              D_128                       1.835829
+D_129              D_129                       1.835829
+B_41                B_41                       0.012474
+D_130              D_130                       1.835829
+D_131              D_131                       1.835829
+D_133              D_133                       0.772239
+R_28                R_28                       0.000000
+D_139              D_139                       1.835829
+D_140              D_140                       0.734563
+D_141              D_141                       1.835829
+D_143              D_143                       1.835829
+D_144              D_144                       0.736281
+D_145              D_145                       1.835829
+target            target                       0.000000
+</pre></div>
+</div>
+</div>
+</div>
+<section id="imputacion">
+<h3><strong>Imputación</strong><a class="headerlink" href="#imputacion" title="Link to this heading">#</a></h3>
+<section id="imputacion-usando-knn">
+<h4><strong>Imputación usando KNN</strong><a class="headerlink" href="#imputacion-usando-knn" title="Link to this heading">#</a></h4>
+<p>Notamos que nos quedaron de igual forma variables con datos faltantes, como primera medida imputamos las categoricas por KNN y despues hacemos encoder que en este caso usamos <strong>Hashing</strong> por velocidad de ejecucion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="c1"># Llenar valores faltantes temporales con una cadena &quot;missing&quot; para no perder información</span>
+<span class="n">df</span><span class="p">[</span><span class="n">categorical_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">categorical_columns</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;missing&#39;</span><span class="p">)</span>
+
+<span class="c1"># Usar HashingEncoder para convertir las variables categóricas a numéricas</span>
+<span class="n">hashing_encoder</span> <span class="o">=</span> <span class="n">ce</span><span class="o">.</span><span class="n">HashingEncoder</span><span class="p">(</span><span class="n">cols</span><span class="o">=</span><span class="n">categorical_columns</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>  <span class="c1"># n_components define la cantidad de columnas de salida</span>
+<span class="n">df_encoded</span> <span class="o">=</span> <span class="n">hashing_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Seleccionar solo las columnas numéricas para aplicar el imputador</span>
+<span class="n">df_numeric</span> <span class="o">=</span> <span class="n">df_encoded</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span>
+
+<span class="c1"># Aplicar KNNImputer</span>
+<span class="n">imputer</span> <span class="o">=</span> <span class="n">KNNImputer</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">df_imputed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_numeric</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_numeric</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="imputacion-iterativa-multiple">
+<h4><strong>Imputación iterativa múltiple</strong><a class="headerlink" href="#imputacion-iterativa-multiple" title="Link to this heading">#</a></h4>
+<p>Luego corrimos el codigo para hacer el <strong>Iterative Imputer</strong> en una maquina virtual y lo guardamos en el Siguiente pickle, luego le devolvimos los nombres de las columnas al dataset posterior imputacion y lo guardamos bajo el nombre de df_combined.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pickle_file_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/Parcial 2/DATA/imputed_ddf.pkl&#39;</span>
+<span class="n">dfn</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;number&#39;</span><span class="p">])</span>
+<span class="c1"># Cargar el dataframe desde el archivo pickle</span>
+<span class="n">df_from_pickle</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">pickle_file_path</span><span class="p">)</span>
+
+<span class="n">dfact</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df_from_pickle</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">dfn</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="c1"># Mostrar el nuevo dataframe</span>
+<span class="n">dfact</span>
+
+<span class="n">df_combined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">dfact</span><span class="p">,</span> <span class="n">df_imputed</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Mostrar las primeras filas del dataframe combinado</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_combined</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        P_2      D_39       B_1       B_2       R_1       S_3      D_41  \
+0  0.938477  0.001734  0.008728  1.006836  0.009224  0.124023  0.008774   
+1  0.936523  0.005775  0.004925  1.000977  0.006153  0.126709  0.000798   
+2  0.954102  0.091492  0.021652  1.009766  0.006817  0.123962  0.007599   
+3  0.960449  0.002455  0.013687  1.002930  0.001372  0.117188  0.000685   
+4  0.947266  0.002483  0.015190  1.000977  0.007607  0.117310  0.004654   
+
+        B_3      D_43      D_44       B_4      D_45       B_5       R_2  \
+0  0.004707  0.041415  0.000630  0.080994  0.708984  0.170654  0.006203   
+1  0.002714  0.041787  0.002525  0.069397  0.712891  0.113220  0.006207   
+2  0.009422  0.042707  0.007607  0.068848  0.720703  0.060486  0.003260   
+3  0.005531  0.046785  0.006405  0.055634  0.724121  0.166748  0.009918   
+4  0.009308  0.035551  0.007732  0.038849  0.720703  0.143677  0.006668   
+
+       D_46      D_47      D_48       B_6       B_7       B_8      D_51  \
+0  0.358643  0.525391  0.255615  0.063904  0.059418  0.006466  1.335938   
+1  0.353516  0.521484  0.223389  0.065247  0.057739  0.001614  1.339844   
+2  0.334717  0.524414  0.189453  0.066956  0.056641  0.005127  1.336914   
+3  0.323242  0.530762  0.135620  0.083740  0.049255  0.001417  1.339844   
+4  0.230957  0.529297  0.136461  0.075928  0.048920  0.001199  1.341797   
+
+        B_9       R_3      D_52       P_3      B_10       S_5      B_11  \
+0  0.008209  0.001423  0.207275  0.736328  0.096191  0.023376  0.002768   
+1  0.008369  0.001984  0.202759  0.720703  0.099792  0.030594  0.002748   
+2  0.009354  0.007427  0.206665  0.738281  0.134033  0.048370  0.010078   
+3  0.006783  0.003515  0.208252  0.741699  0.134399  0.030060  0.009666   
+4  0.000519  0.001362  0.205444  0.691895  0.121521  0.054230  0.009483   
+
+        S_6      D_54       R_4       S_7      B_12       S_8      D_55  \
+0  0.008324  1.001953  0.008301  0.161377  0.148315  0.922852  0.354492   
+1  0.002481  1.008789  0.005135  0.140991  0.143555  0.919434  0.326660   
+2  0.000530  1.008789  0.006962  0.112244  0.136963  1.001953  0.304199   
+3  0.000783  1.007812  0.008705  0.102844  0.129028  0.704102  0.275146   
+4  0.006699  1.003906  0.003845  0.094299  0.129517  0.916992  0.231079   
+
+       B_13       R_5      D_58      B_14      D_59      D_60      D_61  \
+0  0.118103  0.001882  0.158569  0.018387  0.063660  0.199585  0.308350   
+1  0.118713  0.001610  0.148438  0.013039  0.065491  0.151367  0.265137   
+2  0.114563  0.006329  0.139526  0.056641  0.070618  0.305908  0.212158   
+3  0.120728  0.004978  0.138062  0.012497  0.065918  0.273438  0.204346   
+4  0.095154  0.001654  0.126465  0.027893  0.063721  0.233154  0.175659   
+
+       B_15      S_11      D_62      D_65      B_16      B_18      B_19  \
+0  0.016357  0.401611  0.091064  0.007126  0.007664  0.652832  0.008522   
+1  0.017685  0.406250  0.086792  0.002413  0.007149  0.646973  0.002237   
+2  0.063965  0.406738  0.093994  0.001878  0.003637  0.645996  0.000408   
+3  0.022736  0.405273  0.094849  0.005898  0.005894  0.654297  0.005898   
+4  0.031174  0.487549  0.093933  0.009476  0.001715  0.649902  0.007774   
+
+       B_20      S_12       R_6      S_13      B_21      D_69      B_22  \
+0  0.004730  0.271973  0.008362  0.515137  0.002644  0.009010  0.004807   
+1  0.003880  0.188965  0.004028  0.509277  0.004192  0.007843  0.001283   
+2  0.004578  0.495361  0.006840  0.679199  0.001336  0.006023  0.009392   
+3  0.005207  0.508789  0.008186  0.515137  0.008713  0.005272  0.004555   
+4  0.005852  0.216553  0.008606  0.507812  0.006821  0.000152  0.000104   
+
+       D_70      D_71      D_72      S_15      B_23       P_4      D_74  \
+0  0.008339  0.119385  0.004803  0.108276  0.050873  0.007553  0.080444   
+1  0.006523  0.140625  0.000094  0.101013  0.040466  0.004833  0.081421   
+2  0.002615  0.075867  0.007153  0.103210  0.047455  0.006561  0.078918   
+3  0.002052  0.150269  0.005363  0.206421  0.031708  0.009560  0.077515   
+4  0.001419  0.096436  0.007973  0.106018  0.032745  0.008156  0.076538   
+
+       D_75      B_24       R_7      D_77      B_25      B_26      D_78  \
+0  0.069092  0.004326  0.007561  0.087335  0.007729  0.000272  0.001575   
+1  0.074158  0.004204  0.005302  0.083166  0.001864  0.000978  0.009895   
+2  0.076538  0.001782  0.001422  0.089786  0.005417  0.006149  0.009628   
+3  0.071533  0.005596  0.006363  0.090833  0.000646  0.009193  0.008568   
+4  0.074463  0.004932  0.004829  0.089561  0.001833  0.005737  0.003288   
+
+       D_79       R_8      S_16      D_80      R_10      R_11      B_27  \
+0  0.004238  0.001434  0.002272  0.004059  0.007122  0.002457  0.002310   
+1  0.007599  0.000509  0.009811  0.000126  0.005966  0.000395  0.001327   
+2  0.003094  0.008293  0.009361  0.000954  0.005447  0.007347  0.007626   
+3  0.003895  0.005154  0.004875  0.005665  0.001888  0.004963  0.000034   
+4  0.002607  0.007339  0.007446  0.004463  0.006111  0.002247  0.002110   
+
+       D_81      S_17      R_12      B_28      R_13      D_83      R_14  \
+0  0.003532  0.008034  1.009766  0.084656  0.003820  0.007042  0.000438   
+1  0.007774  0.000761  1.009766  0.081848  0.000347  0.007790  0.004311   
+2  0.008812  0.004055  1.003906  0.081970  0.002710  0.004093  0.007141   
+3  0.004650  0.006969  1.004883  0.060638  0.009979  0.008820  0.008690   
+4  0.001141  0.001770  1.000977  0.062500  0.005859  0.001844  0.007812   
+
+       R_15      D_84      R_16      S_18      D_86      R_17      R_18  B_31  \
+0  0.006451  0.000830  0.005054  0.005722  0.007084  0.000198  0.008911   1.0   
+1  0.002333  0.009468  0.003754  0.007584  0.006676  0.001143  0.005905   1.0   
+2  0.008362  0.002325  0.007381  0.005901  0.001185  0.008011  0.008881   1.0   
+3  0.007362  0.005924  0.008804  0.002520  0.003325  0.009453  0.008347   1.0   
+4  0.002470  0.005516  0.007168  0.000155  0.001504  0.002018  0.002678   1.0   
+
+       S_19      R_19      B_32      S_20      R_20      R_21      B_33  \
+0  0.002537  0.005177  0.006626  0.009705  0.007782  0.002449  1.000977   
+1  0.008430  0.008980  0.001854  0.009926  0.005989  0.002247  1.006836   
+2  0.007328  0.002016  0.008690  0.008446  0.007290  0.007793  1.000977   
+3  0.007053  0.003910  0.002478  0.006615  0.009979  0.007687  1.002930   
+4  0.007729  0.003431  0.002199  0.005512  0.004105  0.009659  1.006836   
+
+       D_89      R_22      R_23      D_91      D_92      D_93      D_94  \
+0  0.002665  0.007481  0.006893  1.503906  1.005859  0.003569  0.008873   
+1  0.002508  0.006828  0.002836  1.503906  1.005859  0.000571  0.000391   
+2  0.009636  0.009819  0.005081  1.502930  1.005859  0.007427  0.009232   
+3  0.007790  0.000458  0.007320  1.503906  1.006836  0.000664  0.003201   
+4  0.005157  0.003342  0.000264  1.509766  1.002930  0.003078  0.003845   
+
+       R_24      R_25      D_96      S_22      S_23      S_24      S_25  \
+0  0.003948  0.003647  0.004951  0.894043  0.135620  0.911133  0.974609   
+1  0.008354  0.008850  0.003180  0.902344  0.136353  0.919922  0.975586   
+2  0.002472  0.009766  0.005432  0.939453  0.134888  0.958496  0.974121   
+3  0.008507  0.004856  0.000063  0.913086  0.140015  0.926270  0.975586   
+4  0.007191  0.002983  0.000535  0.920898  0.131592  0.933594  0.978027   
+
+       S_26     D_102     D_103     D_104     D_107      B_36      B_37  \
+0  0.001244  0.766602  1.008789  1.004883  0.669922  0.009972  0.004570   
+1  0.004562  0.786133  1.000000  1.003906  0.668457  0.003922  0.004654   
+2  0.011734  0.806641  1.002930  1.009766  0.670898  0.001264  0.019180   
+3  0.007572  0.808105  1.001953  1.004883  0.672852  0.002729  0.011719   
+4  0.018204  0.822266  1.005859  1.005859  0.673828  0.009995  0.017593   
+
+       R_27     D_109     D_112      B_40      S_27     D_113     D_115  \
+0  1.008789  0.004326  1.007812  0.210083  0.676758  0.007874  0.238281   
+1  1.002930  0.008705  1.007812  0.184082  0.822266  0.003445  0.247192   
+2  1.000977  0.004093  1.003906  0.154785  0.853516  0.003269  0.239868   
+3  1.004883  0.009705  1.002930  0.153931  0.844727  0.000053  0.240967   
+4  1.002930  0.009117  1.000000  0.120728  0.811035  0.008720  0.247925   
+
+      D_118     D_119     D_121     D_122     D_123     D_124     D_125  \
+0  0.232178  0.236206  0.702148  0.434326  0.003057  0.686523  0.008743   
+1  0.243530  0.241943  0.707031  0.430420  0.001306  0.686523  0.000755   
+2  0.240723  0.239746  0.705078  0.434326  0.003956  0.689941  0.009621   
+3  0.239380  0.240723  0.711426  0.437012  0.005135  0.687988  0.004650   
+4  0.244141  0.242310  0.705566  0.437500  0.002850  0.688965  0.000097   
+
+      D_127     D_128     D_129      B_41     D_130     D_131     D_133  \
+0  1.002930  1.007812  1.000000  0.006805  0.002052  0.005970  0.004345   
+1  1.008789  1.003906  1.008789  0.004406  0.001034  0.004837  0.007496   
+2  1.009766  1.007812  1.006836  0.003222  0.005680  0.005497  0.009224   
+3  1.001953  1.003906  1.007812  0.007702  0.007107  0.008263  0.007206   
+4  1.009766  1.004883  1.007812  0.009827  0.009682  0.004848  0.006313   
+
+       R_28     D_139     D_140     D_141     D_143     D_144     D_145  \
+0  0.001534  0.002426  0.003706  0.003819  0.000569  0.000610  0.002674   
+1  0.004932  0.003956  0.003166  0.005032  0.009575  0.005493  0.009216   
+2  0.009125  0.003269  0.007328  0.000427  0.003429  0.006985  0.002604   
+3  0.002409  0.006119  0.004517  0.003201  0.008423  0.006527  0.009598   
+4  0.004463  0.003672  0.004944  0.008888  0.001670  0.008125  0.009827   
+
+   target  col_0  col_1  col_2  col_3  col_4  col_5  col_6  col_7  target  
+0     0.0    0.0    0.0    1.0    0.0    0.0    0.0    0.0    0.0     0.0  
+1     0.0    0.0    0.0    1.0    0.0    0.0    0.0    0.0    0.0     0.0  
+2     0.0    0.0    0.0    1.0    0.0    0.0    0.0    0.0    0.0     0.0  
+3     0.0    0.0    0.0    1.0    0.0    0.0    0.0    0.0    0.0     0.0  
+4     0.0    0.0    0.0    1.0    0.0    0.0    0.0    0.0    0.0     0.0  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="analisis-de-componentes-principales-pca">
+<h3><strong>Análisis de componentes principales (PCA)</strong><a class="headerlink" href="#analisis-de-componentes-principales-pca" title="Link to this heading">#</a></h3>
+<p>En esta parte hicimos un testeo de manera que al final nos quedara aproximandamente 75% de la variabilidad con los nombres de las respectivas variables.</p>
+<p>Se seleccionaron las 10 variables con mas representatividad en el PCA para el analisis, y se tomaron 10 variables bivariadas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pca</span> <span class="o">=</span> <span class="n">df_combined</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_combined</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;target&#39;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Paso 1: Asegurarse de que todas las columnas son numéricas</span>
+<span class="n">df_numeric</span> <span class="o">=</span> <span class="n">df_pca</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span>
+
+<span class="c1"># Paso 2: Estandarizar los datos (esto mejora el desempeño de PCA)</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">df_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_numeric</span><span class="p">)</span>
+
+<span class="c1"># Paso 3: Aplicar PCA</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">57</span><span class="p">)</span>  <span class="c1"># Elegir el número de componentes principales</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_scaled</span><span class="p">)</span>
+
+<span class="c1"># Obtener la proporción de varianza explicada por cada componente</span>
+<span class="n">explained_variance</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+
+<span class="c1"># Paso 4: Mostrar los resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proporción de varianza explicada por cada componente principal:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">explained_variance</span><span class="p">)</span>
+
+<span class="c1"># Paso 5: Obtener las 10 variables que más contribuyen a los componentes principales</span>
+<span class="c1"># Los componentes principales son combinaciones lineales de las variables originales</span>
+<span class="n">components</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span>
+
+<span class="c1"># Crear un DataFrame para mostrar las contribuciones de cada variable en los componentes principales</span>
+<span class="n">contributions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">components</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df_numeric</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;PC</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">57</span><span class="p">)])</span>
+
+<span class="c1"># Mostrar las 10 variables más importantes para los primeros componentes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contribución de las variables a los componentes principales:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contributions</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">57</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proporción de varianza explicada por cada componente principal:
+[0.11773662 0.04450297 0.03959566 0.03548287 0.0264503  0.02372033
+ 0.02083673 0.01939401 0.01836167 0.01778969 0.01615116 0.01533399
+ 0.0141989  0.01340845 0.01285012 0.0116037  0.0110999  0.01049243
+ 0.01039236 0.01004755 0.00955847 0.00913555 0.0089887  0.00848955
+ 0.00839656 0.00832296 0.00772878 0.00749085 0.00733716 0.00733261
+ 0.00732973 0.00732716 0.0073251  0.00732253 0.00732    0.00728217
+ 0.00721854 0.00709272 0.00677354 0.00668775 0.00662801 0.00658408
+ 0.00654853 0.00646577 0.00644799 0.00642375 0.00641232 0.00640063
+ 0.00637398 0.00636016 0.00633024 0.00628649 0.00627525 0.00622625
+ 0.00615635 0.0061335  0.00611483]
+
+Contribución de las variables a los componentes principales:
+B_36     4.121028
+R_28     4.022967
+S_17     4.001796
+D_93     3.999127
+D_69     3.996105
+S_23     3.935610
+D_109    3.854335
+D_140    3.837579
+R_22     3.805673
+D_124    3.764517
+D_65     3.742315
+B_32     3.707434
+B_41     3.684262
+S_12     3.614620
+D_46     3.575627
+R_10     3.543265
+B_40     3.530655
+B_27     3.527940
+B_26     3.513366
+D_83     3.486318
+B_31     3.427888
+R_14     3.396472
+D_129    3.340903
+D_91     3.301455
+D_51     3.280737
+P_3      3.258757
+B_10     3.251859
+S_22     3.249243
+B_6      3.247330
+R_18     3.238624
+R_19     3.191300
+D_52     3.179865
+R_6      3.165815
+S_24     3.148140
+D_128    3.131094
+S_7      3.113921
+D_61     3.102349
+R_7      3.082501
+B_12     3.059493
+P_4      3.058397
+D_144    3.046517
+S_6      3.044357
+S_27     3.042793
+S_5      3.041578
+D_94     2.987505
+D_123    2.972763
+R_15     2.965918
+S_19     2.937474
+S_3      2.916769
+R_25     2.907219
+D_78     2.866808
+D_54     2.866676
+D_71     2.866191
+S_25     2.836167
+S_11     2.820293
+D_125    2.795593
+D_41     2.779617
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se seleccionaron manualmente las variables del 75% de la variabilidad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;B_36&#39;</span><span class="p">,</span> <span class="s1">&#39;R_28&#39;</span><span class="p">,</span> <span class="s1">&#39;S_17&#39;</span><span class="p">,</span> <span class="s1">&#39;D_93&#39;</span><span class="p">,</span> <span class="s1">&#39;D_69&#39;</span><span class="p">,</span> <span class="s1">&#39;S_23&#39;</span><span class="p">,</span> <span class="s1">&#39;D_109&#39;</span><span class="p">,</span> <span class="s1">&#39;D_140&#39;</span><span class="p">,</span> <span class="s1">&#39;R_22&#39;</span><span class="p">,</span> <span class="s1">&#39;D_124&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;D_65&#39;</span><span class="p">,</span> <span class="s1">&#39;B_32&#39;</span><span class="p">,</span> <span class="s1">&#39;B_41&#39;</span><span class="p">,</span> <span class="s1">&#39;S_12&#39;</span><span class="p">,</span> <span class="s1">&#39;D_46&#39;</span><span class="p">,</span> <span class="s1">&#39;R_10&#39;</span><span class="p">,</span> <span class="s1">&#39;B_40&#39;</span><span class="p">,</span> <span class="s1">&#39;B_27&#39;</span><span class="p">,</span> <span class="s1">&#39;B_26&#39;</span><span class="p">,</span> <span class="s1">&#39;D_83&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B_31&#39;</span><span class="p">,</span> <span class="s1">&#39;R_14&#39;</span><span class="p">,</span> <span class="s1">&#39;D_129&#39;</span><span class="p">,</span> <span class="s1">&#39;D_91&#39;</span><span class="p">,</span> <span class="s1">&#39;D_51&#39;</span><span class="p">,</span> <span class="s1">&#39;P_3&#39;</span><span class="p">,</span> <span class="s1">&#39;B_10&#39;</span><span class="p">,</span> <span class="s1">&#39;S_22&#39;</span><span class="p">,</span> <span class="s1">&#39;B_6&#39;</span><span class="p">,</span> <span class="s1">&#39;R_18&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;R_19&#39;</span><span class="p">,</span> <span class="s1">&#39;D_52&#39;</span><span class="p">,</span> <span class="s1">&#39;R_6&#39;</span><span class="p">,</span> <span class="s1">&#39;S_24&#39;</span><span class="p">,</span> <span class="s1">&#39;D_128&#39;</span><span class="p">,</span> <span class="s1">&#39;S_7&#39;</span><span class="p">,</span> <span class="s1">&#39;D_61&#39;</span><span class="p">,</span> <span class="s1">&#39;R_7&#39;</span><span class="p">,</span> <span class="s1">&#39;B_12&#39;</span><span class="p">,</span> <span class="s1">&#39;P_4&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;D_144&#39;</span><span class="p">,</span> <span class="s1">&#39;S_6&#39;</span><span class="p">,</span> <span class="s1">&#39;S_27&#39;</span><span class="p">,</span> <span class="s1">&#39;S_5&#39;</span><span class="p">,</span> <span class="s1">&#39;D_94&#39;</span><span class="p">,</span> <span class="s1">&#39;D_123&#39;</span><span class="p">,</span> <span class="s1">&#39;R_15&#39;</span><span class="p">,</span> <span class="s1">&#39;S_19&#39;</span><span class="p">,</span> <span class="s1">&#39;S_3&#39;</span><span class="p">,</span> <span class="s1">&#39;R_25&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;D_78&#39;</span><span class="p">,</span> <span class="s1">&#39;D_54&#39;</span><span class="p">,</span> <span class="s1">&#39;D_71&#39;</span><span class="p">,</span> <span class="s1">&#39;S_25&#39;</span><span class="p">,</span> <span class="s1">&#39;S_11&#39;</span><span class="p">,</span> <span class="s1">&#39;D_125&#39;</span><span class="p">,</span> <span class="s1">&#39;D_41&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Crear el nuevo dataframe con las columnas seleccionadas</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="n">selected_columns</span><span class="p">]</span>
+
+<span class="c1"># Mostrar las primeras filas del nuevo dataframe</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-d7e2abcf-015e-4b78-90f9-77297e320f70" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>B_36</th>
+      <th>R_28</th>
+      <th>S_17</th>
+      <th>D_93</th>
+      <th>D_69</th>
+      <th>S_23</th>
+      <th>D_109</th>
+      <th>D_140</th>
+      <th>R_22</th>
+      <th>D_124</th>
+      <th>D_65</th>
+      <th>B_32</th>
+      <th>B_41</th>
+      <th>S_12</th>
+      <th>D_46</th>
+      <th>R_10</th>
+      <th>B_40</th>
+      <th>B_27</th>
+      <th>B_26</th>
+      <th>D_83</th>
+      <th>B_31</th>
+      <th>R_14</th>
+      <th>D_129</th>
+      <th>D_91</th>
+      <th>D_51</th>
+      <th>P_3</th>
+      <th>B_10</th>
+      <th>S_22</th>
+      <th>B_6</th>
+      <th>R_18</th>
+      <th>R_19</th>
+      <th>D_52</th>
+      <th>R_6</th>
+      <th>S_24</th>
+      <th>D_128</th>
+      <th>S_7</th>
+      <th>D_61</th>
+      <th>R_7</th>
+      <th>B_12</th>
+      <th>P_4</th>
+      <th>D_144</th>
+      <th>S_6</th>
+      <th>S_27</th>
+      <th>S_5</th>
+      <th>D_94</th>
+      <th>D_123</th>
+      <th>R_15</th>
+      <th>S_19</th>
+      <th>S_3</th>
+      <th>R_25</th>
+      <th>D_78</th>
+      <th>D_54</th>
+      <th>D_71</th>
+      <th>S_25</th>
+      <th>S_11</th>
+      <th>D_125</th>
+      <th>D_41</th>
+      <th>target</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.009972</td>
+      <td>0.001534</td>
+      <td>0.008034</td>
+      <td>0.003569</td>
+      <td>0.009010</td>
+      <td>0.135620</td>
+      <td>0.004326</td>
+      <td>0.003706</td>
+      <td>0.007481</td>
+      <td>0.686523</td>
+      <td>0.007126</td>
+      <td>0.006626</td>
+      <td>0.006805</td>
+      <td>0.271973</td>
+      <td>0.358643</td>
+      <td>0.007122</td>
+      <td>0.210083</td>
+      <td>0.002310</td>
+      <td>0.000272</td>
+      <td>0.007042</td>
+      <td>1.0</td>
+      <td>0.000438</td>
+      <td>1.000000</td>
+      <td>1.503906</td>
+      <td>1.335938</td>
+      <td>0.736328</td>
+      <td>0.096191</td>
+      <td>0.894043</td>
+      <td>0.063904</td>
+      <td>0.008911</td>
+      <td>0.005177</td>
+      <td>0.207275</td>
+      <td>0.008362</td>
+      <td>0.911133</td>
+      <td>1.007812</td>
+      <td>0.161377</td>
+      <td>0.308350</td>
+      <td>0.007561</td>
+      <td>0.148315</td>
+      <td>0.007553</td>
+      <td>0.000610</td>
+      <td>0.008324</td>
+      <td>0.676758</td>
+      <td>0.023376</td>
+      <td>0.008873</td>
+      <td>0.003057</td>
+      <td>0.006451</td>
+      <td>0.002537</td>
+      <td>0.124023</td>
+      <td>0.003647</td>
+      <td>0.001575</td>
+      <td>1.001953</td>
+      <td>0.119385</td>
+      <td>0.974609</td>
+      <td>0.401611</td>
+      <td>0.008743</td>
+      <td>0.008774</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.003922</td>
+      <td>0.004932</td>
+      <td>0.000761</td>
+      <td>0.000571</td>
+      <td>0.007843</td>
+      <td>0.136353</td>
+      <td>0.008705</td>
+      <td>0.003166</td>
+      <td>0.006828</td>
+      <td>0.686523</td>
+      <td>0.002413</td>
+      <td>0.001854</td>
+      <td>0.004406</td>
+      <td>0.188965</td>
+      <td>0.353516</td>
+      <td>0.005966</td>
+      <td>0.184082</td>
+      <td>0.001327</td>
+      <td>0.000978</td>
+      <td>0.007790</td>
+      <td>1.0</td>
+      <td>0.004311</td>
+      <td>1.008789</td>
+      <td>1.503906</td>
+      <td>1.339844</td>
+      <td>0.720703</td>
+      <td>0.099792</td>
+      <td>0.902344</td>
+      <td>0.065247</td>
+      <td>0.005905</td>
+      <td>0.008980</td>
+      <td>0.202759</td>
+      <td>0.004028</td>
+      <td>0.919922</td>
+      <td>1.003906</td>
+      <td>0.140991</td>
+      <td>0.265137</td>
+      <td>0.005302</td>
+      <td>0.143555</td>
+      <td>0.004833</td>
+      <td>0.005493</td>
+      <td>0.002481</td>
+      <td>0.822266</td>
+      <td>0.030594</td>
+      <td>0.000391</td>
+      <td>0.001306</td>
+      <td>0.002333</td>
+      <td>0.008430</td>
+      <td>0.126709</td>
+      <td>0.008850</td>
+      <td>0.009895</td>
+      <td>1.008789</td>
+      <td>0.140625</td>
+      <td>0.975586</td>
+      <td>0.406250</td>
+      <td>0.000755</td>
+      <td>0.000798</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.001264</td>
+      <td>0.009125</td>
+      <td>0.004055</td>
+      <td>0.007427</td>
+      <td>0.006023</td>
+      <td>0.134888</td>
+      <td>0.004093</td>
+      <td>0.007328</td>
+      <td>0.009819</td>
+      <td>0.689941</td>
+      <td>0.001878</td>
+      <td>0.008690</td>
+      <td>0.003222</td>
+      <td>0.495361</td>
+      <td>0.334717</td>
+      <td>0.005447</td>
+      <td>0.154785</td>
+      <td>0.007626</td>
+      <td>0.006149</td>
+      <td>0.004093</td>
+      <td>1.0</td>
+      <td>0.007141</td>
+      <td>1.006836</td>
+      <td>1.502930</td>
+      <td>1.336914</td>
+      <td>0.738281</td>
+      <td>0.134033</td>
+      <td>0.939453</td>
+      <td>0.066956</td>
+      <td>0.008881</td>
+      <td>0.002016</td>
+      <td>0.206665</td>
+      <td>0.006840</td>
+      <td>0.958496</td>
+      <td>1.007812</td>
+      <td>0.112244</td>
+      <td>0.212158</td>
+      <td>0.001422</td>
+      <td>0.136963</td>
+      <td>0.006561</td>
+      <td>0.006985</td>
+      <td>0.000530</td>
+      <td>0.853516</td>
+      <td>0.048370</td>
+      <td>0.009232</td>
+      <td>0.003956</td>
+      <td>0.008362</td>
+      <td>0.007328</td>
+      <td>0.123962</td>
+      <td>0.009766</td>
+      <td>0.009628</td>
+      <td>1.008789</td>
+      <td>0.075867</td>
+      <td>0.974121</td>
+      <td>0.406738</td>
+      <td>0.009621</td>
+      <td>0.007599</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.002729</td>
+      <td>0.002409</td>
+      <td>0.006969</td>
+      <td>0.000664</td>
+      <td>0.005272</td>
+      <td>0.140015</td>
+      <td>0.009705</td>
+      <td>0.004517</td>
+      <td>0.000458</td>
+      <td>0.687988</td>
+      <td>0.005898</td>
+      <td>0.002478</td>
+      <td>0.007702</td>
+      <td>0.508789</td>
+      <td>0.323242</td>
+      <td>0.001888</td>
+      <td>0.153931</td>
+      <td>0.000034</td>
+      <td>0.009193</td>
+      <td>0.008820</td>
+      <td>1.0</td>
+      <td>0.008690</td>
+      <td>1.007812</td>
+      <td>1.503906</td>
+      <td>1.339844</td>
+      <td>0.741699</td>
+      <td>0.134399</td>
+      <td>0.913086</td>
+      <td>0.083740</td>
+      <td>0.008347</td>
+      <td>0.003910</td>
+      <td>0.208252</td>
+      <td>0.008186</td>
+      <td>0.926270</td>
+      <td>1.003906</td>
+      <td>0.102844</td>
+      <td>0.204346</td>
+      <td>0.006363</td>
+      <td>0.129028</td>
+      <td>0.009560</td>
+      <td>0.006527</td>
+      <td>0.000783</td>
+      <td>0.844727</td>
+      <td>0.030060</td>
+      <td>0.003201</td>
+      <td>0.005135</td>
+      <td>0.007362</td>
+      <td>0.007053</td>
+      <td>0.117188</td>
+      <td>0.004856</td>
+      <td>0.008568</td>
+      <td>1.007812</td>
+      <td>0.150269</td>
+      <td>0.975586</td>
+      <td>0.405273</td>
+      <td>0.004650</td>
+      <td>0.000685</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.009995</td>
+      <td>0.004463</td>
+      <td>0.001770</td>
+      <td>0.003078</td>
+      <td>0.000152</td>
+      <td>0.131592</td>
+      <td>0.009117</td>
+      <td>0.004944</td>
+      <td>0.003342</td>
+      <td>0.688965</td>
+      <td>0.009476</td>
+      <td>0.002199</td>
+      <td>0.009827</td>
+      <td>0.216553</td>
+      <td>0.230957</td>
+      <td>0.006111</td>
+      <td>0.120728</td>
+      <td>0.002110</td>
+      <td>0.005737</td>
+      <td>0.001844</td>
+      <td>1.0</td>
+      <td>0.007812</td>
+      <td>1.007812</td>
+      <td>1.509766</td>
+      <td>1.341797</td>
+      <td>0.691895</td>
+      <td>0.121521</td>
+      <td>0.920898</td>
+      <td>0.075928</td>
+      <td>0.002678</td>
+      <td>0.003431</td>
+      <td>0.205444</td>
+      <td>0.008606</td>
+      <td>0.933594</td>
+      <td>1.004883</td>
+      <td>0.094299</td>
+      <td>0.175659</td>
+      <td>0.004829</td>
+      <td>0.129517</td>
+      <td>0.008156</td>
+      <td>0.008125</td>
+      <td>0.006699</td>
+      <td>0.811035</td>
+      <td>0.054230</td>
+      <td>0.003845</td>
+      <td>0.002850</td>
+      <td>0.002470</td>
+      <td>0.007729</td>
+      <td>0.117310</td>
+      <td>0.002983</td>
+      <td>0.003288</td>
+      <td>1.003906</td>
+      <td>0.096436</td>
+      <td>0.978027</td>
+      <td>0.487549</td>
+      <td>0.000097</td>
+      <td>0.004654</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d7e2abcf-015e-4b78-90f9-77297e320f70')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-d7e2abcf-015e-4b78-90f9-77297e320f70 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-d7e2abcf-015e-4b78-90f9-77297e320f70');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-f2702033-83b6-4887-ab89-3d72ef56a264">
+  <button class="colab-df-quickchart" onclick="quickchart('df-f2702033-83b6-4887-ab89-3d72ef56a264')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-f2702033-83b6-4887-ab89-3d72ef56a264 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+<section id="analisis-de-10-de-las-variables">
+<h2><strong>Análisis de 10 de las variables</strong><a class="headerlink" href="#analisis-de-10-de-las-variables" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar las columnas especificadas</span>
+<span class="n">columnas_seleccionadas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;B_36&#39;</span><span class="p">,</span> <span class="s1">&#39;R_28&#39;</span><span class="p">,</span> <span class="s1">&#39;S_17&#39;</span><span class="p">,</span> <span class="s1">&#39;D_93&#39;</span><span class="p">,</span> <span class="s1">&#39;D_69&#39;</span><span class="p">,</span> <span class="s1">&#39;S_23&#39;</span><span class="p">,</span> <span class="s1">&#39;D_109&#39;</span><span class="p">,</span> <span class="s1">&#39;D_140&#39;</span><span class="p">,</span> <span class="s1">&#39;R_22&#39;</span><span class="p">,</span> <span class="s1">&#39;D_124&#39;</span><span class="p">]</span>
+<span class="n">df_seleccionado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columnas_seleccionadas</span><span class="p">]</span>
+
+<span class="c1"># Crear el boxplot para analizar la simetría, atípicos y dispersión de las variables seleccionadas</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_seleccionado</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot de las variables seleccionadas&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/73165b6d4b0102064f72ea5263915b27876f5a4e87a052ef559eb0244f17684d.png" src="_images/73165b6d4b0102064f72ea5263915b27876f5a4e87a052ef559eb0244f17684d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar las columnas especificadas</span>
+<span class="n">columnas_seleccionadas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;B_36&#39;</span><span class="p">,</span> <span class="s1">&#39;R_28&#39;</span><span class="p">,</span> <span class="s1">&#39;S_17&#39;</span><span class="p">,</span> <span class="s1">&#39;D_93&#39;</span><span class="p">,</span> <span class="s1">&#39;D_69&#39;</span><span class="p">,</span> <span class="s1">&#39;S_23&#39;</span><span class="p">,</span> <span class="s1">&#39;D_109&#39;</span><span class="p">,</span> <span class="s1">&#39;D_140&#39;</span><span class="p">,</span> <span class="s1">&#39;R_22&#39;</span><span class="p">,</span> <span class="s1">&#39;D_124&#39;</span><span class="p">]</span>
+
+<span class="c1"># Si el dataset es muy grande, puedes tomar una muestra de los datos</span>
+<span class="n">df_seleccionado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columnas_seleccionadas</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Tomar el 10% del dataset</span>
+
+<span class="c1"># Crear el boxplot para analizar la simetría, atípicos y dispersión de las variables seleccionadas</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_seleccionado</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>  <span class="c1"># Aplicar escala logarítmica en el eje Y</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot de las variables seleccionadas con escala logarítmica en el eje Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a1fe32c594807b63d5e7656a0a1a6c3df5b19aaff0f530e2a175df561a07a5fe.png" src="_images/a1fe32c594807b63d5e7656a0a1a6c3df5b19aaff0f530e2a175df561a07a5fe.png" />
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><em><strong>Simetría y dispersión:</strong></em> Las variables como B_36, R_28, S_17, y otras, presentan datos distribuidos en una escala logarítmica. Esto indica una gran dispersión en los valores. La mayoría de los datos están cercanos al centro de la caja (mediana), pero se extienden mucho hacia los valores más altos.</p></li>
+<li><p><em><strong>Datos atípicos:</strong></em> Las variables como S_23 y D_69 tienen un gran número de outliers, lo que puede significar que estas variables tienen valores extremos o atípicos en comparación con el resto de los datos.</p></li>
+<li><p><em><strong>Dispersión:</strong></em> Las variables están distribuidas en un rango amplio, algunas como D_109 y R_22 muestran una menor dispersión, mientras que otras como D_69 muestran una dispersión muy alta, evidenciado por la gran longitud de los bigotes en el gráfico.</p></li>
+</ol>
+</section>
+<section id="analisis-bivariado">
+<h2><strong>Análisis Bivariado</strong><a class="headerlink" href="#analisis-bivariado" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar las columnas especificadas</span>
+<span class="n">columnas_seleccionadas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;B_36&#39;</span><span class="p">,</span> <span class="s1">&#39;R_28&#39;</span><span class="p">,</span> <span class="s1">&#39;S_17&#39;</span><span class="p">,</span> <span class="s1">&#39;D_93&#39;</span><span class="p">,</span> <span class="s1">&#39;D_69&#39;</span><span class="p">,</span> <span class="s1">&#39;S_23&#39;</span><span class="p">,</span> <span class="s1">&#39;D_109&#39;</span><span class="p">,</span> <span class="s1">&#39;D_140&#39;</span><span class="p">,</span> <span class="s1">&#39;R_22&#39;</span><span class="p">,</span> <span class="s1">&#39;D_124&#39;</span><span class="p">]</span>
+
+<span class="c1"># Si el dataset es muy grande, puedes tomar una muestra de los datos</span>
+<span class="n">df_seleccionado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columnas_seleccionadas</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Tomar el 10% del dataset</span>
+
+<span class="c1"># Crear el boxplot para analizar la simetría, atípicos y dispersión de las variables seleccionadas</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_seleccionado</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>  <span class="c1"># Aplicar escala logarítmica en el eje Y</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot de las variables seleccionadas con escala logarítmica en el eje Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a1fe32c594807b63d5e7656a0a1a6c3df5b19aaff0f530e2a175df561a07a5fe.png" src="_images/a1fe32c594807b63d5e7656a0a1a6c3df5b19aaff0f530e2a175df561a07a5fe.png" />
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><em><strong>Simetría y dispersión:</strong></em> Las variables como B_36, R_28, S_17, y otras, presentan datos distribuidos en una escala logarítmica. Esto indica una gran dispersión en los valores. La mayoría de los datos están cercanos al centro de la caja (mediana), pero se extienden mucho hacia los valores más altos.</p></li>
+<li><p><em><strong>Datos atípicos:</strong></em> Las variables como S_23 y D_69 tienen un gran número de outliers, lo que puede significar que estas variables tienen valores extremos o atípicos en comparación con el resto de los datos.</p></li>
+<li><p><em><strong>Dispersión:</strong></em> Las variables están distribuidas en un rango amplio, algunas como D_109 y R_22 muestran una menor dispersión, mientras que otras como D_69 muestran una dispersión muy alta, evidenciado por la gran longitud de los bigotes en el gráfico.</p></li>
+</ol>
+</section>
+<section id="id1">
+<h2><strong>Análisis Bivariado</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variables seleccionadas</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;B_36&#39;</span><span class="p">,</span> <span class="s1">&#39;R_28&#39;</span><span class="p">,</span> <span class="s1">&#39;S_17&#39;</span><span class="p">,</span> <span class="s1">&#39;D_93&#39;</span><span class="p">,</span> <span class="s1">&#39;D_69&#39;</span><span class="p">,</span> <span class="s1">&#39;S_23&#39;</span><span class="p">,</span> <span class="s1">&#39;D_109&#39;</span><span class="p">,</span> <span class="s1">&#39;D_140&#39;</span><span class="p">,</span> <span class="s1">&#39;R_22&#39;</span><span class="p">,</span> <span class="s1">&#39;D_124&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;D_65&#39;</span><span class="p">,</span> <span class="s1">&#39;B_32&#39;</span><span class="p">,</span> <span class="s1">&#39;B_41&#39;</span><span class="p">,</span> <span class="s1">&#39;S_12&#39;</span><span class="p">,</span> <span class="s1">&#39;D_46&#39;</span><span class="p">,</span> <span class="s1">&#39;R_10&#39;</span><span class="p">,</span> <span class="s1">&#39;B_40&#39;</span><span class="p">,</span> <span class="s1">&#39;B_27&#39;</span><span class="p">,</span> <span class="s1">&#39;B_26&#39;</span><span class="p">,</span> <span class="s1">&#39;D_83&#39;</span><span class="p">]</span>
+
+<span class="c1"># Seleccionar 10 pares aleatorios de variables</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Fijar la semilla para reproducibilidad</span>
+<span class="n">random_pairs</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">([(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">],</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Trazado de scatterplot y regplot para los pares seleccionados</span>
+<span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">random_pairs</span><span class="p">:</span>
+    <span class="n">x_var</span><span class="p">,</span> <span class="n">y_var</span> <span class="o">=</span> <span class="n">pair</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># Scatterplot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_var</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_var</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Scatterplot de </span><span class="si">{</span><span class="n">x_var</span><span class="si">}</span><span class="s1"> vs </span><span class="si">{</span><span class="n">y_var</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Regplot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_var</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_var</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">},</span> <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">})</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Regplot de </span><span class="si">{</span><span class="n">x_var</span><span class="si">}</span><span class="s1"> vs </span><span class="si">{</span><span class="n">y_var</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Mostrar los gráficos</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Análisis básico</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Análisis de </span><span class="si">{</span><span class="n">x_var</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">y_var</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- El gráfico de dispersión muestra la relación entre </span><span class="si">{</span><span class="n">x_var</span><span class="si">}</span><span class="s2"> y </span><span class="si">{</span><span class="n">y_var</span><span class="si">}</span><span class="s2">. Si los puntos están más dispersos, la relación entre las variables es más débil.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3b696f95feb9da1d3b43a87e567c957b793b75fc4625ac8a1b15b274c681f8b8.png" src="_images/3b696f95feb9da1d3b43a87e567c957b793b75fc4625ac8a1b15b274c681f8b8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de B_27 vs D_69:
+- El gráfico de dispersión muestra la relación entre B_27 y D_69. Si los puntos están más dispersos, la relación entre las variables es más débil.
+- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.
+- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.
+- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.
+- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.
+</pre></div>
+</div>
+<img alt="_images/c5529d01bd54a8b77e6201266fd371b2f2973efd276a63c44d94a073f3b009c0.png" src="_images/c5529d01bd54a8b77e6201266fd371b2f2973efd276a63c44d94a073f3b009c0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de D_93 vs B_36:
+- El gráfico de dispersión muestra la relación entre D_93 y B_36. Si los puntos están más dispersos, la relación entre las variables es más débil.
+- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.
+- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.
+- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.
+- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.
+</pre></div>
+</div>
+<img alt="_images/93f033897d5f937d817ba76b33d3481fb176f18b139e82a1fda833f8a4ba9e00.png" src="_images/93f033897d5f937d817ba76b33d3481fb176f18b139e82a1fda833f8a4ba9e00.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de B_36 vs S_12:
+- El gráfico de dispersión muestra la relación entre B_36 y S_12. Si los puntos están más dispersos, la relación entre las variables es más débil.
+- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.
+- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.
+- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.
+- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.
+</pre></div>
+</div>
+<img alt="_images/3b2aea10e9c6488f8a3847a0e9f89805d40ff1c1d0448ef221e2c2e9c0c84844.png" src="_images/3b2aea10e9c6488f8a3847a0e9f89805d40ff1c1d0448ef221e2c2e9c0c84844.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de D_83 vs B_26:
+- El gráfico de dispersión muestra la relación entre D_83 y B_26. Si los puntos están más dispersos, la relación entre las variables es más débil.
+- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.
+- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.
+- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.
+- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.
+</pre></div>
+</div>
+<img alt="_images/501e2a6f2778d0ede19ad1e334f1ecceaeed6b6cf45fff0d0074b5351c5179e4.png" src="_images/501e2a6f2778d0ede19ad1e334f1ecceaeed6b6cf45fff0d0074b5351c5179e4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de D_140 vs R_22:
+- El gráfico de dispersión muestra la relación entre D_140 y R_22. Si los puntos están más dispersos, la relación entre las variables es más débil.
+- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.
+- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.
+- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.
+- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.
+</pre></div>
+</div>
+<img alt="_images/e438e585379ebe9076292c09c40b1665890a206cbd0fabfd1c9e997a0a53884f.png" src="_images/e438e585379ebe9076292c09c40b1665890a206cbd0fabfd1c9e997a0a53884f.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de D_109 vs B_41:
+- El gráfico de dispersión muestra la relación entre D_109 y B_41. Si los puntos están más dispersos, la relación entre las variables es más débil.
+- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.
+- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.
+- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.
+- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.
+</pre></div>
+</div>
+<img alt="_images/ca97219e9ec1764cc926023180a5433f716b5340317eb44df5cd623a1d820eeb.png" src="_images/ca97219e9ec1764cc926023180a5433f716b5340317eb44df5cd623a1d820eeb.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de D_109 vs B_36:
+- El gráfico de dispersión muestra la relación entre D_109 y B_36. Si los puntos están más dispersos, la relación entre las variables es más débil.
+- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.
+- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.
+- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.
+- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.
+</pre></div>
+</div>
+<img alt="_images/044675d633a186ee6d2d1e1ff64ad0189059818c3da81bf22ee32d72fb61639d.png" src="_images/044675d633a186ee6d2d1e1ff64ad0189059818c3da81bf22ee32d72fb61639d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de D_93 vs R_10:
+- El gráfico de dispersión muestra la relación entre D_93 y R_10. Si los puntos están más dispersos, la relación entre las variables es más débil.
+- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.
+- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.
+- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.
+- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.
+</pre></div>
+</div>
+<img alt="_images/fdab13e44cd43cc5af338e19b6a4f484359e883ee4644b98eb6ff5a7eca94d81.png" src="_images/fdab13e44cd43cc5af338e19b6a4f484359e883ee4644b98eb6ff5a7eca94d81.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de D_83 vs B_40:
+- El gráfico de dispersión muestra la relación entre D_83 y B_40. Si los puntos están más dispersos, la relación entre las variables es más débil.
+- El gráfico de regresión agrega una línea de ajuste. Si la pendiente es pronunciada, puede haber una relación más fuerte entre las variables.
+- Si los puntos están agrupados cerca de la línea de regresión, la relación es más fuerte.
+- Analiza la forma de los puntos: si ves una relación lineal, cuadrática u otro patrón. También presta atención a los valores atípicos.
+- Observa si las variables muestran colinealidad, lo que puede ser útil para construir modelos predictivos.
+</pre></div>
+</div>
+<img alt="_images/cd6515801cfc1a28ae6c5dffd084d4b5d378d1a18646ba1bed52224cd587dbf8.png" src="_images/cd6515801cfc1a28ae6c5dffd084d4b5d378d1a18646ba1bed52224cd587dbf8.png" />
+</div>
+</div>
+<p>En esta parte nos podemos dar cuenta como estas variables no se encuentran correlacionadas entre ellas, esto debido a que son tomadas del PCA por lo cual ese es un fin del mismo, elegir las variables con menos relacion y mas variabilidad, lo que nos permite eliminar el resto del dataset sin necesidad de hacer VIF. Eligiendo como metodo de reduccion de dimensionalidad el PCA con el umbral de 75%.</p>
+<p>Teniendo ya las variables seleccionadas y los datos limpios e imputados pasamos al <a class="reference external" href="https://kmarcela11.github.io/Parcial2_MachineLearning/Ejercicio2.html">Análisis de los modelos de clasificación</a>
+.</p>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="wind-speed">
 <h1><strong>Wind Speed</strong><a class="headerlink" href="#wind-speed" title="Link to this heading">#</a></h1>
-<section id="contextualizacion">
-<h2><strong>Contextualización</strong><a class="headerlink" href="#contextualizacion" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2><strong>Contextualización</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>La velocidad del viento es una variable clave en áreas como la seguridad en la aviación, la navegación, la agricultura, la construcción y la meteorología. Su predicción adquiere un rol fundamental debido a su influencia directa en la generación de energía eólica, una fuente renovable crucial para impulsar la transición energética global. Además, una estimación precisa de la velocidad del viento permite optimizar la planificación de recursos energéticos, reducir costos operativos y maximizar la eficiencia en la producción de energías limpias, beneficiando tanto a la industria como al medio ambiente.</p>
 <div style="text-align: center;">
     <img src="https://github.com/kmarcela11/Parcial2_MachineLearning/blob/main/Imagen.jpg?raw=true" alt= "300" width="500"/>
@@ -479,8 +2538,8 @@ Dado los siguientes conjuntos de datos: <strong>Default Probability Prediction</
 <li><p>Predecir la cantidad de energía eólica que se puede generar en un período de 24 horas, a partir de las predicciones de velocidad del viento, con el objetivo de estimar la viabilidad de comercializar esta energía a empresas productoras de hidrógeno verde.</p></li>
 </ul>
 </section>
-<section id="diccionario-de-variables">
-<h3><strong>Diccionario de variables</strong><a class="headerlink" href="#diccionario-de-variables" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3><strong>Diccionario de variables</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
@@ -1118,8 +3177,8 @@ memory usage: 8.7+ MB
 <p>El resumen estadístico muestra que no hay datos faltantes en ninguna de las variables numéricas, con 87,693 observaciones para cada una. De manera general observa que las variables como <code class="docutils literal notranslate"><span class="pre">precip_total</span></code> tienen un valor máximo alto (70.8 mm), aunque la mediana es 0, lo que indica que las precipitaciones son esporádicas y puede ser un indicio de datos atípicos en esta variable. Otras variables como <code class="docutils literal notranslate"><span class="pre">vel_viento</span></code> y <code class="docutils literal notranslate"><span class="pre">humedad</span></code> muestran distribuciones normales al observar los valores de la media y la mediana (son valores cercanos). Más adelante se detallan las estadísticas de cada variable.</p>
 </section>
 </section>
-<section id="datos-faltantes">
-<h3><strong>Datos Faltantes</strong><a class="headerlink" href="#datos-faltantes" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3><strong>Datos Faltantes</strong><a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>En esta parte se realiza un análisis para identificar la cantidad de datos faltantes en cada columna de la base de datos. Primeroo se cuentan la cantidad de valores nulos por variable y se muestra en forma de porcentaje. También se utiliza la librería <code class="docutils literal notranslate"><span class="pre">missingno</span></code> para generar una visualización en forma de barra que muestra el porcentaje de datos faltantes en cada columna, ordenados de manera ascendente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1191,8 +3250,8 @@ dtype: float64
 <p>El gráfico muestra que no hay datos faltantes en ninguna de las variables, ya que todas las barras está llenas. Esto indica que las columnas están completas y no presentan valores nulos o faltantes, lo cual es bueno para predecir de manera más precisa nuestro modelo.</p>
 <p>Analicemos ahora las variables de manera individual, para obtener una comprensión más detallada de su comportamiento. Observaremos aspectos clave como la distribución, rangos de valores y la posible presencia de valores atípicos. Esto nos permitirá identificar patrones y realizar ajustes en los datos en caso de ser necesario, optimizando su uso en futuros modelos predictivos.</p>
 </section>
-<section id="variables-categoricas">
-<h3><strong>Variables categóricas</strong><a class="headerlink" href="#variables-categoricas" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3><strong>Variables categóricas</strong><a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>Se utiliza el método <code class="docutils literal notranslate"><span class="pre">describe(</span> <span class="pre">include</span> <span class="pre">=</span> <span class="pre">object)</span></code> para generar estadísticas descriptivas sobre las variables categóricas. En este caso solo se tiene una variable categórica</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1969,8 +4028,8 @@ Name: pres_min, dtype: float64
 </div>
 <p>Ahora, dado que el objetivo del modelo es predecir la cantidad de energía eólica que se puede generar a partir de la velocidad del viento, aplicar el VIF para reducir la multicolinealidad podría llevar a la eliminación de variables meteorológicas importantes para el análisis. Por ejemplo, la <strong>velocidad del viento</strong> está altamente correlacionada con la <strong>ráfaga máxima</strong>, y eliminar cualquiera de estas variables podría resultar en la pérdida de información clave para modelar correctamente el comportamiento del viento. Esto reduciría la precisión y la capacidad del modelo para capturar todos los factores relevantes que influyen en la predicción de la energía eólica.</p>
 </section>
-<section id="analisis-bivariado">
-<h3><strong>Análisis bivariado</strong><a class="headerlink" href="#analisis-bivariado" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h3><strong>Análisis bivariado</strong><a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>En esta sección, se llevarán a cabo diversos análisis bivariados para explorar la relación entre la variable objetivo (vel_viento) y las variables explicativas. Estos análisis permitirán identificar patrones, tendencias y correlaciones significativas que pueden influir en la velocidad del viento. A través de gráficos como <code class="docutils literal notranslate"><span class="pre">scatterplot()</span></code> y <code class="docutils literal notranslate"><span class="pre">regplot()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2095,11 +4154,37 @@ Name: pres_min, dtype: float64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-y-modulos-necesarios"><strong>Librerías y módulos necesarios</strong></a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#default-probability-prediction"><strong>Default Probability Prediction</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-speed"><strong>Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#default-probability-prediction"><strong>Default Probability Prediction</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualizacion"><strong>Contextualización</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos"><strong>Objetivos</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables"><strong>Diccionario de variables</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas">Variables Categóricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-de-datos">Archivos de datos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos-de-datos"><strong>Conjuntos de datos</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principales-estadisticas-descrptivas"><strong>Principales estadísticas descrptivas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-faltantes"><strong>Datos faltantes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-general"><strong>En general:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-del-conjunto-de-datos-de-entrenamiento"><strong>Tratamiento del conjunto de datos de entrenamiento</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion"><strong>Imputación</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion-usando-knn"><strong>Imputación usando KNN</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion-iterativa-multiple"><strong>Imputación iterativa múltiple</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-componentes-principales-pca"><strong>Análisis de componentes principales (PCA)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-10-de-las-variables"><strong>Análisis de 10 de las variables</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado"><strong>Análisis Bivariado</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Análisis Bivariado</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-speed"><strong>Wind Speed</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Contextualización</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos"><strong>Objetivos</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Diccionario de variables</strong></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-de-datos"><strong>Base de datos</strong></a><ul class="nav section-nav flex-column">
@@ -2108,8 +4193,8 @@ Name: pres_min, dtype: float64
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables-actualizado"><strong>Diccionario de variables actualizado</strong></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-faltantes"><strong>Datos Faltantes</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas"><strong>Variables categóricas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Datos Faltantes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><strong>Variables categóricas</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas"><strong>Variables numéricas</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-dir-viento"><strong>Variable numérica: dir_viento</strong></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-numerica-variable-objetivo-vel-viento"><strong>Variable numérica (Variable objetivo): vel_viento</strong></a></li>
@@ -2126,7 +4211,7 @@ Name: pres_min, dtype: float64
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad"><strong>Multicolinealidad</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado"><strong>Análisis bivariado</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><strong>Análisis bivariado</strong></a></li>
 </ul>
 </li>
 </ul>
